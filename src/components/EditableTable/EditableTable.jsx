@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Table } from "react-bootstrap";
 import { PencilFill, Save, Trash, XSquare } from 'react-bootstrap-icons';
 import './EditableTable.css';
+import { Checkbox } from 'antd';
 
 const EditableTable = ({ updateProject, deleteProjects, columns, rows, actions }) => {
   // Состояние для определения, находится ли компонент в режиме редактирования или нет
@@ -38,7 +39,6 @@ const EditableTable = ({ updateProject, deleteProjects, columns, rows, actions }
   // Обработчик события для изменения значения поля
   const handleOnChangeField = (e, rowID) => {
     const { name: fieldName, value } = e.target;
-
     // Обновляем состояние редактируемой строки
     setEditedRow({
       id: rowID,
@@ -89,11 +89,27 @@ const EditableTable = ({ updateProject, deleteProjects, columns, rows, actions }
     //   setEditedRow(undefined)
     // }, 1000)
   }
+  const handleCheckbox = ({ id, name }) => {
+    
+  }
+  const handleChange = (e, rowID, status, fieldName) => {
+    //обработчик клика по чекбоксу выбора файла для сохранения
+    e.target.checked ? status = true : status = false;
+    console.log(fieldName);
+
+    const cianObject = {
+      id: rowID,
+      [fieldName]: status,
+      status,
+    }
+    handleCheckbox(cianObject)
+  };
   return (
     <Table striped bordered hover>
       <thead>
       <tr>
          {/* Отображаем заголовки столбцов */}
+         <th></th>
         {columns.map((column) => {
           return <th key={column.field}>{ column.fieldName }</th>
         })}
@@ -125,6 +141,9 @@ const EditableTable = ({ updateProject, deleteProjects, columns, rows, actions }
             }
           </td>
           }
+          <td>
+            <Checkbox checked={row.cian} onChange={ (e) => handleChange(e, row.id, row.cian, "cian")}>{row.cian}</Checkbox>
+          </td>
           <td>
             {row.id}
           </td>

@@ -21,10 +21,16 @@ export const updateProject = (project) => {
 
 export const getProjects = () => {
   const data = [
-    { id: 1, firstName: "John", lastName: "Doe", role: "Admin" },
-    { id: 2, firstName: "John", lastName: "Smith", role: "Editor" },
-    { id: 3, firstName: "Kirill", lastName: "Doe", role: "Admin" },
-    { id: 4, firstName: "Ivan", lastName: "Smith", role: "Editor" },
+    { cian: true, id: 1, firstName: "John", lastName: "Doe", role: "Admin" },
+    {
+      cian: false,
+      id: 2,
+      firstName: "John",
+      lastName: "Smith",
+      role: "Editor",
+    },
+    { cian: true, id: 3, firstName: "Kirill", lastName: "Doe", role: "Admin" },
+    { cian: true, id: 4, firstName: "Ivan", lastName: "Smith", role: "Editor" },
   ];
   return data;
 };
