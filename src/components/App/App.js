@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { updateProject, getProjects, deleteProjects } from "../../utils/api";
+import {
+  updateFile,
+  updateProject,
+  getProjects,
+  deleteProjects,
+} from "../../utils/api";
 import EditableTable from "../EditableTable/EditableTable";
 import "./App.css";
 import Header from "../Header/Header";
@@ -9,6 +14,7 @@ function App() {
     { field: "cian", fieldName: "Cian" },
     { field: "direct", fieldName: "Я.Директ" },
     { field: "avito", fieldName: "Avito" },
+    { field: "type", fieldName: "Тип" },
     { field: "id", fieldName: "#" },
     { field: "firstName", fieldName: "First Name" },
     { field: "lastName", fieldName: "Last Name" },
@@ -21,6 +27,9 @@ function App() {
     deleteProjects(project);
   };
 
+  const handleUpdateFile = (project) => {
+    updateFile(project);
+  };
   let projects = getProjects();
   return (
     <>
@@ -28,6 +37,7 @@ function App() {
         <Header />
         <main>
           <EditableTable
+            updateFile={handleUpdateFile}
             updateProject={handleUpdateProject}
             deleteProjects={handleUdeleteProjects}
             columns={columns}

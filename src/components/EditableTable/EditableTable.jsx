@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Form, Table } from "react-bootstrap";
 import { PencilFill, Save, Trash, XSquare } from 'react-bootstrap-icons';
 import './EditableTable.css';
-import { Checkbox } from 'antd';
+import { Checkbox, Select } from 'antd';
 
-const EditableTable = ({ updateProject, deleteProjects, columns, rows, actions }) => {
+const EditableTable = ({ updateFile, updateProject, deleteProjects, columns, rows, actions }) => {
   // Состояние для определения, находится ли компонент в режиме редактирования или нет
   const [isEditMode, setIsEditMode] = useState(false);
   // Состояние для хранения идентификатора редактируемой строки
@@ -39,12 +39,29 @@ const EditableTable = ({ updateProject, deleteProjects, columns, rows, actions }
   // Обработчик события для изменения значения поля
   const handleOnChangeField = (e, rowID) => {
     const { name: fieldName, value } = e.target;
-    // Обновляем состояние редактируемой строки
+    //Обновляем состояние редактируемой строки
+    console.log({
+      id: rowID,
+      [fieldName]: value
+    })
     setEditedRow({
       id: rowID,
       [fieldName]: value
     })
   }
+    // Обработчик события для изменения значения выпадающего списка
+    const handleOnChangeSelect = (e, rowID) => {
+      //Обновляем состояние редактируемой строки
+      console.log({
+        id: rowID,
+        type: e
+      })
+      setEditedRow({
+        id: rowID,
+        type: e
+      })
+    }
+
 
   // Обработчик события для отмены редактирования строки
   const handleCancelEditing = () => {
@@ -59,6 +76,8 @@ const EditableTable = ({ updateProject, deleteProjects, columns, rows, actions }
       // Создаем новый массив данных, обновляя измененную строку
       const newData = rowsState.map(row => {
         if (row.id === editedRow.id) {
+          //пробегаемся по всем строкам и если находим редактируемую, то смотрти какое поле изменилось в editedRow
+          if (editedRow.type) row.type = editedRow.type;
           if (editedRow.firstName) row.firstName = editedRow.firstName;
           if (editedRow.lastName) row.lastName = editedRow.lastName;
           if (editedRow.role) row.role = editedRow.role;
@@ -89,21 +108,34 @@ const EditableTable = ({ updateProject, deleteProjects, columns, rows, actions }
     //   setEditedRow(undefined)
     // }, 1000)
   }
-  const handleCheckbox = ({ id, name }) => {
-    
-  }
-  const handleChange = (e, rowID, status, fieldName) => {
+ 
+  const handleChange = (e, rowID, status, fieldName, row) => {
     //обработчик клика по чекбоксу выбора файла для сохранения
-    e.target.checked ? status = true : status = false;
-    console.log(fieldName);
+    e.target.checked ? status = false : status = true;
+    e.target.checked = status;
 
-    const cianObject = {
+    const newFileData = {
       id: rowID,
-      [fieldName]: status,
-      status,
+      [fieldName]: !e.target.checked
     }
-    handleCheckbox(cianObject)
-  };
+    
+    updateFile(newFileData)
+     // Обновляем значение `status` в состоянии строки `row`
+    const updatedRow = {
+      ...row,
+      [fieldName]: !status
+    };
+
+    // Обновляем состояние строк
+    const updatedRows = rowsState.map((r) => {
+      if (r.id === rowID) {
+        return updatedRow;
+      }
+      return r;
+    });
+
+    setRowsState(updatedRows);
+  }
   return (
     <Table striped bordered hover>
       <thead>
@@ -142,7 +174,28 @@ const EditableTable = ({ updateProject, deleteProjects, columns, rows, actions }
           </td>
           }
           <td>
-            <Checkbox checked={row.cian} onChange={ (e) => handleChange(e, row.id, row.cian, "cian")}>{row.cian}</Checkbox>
+            <Checkbox checked={row.cian} onChange={ (e) => handleChange(e, row.id, row.cian, "cian", row)}>{row.cian}</Checkbox>
+          </td>
+          <td>
+            <Checkbox checked={row.direct} onChange={ (e) => handleChange(e, row.id, row.direct, "direct", row)}>{row.direct}</Checkbox>
+          </td>
+          <td>
+            <Checkbox checked={row.avito} onChange={ (e) => handleChange(e, row.id, row.avito, "avito", row)}>{row.avito}</Checkbox>
+          </td>
+          <td>
+            { isEditMode && rowIDToEdit === row.id
+              ? <Select 
+                onChange={e => handleOnChangeSelect(e, row.id)}
+                name="type"
+                defaultValue={row.type}
+                style={{ width: 100 }}
+                options={[
+                  { value: 'home', label: 'Дом' },
+                  { value: 'plot', label: 'Участок' }
+                ]}
+              />
+              : row.type === 'home' ? 'Дом' : 'Участок' 
+            }
           </td>
           <td>
             {row.id}
