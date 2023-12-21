@@ -35,7 +35,7 @@ function App() {
     <>
       <div className='wrapper'>
         <Header />
-        <main>
+        <main className='main'>
           <EditableTable
             updateFile={handleUpdateFile}
             updateProject={handleUpdateProject}

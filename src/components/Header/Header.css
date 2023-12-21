@@ -1,4 +1,17 @@
 .header {
   width: 100px;
   height: 100vh;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 25px;
+}
+.logo {
+  width: 49px;
+  height: 40px;
+  background: url(../../../public/logo.svg) no-repeat;
+  display: block;
+  overflow: hidden;
+  text-indent: -9999999999999px;
 }

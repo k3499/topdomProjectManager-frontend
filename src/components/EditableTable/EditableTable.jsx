@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Form, Table } from "react-bootstrap";
-import { PencilFill, Save, Trash, XSquare } from 'react-bootstrap-icons';
+import { PencilFill, Save, Trash, XSquare, } from 'react-bootstrap-icons';
 import './EditableTable.css';
-import { Checkbox, Select } from 'antd';
+import { Checkbox, Select, Input } from 'antd';
 
 const EditableTable = ({ updateFile, updateProject, deleteProjects, columns, rows, actions }) => {
   // Состояние для определения, находится ли компонент в режиме редактирования или нет
@@ -44,10 +44,10 @@ const EditableTable = ({ updateFile, updateProject, deleteProjects, columns, row
       id: rowID,
       [fieldName]: value
     })
-    setEditedRow({
-      id: rowID,
+    setEditedRow(prevRow => ({
+      ...(prevRow && prevRow.id ? prevRow : { id: rowID }), // проверяем наличие prevRow и id
       [fieldName]: value
-    })
+    }));
   }
     // Обработчик события для изменения значения выпадающего списка
     const handleOnChangeSelect = (e, rowID) => {
@@ -56,10 +56,11 @@ const EditableTable = ({ updateFile, updateProject, deleteProjects, columns, row
         id: rowID,
         type: e
       })
-      setEditedRow({
-        id: rowID,
+      setEditedRow(prevRow => ({
+        ...prevRow,
+        id: prevRow.id || rowID, // записываем `id` только если его нет
         type: e
-      })
+      }));
     }
 
 
@@ -138,7 +139,7 @@ const EditableTable = ({ updateFile, updateProject, deleteProjects, columns, row
   }
   return (
     <Table striped bordered hover>
-      <thead>
+      <thead className='table__head'>
       <tr>
          {/* Отображаем заголовки столбцов */}
          <th></th>
@@ -202,7 +203,7 @@ const EditableTable = ({ updateFile, updateProject, deleteProjects, columns, row
           </td>
           <td>
             { isEditMode && rowIDToEdit === row.id
-              ? <Form.Control
+              ? <Input
                 type='text'
                 defaultValue={editedRow ? editedRow.firstName : row.firstName}
                 id={row.id}
@@ -214,7 +215,7 @@ const EditableTable = ({ updateFile, updateProject, deleteProjects, columns, row
           </td>
           <td>
             { isEditMode && rowIDToEdit === row.id
-              ? <Form.Control
+              ? <Input
                 type='text'
                 defaultValue={editedRow ? editedRow.lastName : row.lastName}
                 id={row.id}
