@@ -1,0 +1,32 @@
+table td {
+  vertical-align: middle;
+  padding: 0 5px;
+}
+.custom-table__action-btn {
+  cursor: pointer;
+  border: 1px solid #eee;
+  background: none;
+  margin-right: 5px;
+}
+.custom-table__action-btn svg {
+  pointer-events: none;
+  padding: 2px;
+  width: 1.7em;
+  height: 1.7em;
+}
+.table {
+  background: #ffffff;
+  border: 2px solid #e7e7e7;
+  border-radius: 10px;
+  color: #464646;
+  /* border-spacing: 0; */
+}
+.table__head {
+  background: #d9d9d9;
+  height: 35px;
+  color: #464646;
+}
+.table__head tr th {
+  padding: 0 5px;
+  min-width: 35px;
+}

@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   updateFile,
   updateProject,
   getProjects,
   deleteProjects,
 } from "../../utils/api";
-import EditableTable from "../EditableTable/EditableTable";
+import Dashboard from "../Dashboard/Dashboard";
 import "./App.css";
 import Header from "../Header/Header";
+import Cian from "../Cian/Cian";
+import Avito from "../Avito/Avito";
+import Direct from "../Direct/Direct";
 
 function App() {
   const columns = [
@@ -33,19 +37,67 @@ function App() {
   let projects = getProjects();
   return (
     <>
-      <div className='wrapper'>
-        <Header />
-        <main className='main'>
-          <EditableTable
-            updateFile={handleUpdateFile}
-            updateProject={handleUpdateProject}
-            deleteProjects={handleUdeleteProjects}
-            columns={columns}
-            rows={projects}
-            actions
-          />
-        </main>
-      </div>
+      <BrowserRouter>
+        <div className='wrapper'>
+          <Header />
+          <main className='main'>
+            <Routes>
+              <Route
+                path='*'
+                element={
+                  <Dashboard
+                    updateFile={handleUpdateFile}
+                    updateProject={handleUpdateProject}
+                    deleteProjects={handleUdeleteProjects}
+                    columns={columns}
+                    rows={projects}
+                    actions
+                  />
+                }
+              />
+              <Route
+                path='cian'
+                element={
+                  <Cian
+                    updateFile={handleUpdateFile}
+                    updateProject={handleUpdateProject}
+                    deleteProjects={handleUdeleteProjects}
+                    columns={columns}
+                    rows={projects}
+                    actions
+                  />
+                }
+              />
+              <Route
+                path='direct'
+                element={
+                  <Direct
+                    updateFile={handleUpdateFile}
+                    updateProject={handleUpdateProject}
+                    deleteProjects={handleUdeleteProjects}
+                    columns={columns}
+                    rows={projects}
+                    actions
+                  />
+                }
+              />
+              <Route
+                path='avito'
+                element={
+                  <Avito
+                    updateFile={handleUpdateFile}
+                    updateProject={handleUpdateProject}
+                    deleteProjects={handleUdeleteProjects}
+                    columns={columns}
+                    rows={projects}
+                    actions
+                  />
+                }
+              />
+            </Routes>
+          </main>
+        </div>
+      </BrowserRouter>
     </>
   );
 }

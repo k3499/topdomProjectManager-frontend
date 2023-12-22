@@ -1,5 +1,6 @@
 table td {
   vertical-align: middle;
+  padding: 0 5px;
 }
 .custom-table__action-btn {
   cursor: pointer;
@@ -9,7 +10,7 @@ table td {
 }
 .custom-table__action-btn svg {
   pointer-events: none;
-  padding: 5px;
+  padding: 2px;
   width: 1.7em;
   height: 1.7em;
 }
@@ -27,4 +28,5 @@ table td {
 }
 .table__head tr th {
   padding: 0 5px;
+  min-width: 35px;
 }

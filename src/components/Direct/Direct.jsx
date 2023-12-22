@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Form, Table } from "react-bootstrap";
-import { PencilFill, Save, Trash, XSquare, } from 'react-bootstrap-icons';
-import './EditableTable.css';
+import { DeleteOutlined, EditOutlined, SaveOutlined, RollbackOutlined} from '@ant-design/icons';
+import './Direct.css';
 import { Checkbox, Select, Input } from 'antd';
 
-const EditableTable = ({ updateFile, updateProject, deleteProjects, columns, rows, actions }) => {
+const Direct = ({ updateFile, updateProject, deleteProjects, columns, rows, actions }) => {
   // Состояние для определения, находится ли компонент в режиме редактирования или нет
   const [isEditMode, setIsEditMode] = useState(false);
   // Состояние для хранения идентификатора редактируемой строки
@@ -138,11 +138,12 @@ const EditableTable = ({ updateFile, updateProject, deleteProjects, columns, row
     setRowsState(updatedRows);
   }
   return (
+    
     <Table striped bordered hover>
       <thead className='table__head'>
       <tr>
          {/* Отображаем заголовки столбцов */}
-         <th></th>
+         <th>1111</th>
         {columns.map((column) => {
           return <th key={column.field}>{ column.fieldName }</th>
         })}
@@ -156,20 +157,20 @@ const EditableTable = ({ updateFile, updateProject, deleteProjects, columns, row
             {/* Кнопка сохранения изменений */}
             { isEditMode && rowIDToEdit === row.id
               ? <button onClick={ () => handleSaveRowChanges() } className='custom-table__action-btn' disabled={!editedRow}>
-                <Save />
+                <SaveOutlined style={{ fontSize: '13px', color: '#646464' }}/>
               </button>
               : <button  onClick={ () => handleEdit(row.id) } className='custom-table__action-btn'>
-                <PencilFill />
+                <EditOutlined style={{ fontSize: '13px', color: '#646464' }}/>
               </button>
             }
             
             {/* Кнопка отмены редактирования */}
             { isEditMode && rowIDToEdit === row.id
               ? <button onClick={() => handleCancelEditing()} className='custom-table__action-btn'>
-                <XSquare />
+                <RollbackOutlined style={{ fontSize: '13px', color: '#646464' }}/>
               </button>
               : <button onClick={() => handleRemoveRow(row.id)} className='custom-table__action-btn'>
-                <Trash />
+                <DeleteOutlined style={{ fontSize: '13px', color: '#646464' }}/>
               </button>
             }
           </td>
@@ -242,4 +243,4 @@ const EditableTable = ({ updateFile, updateProject, deleteProjects, columns, row
   );
 };
 
-export default EditableTable;
+export default Direct;
