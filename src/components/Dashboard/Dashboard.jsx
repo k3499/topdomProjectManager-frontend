@@ -57,8 +57,7 @@ const Dashboard = ({ updateFile, updateProject, deleteProjects, columns, rows, a
         type: e
       })
       setEditedRow(prevRow => ({
-        ...prevRow,
-        id: prevRow.id || rowID, // записываем `id` только если его нет
+        ...(prevRow && prevRow.id ? prevRow : { id: rowID }),
         type: e
       }));
     }
@@ -142,17 +141,24 @@ const Dashboard = ({ updateFile, updateProject, deleteProjects, columns, rows, a
       <thead className='table__head'>
       <tr>
          {/* Отображаем заголовки столбцов */}
-         <th></th>
-        {columns.map((column) => {
-          return <th key={column.field}>{ column.fieldName }</th>
+        {columns.map((column, index) => {
+          if (index === 1) {
+            //пустая шапка под actions
+            return <><th></th><th key={column.field}>{ column.fieldName }</th></>
+          }else{
+            return <th key={column.field}>{ column.fieldName }</th>
+          }
         })}
       </tr>
       </thead>
       <tbody>
       {rowsState.map((row) => {
         return <tr key={row.id}>
-          {actions &&
           <td>
+            {row.id}
+          </td>
+          {actions &&
+          <td className='table__actions'>
             {/* Кнопка сохранения изменений */}
             { isEditMode && rowIDToEdit === row.id
               ? <button onClick={ () => handleSaveRowChanges() } className='custom-table__action-btn' disabled={!editedRow}>
@@ -198,9 +204,7 @@ const Dashboard = ({ updateFile, updateProject, deleteProjects, columns, rows, a
               : row.type === 'home' ? 'Дом' : 'Участок' 
             }
           </td>
-          <td>
-            {row.id}
-          </td>
+          
           <td>
             { isEditMode && rowIDToEdit === row.id
               ? <Input

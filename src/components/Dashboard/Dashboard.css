@@ -30,3 +30,9 @@ table td {
   padding: 0 5px;
   min-width: 35px;
 }
+.table__actions {
+  padding: 0;
+}
+.custom-table__action-btn:last-of-type {
+  margin-right: 0;
+}

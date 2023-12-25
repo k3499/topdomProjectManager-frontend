@@ -23,50 +23,120 @@ export const updateFile = (newFileData) => {
   console.log(newFileData);
 };
 
-export const getProjects = () => {
-  const data = [
-    {
-      cian: true,
-      direct: true,
-      avito: true,
-      type: "plot",
-      id: 1,
-      firstName: "John",
-      lastName: "Doe",
-      role: "Admin",
-    },
-    {
-      cian: false,
-      direct: true,
-      avito: true,
-      type: "home",
-      id: 2,
-      firstName: "John",
-      lastName: "Smith",
-      role: "Editor",
-    },
-    {
-      cian: true,
-      direct: false,
-      avito: true,
-      type: "plot",
-      id: 3,
-      firstName: "Kirill",
-      lastName: "Doe",
-      role: "Admin",
-    },
-    {
-      cian: true,
-      direct: true,
-      avito: true,
-      type: "plot",
-      id: 4,
-      firstName: "Ivan",
-      lastName: "Smith",
-      role: "Editor",
-    },
-  ];
-  return data;
+export const getProjects = (site) => {
+  if (site === "cian") {
+    const data = [
+      {
+        id: 1,
+        cian: true,
+        direct: true,
+        avito: true,
+        type: "plot",
+        firstName: "John",
+        lastName: "Doe",
+        role: "Admin",
+      },
+      {
+        id: 2,
+        cian: false,
+        direct: true,
+        avito: true,
+        type: "home",
+        firstName: "John",
+        lastName: "Smith",
+        role: "Editor",
+      },
+      {
+        id: 3,
+        cian: true,
+        direct: false,
+        avito: true,
+        type: "plot",
+        firstName: "Kirill",
+        lastName: "Doe",
+        role: "Admin",
+      },
+      {
+        id: 4,
+        cian: true,
+        direct: true,
+        avito: true,
+        type: "plot",
+        firstName: "Ivan",
+        lastName: "Smith",
+        role: "Editor",
+      },
+      {
+        id: 5,
+        cian: true,
+        direct: false,
+        avito: true,
+        type: "plot",
+        firstName: "Kirill",
+        lastName: "Doe",
+        role: "Admin",
+      },
+      {
+        id: 6,
+        cian: true,
+        direct: true,
+        avito: true,
+        type: "plot",
+        firstName: "Ivan",
+        lastName: "Smith",
+        role: "Editor",
+      },
+    ];
+    return data;
+  } else if (site === "direct") {
+    //return getDirectData();
+  } else if (site === "avito") {
+    //return getAvitoData();
+  } else {
+    const data = [
+      {
+        id: 1,
+        cian: true,
+        direct: true,
+        avito: true,
+        type: "plot",
+        firstName: "John",
+        lastName: "Doe",
+        role: "Admin",
+      },
+      {
+        id: 2,
+        cian: false,
+        direct: true,
+        avito: true,
+        type: "home",
+        firstName: "John",
+        lastName: "Smith",
+        role: "Editor",
+      },
+      {
+        id: 3,
+        cian: true,
+        direct: false,
+        avito: true,
+        type: "plot",
+        firstName: "Kirill",
+        lastName: "Doe",
+        role: "Admin",
+      },
+      {
+        id: 4,
+        cian: true,
+        direct: true,
+        avito: true,
+        type: "plot",
+        firstName: "Ivan",
+        lastName: "Smith",
+        role: "Editor",
+      },
+    ];
+    return data;
+  }
 };
 
 export const deleteProjects = (project) => {

@@ -14,16 +14,25 @@ import Avito from "../Avito/Avito";
 import Direct from "../Direct/Direct";
 
 function App() {
-  const columns = [
+  const colDashboard = [
+    { field: "id", fieldName: "#" },
     { field: "cian", fieldName: "Cian" },
     { field: "direct", fieldName: "Я.Директ" },
     { field: "avito", fieldName: "Avito" },
     { field: "type", fieldName: "Тип" },
-    { field: "id", fieldName: "#" },
     { field: "firstName", fieldName: "First Name" },
     { field: "lastName", fieldName: "Last Name" },
     { field: "role", fieldName: "User's role" },
   ];
+
+  const columns = [
+    { field: "id", fieldName: "ID" },
+    { field: "type", fieldName: "Тип" },
+    { field: "firstName", fieldName: "First Name" },
+    { field: "lastName", fieldName: "Last Name" },
+    { field: "role", fieldName: "User's role" },
+  ];
+
   const handleUpdateProject = (project) => {
     updateProject(project);
   };
@@ -34,7 +43,10 @@ function App() {
   const handleUpdateFile = (project) => {
     updateFile(project);
   };
+
   let projects = getProjects();
+  let cianProjects = getProjects("cian");
+
   return (
     <>
       <BrowserRouter>
@@ -49,9 +61,9 @@ function App() {
                     updateFile={handleUpdateFile}
                     updateProject={handleUpdateProject}
                     deleteProjects={handleUdeleteProjects}
-                    columns={columns}
-                    rows={projects}
+                    columns={colDashboard}
                     actions
+                    rows={projects}
                   />
                 }
               />
@@ -63,15 +75,16 @@ function App() {
                     updateProject={handleUpdateProject}
                     deleteProjects={handleUdeleteProjects}
                     columns={columns}
-                    rows={projects}
+                    rows={cianProjects}
                     actions
+                    cian
                   />
                 }
               />
               <Route
                 path='direct'
                 element={
-                  <Direct
+                  <Cian
                     updateFile={handleUpdateFile}
                     updateProject={handleUpdateProject}
                     deleteProjects={handleUdeleteProjects}

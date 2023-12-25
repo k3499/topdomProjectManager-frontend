@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Table } from "react-bootstrap";
 import { DeleteOutlined, EditOutlined, SaveOutlined, RollbackOutlined} from '@ant-design/icons';
 import './Cian.css';
@@ -13,6 +13,10 @@ const Cian = ({ updateFile, updateProject, deleteProjects, columns, rows, action
   const [rowsState, setRowsState] = useState(rows);
   // Состояние для хранения измененной строки
   const [editedRow, setEditedRow] = useState();
+
+  useEffect(() => {
+    setRowsState(rows);
+  }, [rows]);
 
   // Обработчик события для редактирования строки
   const handleEdit = (rowID) => {
@@ -51,14 +55,15 @@ const Cian = ({ updateFile, updateProject, deleteProjects, columns, rows, action
   }
     // Обработчик события для изменения значения выпадающего списка
     const handleOnChangeSelect = (e, rowID) => {
+      console.log(e)
+      console.log(rowID)
       //Обновляем состояние редактируемой строки
       console.log({
         id: rowID,
         type: e
       })
       setEditedRow(prevRow => ({
-        ...prevRow,
-        id: prevRow.id || rowID, // записываем `id` только если его нет
+        ...(prevRow && prevRow.id ? prevRow : { id: rowID }),
         type: e
       }));
     }
@@ -109,49 +114,29 @@ const Cian = ({ updateFile, updateProject, deleteProjects, columns, rows, action
     //   setEditedRow(undefined)
     // }, 1000)
   }
- 
-  const handleChange = (e, rowID, status, fieldName, row) => {
-    //обработчик клика по чекбоксу выбора файла для сохранения
-    e.target.checked ? status = false : status = true;
-    e.target.checked = status;
 
-    const newFileData = {
-      id: rowID,
-      [fieldName]: !e.target.checked
-    }
-    
-    updateFile(newFileData)
-     // Обновляем значение `status` в состоянии строки `row`
-    const updatedRow = {
-      ...row,
-      [fieldName]: !status
-    };
-
-    // Обновляем состояние строк
-    const updatedRows = rowsState.map((r) => {
-      if (r.id === rowID) {
-        return updatedRow;
-      }
-      return r;
-    });
-
-    setRowsState(updatedRows);
-  }
   return (
     
     <Table striped bordered hover>
       <thead className='table__head'>
       <tr>
          {/* Отображаем заголовки столбцов */}
-         <th>1111</th>
-        {columns.map((column) => {
+        {columns.map((column, index) => {
+          if (index === 1) {
+            //пустая шапка под actions
+            return <><th></th><th key={column.field}>{ column.fieldName }</th></>
+          }else{
           return <th key={column.field}>{ column.fieldName }</th>
+          }
         })}
       </tr>
       </thead>
       <tbody>
       {rowsState.map((row) => {
         return <tr key={row.id}>
+          <td>
+            {row.id}
+          </td>
           {actions &&
           <td>
             {/* Кнопка сохранения изменений */}
@@ -175,15 +160,7 @@ const Cian = ({ updateFile, updateProject, deleteProjects, columns, rows, action
             }
           </td>
           }
-          <td>
-            <Checkbox checked={row.cian} onChange={ (e) => handleChange(e, row.id, row.cian, "cian", row)}>{row.cian}</Checkbox>
-          </td>
-          <td>
-            <Checkbox checked={row.direct} onChange={ (e) => handleChange(e, row.id, row.direct, "direct", row)}>{row.direct}</Checkbox>
-          </td>
-          <td>
-            <Checkbox checked={row.avito} onChange={ (e) => handleChange(e, row.id, row.avito, "avito", row)}>{row.avito}</Checkbox>
-          </td>
+          
           <td>
             { isEditMode && rowIDToEdit === row.id
               ? <Select 
@@ -198,9 +175,6 @@ const Cian = ({ updateFile, updateProject, deleteProjects, columns, rows, action
               />
               : row.type === 'home' ? 'Дом' : 'Участок' 
             }
-          </td>
-          <td>
-            {row.id}
           </td>
           <td>
             { isEditMode && rowIDToEdit === row.id
