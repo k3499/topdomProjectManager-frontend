@@ -16,3 +16,47 @@
   overflow: hidden;
   text-indent: -9999999999999px;
 }
+.menu__item {
+  display: block;
+  width: 49px;
+  height: 49px;
+  margin-top: 22px;
+  overflow: hidden;
+  text-indent: -99999999999px;
+}
+.menu__item_cian {
+  background: url(../../../public/img/cian.svg) no-repeat 50%;
+  background-size: 27px;
+}
+.menu__item_cian:hover {
+  background: url(../../../public/img/cian-active.svg) no-repeat 50%;
+  background-size: 27px;
+}
+.menu__item_cian.active {
+  background: url(../../../public/img/cian-active.svg) no-repeat 50%;
+  background-size: 27px;
+}
+.menu__item_direct.active {
+  background: url(../../../public/img/direct-active.svg) no-repeat 50%;
+  background-size: 21px;
+}
+.menu__item_direct {
+  background: url(../../../public/img/direct.svg) no-repeat 50%;
+  background-size: 21px;
+}
+.menu__item_direct:hover {
+  background: url(../../../public/img/direct-active.svg) no-repeat 50%;
+  background-size: 21px;
+}
+.menu__item_avito.active {
+  background: url(../../../public/img/avito-active.svg) no-repeat 50%;
+  background-size: 27px;
+}
+.menu__item_avito {
+  background: url(../../../public/img/avito.svg) no-repeat 50%;
+  background-size: 27px;
+}
+.menu__item_avito:hover {
+  background: url(../../../public/img/avito-active.svg) no-repeat 50%;
+  background-size: 27px;
+}

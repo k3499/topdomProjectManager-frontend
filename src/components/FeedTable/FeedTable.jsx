@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Table } from "react-bootstrap";
 import { DeleteOutlined, EditOutlined, SaveOutlined, RollbackOutlined} from '@ant-design/icons';
-import './Cian.css';
-import { Checkbox, Select, Input } from 'antd';
+import './FeedTable.css';
+import { Select, Input } from 'antd';
 
-const Cian = ({ updateFile, updateProject, deleteProjects, columns, rows, actions }) => {
+const FeedTable = ({ updateFile, updateProject, deleteProjects, columns, rows, actions }) => {
   // Состояние для определения, находится ли компонент в режиме редактирования или нет
   const [isEditMode, setIsEditMode] = useState(false);
   // Состояние для хранения идентификатора редактируемой строки
@@ -217,4 +217,4 @@ const Cian = ({ updateFile, updateProject, deleteProjects, columns, rows, action
   );
 };
 
-export default Cian;
+export default FeedTable;

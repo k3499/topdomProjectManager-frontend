@@ -9,13 +9,11 @@ import {
 import Dashboard from "../Dashboard/Dashboard";
 import "./App.css";
 import Header from "../Header/Header";
-import Cian from "../Cian/Cian";
-import Avito from "../Avito/Avito";
-import Direct from "../Direct/Direct";
+import FeedTable from "../FeedTable/FeedTable";
 
 function App() {
   const colDashboard = [
-    { field: "id", fieldName: "#" },
+    { field: "id", fieldName: "ID" },
     { field: "cian", fieldName: "Cian" },
     { field: "direct", fieldName: "Я.Директ" },
     { field: "avito", fieldName: "Avito" },
@@ -70,7 +68,7 @@ function App() {
               <Route
                 path='cian'
                 element={
-                  <Cian
+                  <FeedTable
                     updateFile={handleUpdateFile}
                     updateProject={handleUpdateProject}
                     deleteProjects={handleUdeleteProjects}
@@ -84,7 +82,7 @@ function App() {
               <Route
                 path='direct'
                 element={
-                  <Cian
+                  <FeedTable
                     updateFile={handleUpdateFile}
                     updateProject={handleUpdateProject}
                     deleteProjects={handleUdeleteProjects}
@@ -97,7 +95,7 @@ function App() {
               <Route
                 path='avito'
                 element={
-                  <Avito
+                  <FeedTable
                     updateFile={handleUpdateFile}
                     updateProject={handleUpdateProject}
                     deleteProjects={handleUdeleteProjects}
