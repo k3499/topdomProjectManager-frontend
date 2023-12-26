@@ -3,6 +3,7 @@ import { Form, Table } from "react-bootstrap";
 import { DeleteOutlined, EditOutlined, SaveOutlined, RollbackOutlined} from '@ant-design/icons';
 import './FeedTable.css';
 import { Select, Input } from 'antd';
+import Filters from '../Filters/Filters';
 
 const FeedTable = ({ updateFile, updateProject, deleteProjects, columns, rows, actions }) => {
   // Состояние для определения, находится ли компонент в режиме редактирования или нет
@@ -115,9 +116,13 @@ const FeedTable = ({ updateFile, updateProject, deleteProjects, columns, rows, a
     //   setEditedRow(undefined)
     // }, 1000)
   }
-
+  function filteredRows (rows){
+    console.log( rows);
+    setRowsState(rows)
+  }
   return (
-    
+    <>
+    <Filters data={rows} handlefilteredRows={filteredRows} />
     <Table striped bordered hover>
       <thead className='table__head'>
       <tr>
@@ -215,6 +220,7 @@ const FeedTable = ({ updateFile, updateProject, deleteProjects, columns, rows, a
       })}
       </tbody>
     </Table>
+    </>
   );
 };
 

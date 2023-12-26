@@ -26,7 +26,6 @@ function App() {
 
   let projects = getProjects();
   let cianProjects = getProjects("cian");
-
   return (
     <>
       <BrowserRouter>
@@ -42,8 +41,8 @@ function App() {
                     updateProject={handleUpdateProject}
                     deleteProjects={handleUdeleteProjects}
                     columns={colDashboard}
-                    actions
                     rows={projects}
+                    actions
                   />
                 }
               />
@@ -71,6 +70,7 @@ function App() {
                     columns={columns}
                     rows={projects}
                     actions
+                    direct
                   />
                 }
               />
@@ -84,6 +84,7 @@ function App() {
                     columns={columns}
                     rows={projects}
                     actions
+                    avito
                   />
                 }
               />

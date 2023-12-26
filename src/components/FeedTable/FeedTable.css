@@ -29,4 +29,5 @@ table td {
 .table__head tr th {
   padding: 0 5px;
   min-width: 35px;
+  font-weight: 500;
 }
