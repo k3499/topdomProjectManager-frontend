@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Form, Table } from "react-bootstrap";
-import { DeleteOutlined, EditOutlined, SaveOutlined, RollbackOutlined} from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, SaveOutlined, RollbackOutlined, InfoCircleOutlined} from '@ant-design/icons';
 import './Dashboard.css';
-import { Checkbox, Select, Input } from 'antd';
+import {Button, Popconfirm, message, Checkbox, Select, Input } from 'antd';
 import Filters from '../Filters/Filters';
 
 const Dashboard = ({ updateFile, updateProject, deleteProjects, columns, rows, actions }) => {
@@ -14,6 +14,8 @@ const Dashboard = ({ updateFile, updateProject, deleteProjects, columns, rows, a
   const [rowsState, setRowsState] = useState(rows);
   // Состояние для хранения измененной строки
   const [editedRow, setEditedRow] = useState();
+
+
 
   // Обработчик события для редактирования строки
   const handleEdit = (rowID) => {
@@ -30,12 +32,17 @@ const Dashboard = ({ updateFile, updateProject, deleteProjects, columns, rows, a
         return row
       } else{
         deleteProjects(row)
+        message.success(`Проект${` "${row.title}"`} был удален`);
         return null
       }
     });
-
-    setRowsState(newData);
+    setRowsState(newData);  
   }
+
+  const cancelRemove = (e) => {
+    console.log(e);
+    message.error('Click on No');
+  };
 
   // Обработчик события для изменения значения поля
   const handleOnChangeField = (e, rowID) => {
@@ -189,9 +196,23 @@ const Dashboard = ({ updateFile, updateProject, deleteProjects, columns, rows, a
               ? <button onClick={() => handleCancelEditing()} className='custom-table__action-btn'>
                 <RollbackOutlined style={{ fontSize: '13px', color: '#646464' }}/>
               </button>
-              : <button onClick={() => handleRemoveRow(row.id)} className='custom-table__action-btn'>
+              :
+              // <button onClick={() => handleRemoveRow(row.id)} className='custom-table__action-btn'> 
+              //   <DeleteOutlined style={{ fontSize: '13px', color: '#646464' }}/>
+              // </button>
+              <Popconfirm
+              title="Удаление проекта"
+              description="Уверены, что хотите удалить проект?"
+              onConfirm={() => handleRemoveRow(row.id)}
+              onCancel={cancelRemove}
+              okText="Да"
+              cancelText="Отмена"
+              icon={<InfoCircleOutlined style={{ color: 'red' }} />}
+            >
+              <button className='custom-table__action-btn'>
                 <DeleteOutlined style={{ fontSize: '13px', color: '#646464' }}/>
               </button>
+            </Popconfirm>
             }
           </td>
           }
