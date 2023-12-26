@@ -6,32 +6,13 @@ import {
   getProjects,
   deleteProjects,
 } from "../../utils/api";
+import { colDashboard, columns } from "../../utils/constants";
 import Dashboard from "../Dashboard/Dashboard";
 import "./App.css";
 import Header from "../Header/Header";
 import FeedTable from "../FeedTable/FeedTable";
-import Filters from "../Filters/Filters";
 
 function App() {
-  const colDashboard = [
-    { field: "id", fieldName: "ID" },
-    { field: "cian", fieldName: "Cian" },
-    { field: "direct", fieldName: "Я.Директ" },
-    { field: "avito", fieldName: "Avito" },
-    { field: "type", fieldName: "Тип" },
-    { field: "title", fieldName: "Название" },
-    { field: "floors", fieldName: "Этажей" },
-    { field: "size", fieldName: "Площадь м²" },
-  ];
-
-  const columns = [
-    { field: "id", fieldName: "ID" },
-    { field: "type", fieldName: "Тип" },
-    { field: "title", fieldName: "Название" },
-    { field: "floors", fieldName: "Этажей" },
-    { field: "size", fieldName: "Площадь м²" },
-  ];
-
   const handleUpdateProject = (project) => {
     updateProject(project);
   };

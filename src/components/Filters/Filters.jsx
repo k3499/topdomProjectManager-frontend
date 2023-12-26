@@ -10,9 +10,21 @@ const Filters = ({ data, handlefilteredRows }) => {
     e.preventDefault();
     let search = e.target.value;
     const filteredData = data.filter(item => {
-      const firstNameMatch = item.firstName.toLowerCase().includes(search.toLowerCase());
-      const lastNameMatch = item.lastName.toLowerCase().includes(search.toLowerCase());
-      return firstNameMatch || lastNameMatch;
+      let titleMatch, floorsMatch;
+
+      if (typeof item.title === 'string' && typeof search === 'string') {
+        titleMatch = item.title.toLowerCase().includes(search.toLowerCase());
+      } else {
+        titleMatch = item.title === search;
+      }
+
+      if ( typeof search === 'string') {
+        floorsMatch = false;
+      } else {
+        floorsMatch = item.floors === search;
+      }
+
+      return titleMatch || floorsMatch;
     });
     setSearchText(search);
     console.log(handlefilteredRows);

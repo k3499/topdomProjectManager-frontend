@@ -4,4 +4,23 @@ const Headers = {
   "Content-Type": "application/json",
 };
 
-export { BASE_URL, Headers };
+const colDashboard = [
+  { field: "id", fieldName: "ID" },
+  { field: "cian", fieldName: "Cian" },
+  { field: "direct", fieldName: "Я.Директ" },
+  { field: "avito", fieldName: "Avito" },
+  { field: "type", fieldName: "Тип" },
+  { field: "title", fieldName: "Название" },
+  { field: "floors", fieldName: "Этажей" },
+  { field: "size", fieldName: "Площадь м²" },
+];
+
+const columns = [
+  { field: "id", fieldName: "ID" },
+  { field: "type", fieldName: "Тип" },
+  { field: "title", fieldName: "Название" },
+  { field: "floors", fieldName: "Этажей" },
+  { field: "size", fieldName: "Площадь м²" },
+];
+
+export { BASE_URL, Headers, colDashboard, columns };
