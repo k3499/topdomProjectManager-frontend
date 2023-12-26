@@ -3,6 +3,7 @@ import { Form, Table } from "react-bootstrap";
 import { DeleteOutlined, EditOutlined, SaveOutlined, RollbackOutlined} from '@ant-design/icons';
 import './Dashboard.css';
 import { Checkbox, Select, Input } from 'antd';
+import Filters from '../Filters/Filters';
 
 const Dashboard = ({ updateFile, updateProject, deleteProjects, columns, rows, actions }) => {
   // Состояние для определения, находится ли компонент в режиме редактирования или нет
@@ -78,15 +79,15 @@ const Dashboard = ({ updateFile, updateProject, deleteProjects, columns, rows, a
         if (row.id === editedRow.id) {
           //пробегаемся по всем строкам и если находим редактируемую, то смотрти какое поле изменилось в editedRow
           if (editedRow.type) row.type = editedRow.type;
-          if (editedRow.firstName) row.firstName = editedRow.firstName;
-          if (editedRow.lastName) row.lastName = editedRow.lastName;
-          if (editedRow.role) row.role = editedRow.role;
-          updateProject(row)
+          if (editedRow.title) row.title = editedRow.title;
+          if (editedRow.floors) row.floors = editedRow.floors;
+          if (editedRow.size) row.size = editedRow.size;
         }
         
         return row;
       })
-
+      //updateProject(newData);
+      console.log(newData)
       setRowsState(newData);
       setEditedRow(undefined)
 
@@ -136,7 +137,13 @@ const Dashboard = ({ updateFile, updateProject, deleteProjects, columns, rows, a
 
     setRowsState(updatedRows);
   }
+  function filteredRows (rows){
+    console.log( rows);
+    setRowsState(rows)
+  }
   return (
+    <>
+    <Filters data={rows} handlefilteredRows={filteredRows} />
     <Table striped bordered hover>
       <thead className='table__head'>
       <tr>
@@ -144,9 +151,16 @@ const Dashboard = ({ updateFile, updateProject, deleteProjects, columns, rows, a
         {columns.map((column, index) => {
           if (index === 1) {
             //пустая шапка под actions
-            return <><th></th><th key={column.field}>{ column.fieldName }</th></>
-          }else{
-            return <th key={column.field}>{ column.fieldName }</th>
+            return (
+              <React.Fragment key={column.field + index}>
+                <th></th>
+                {/* Добавлен ключ к заголовку столбца */}
+                <th key={column.field}>{column.fieldName}</th>
+              </React.Fragment>
+            );
+          } else {
+            // Добавлен ключ к заголовку столбца
+            return <th key={column.field}>{column.fieldName}</th>;
           }
         })}
       </tr>
@@ -209,41 +223,48 @@ const Dashboard = ({ updateFile, updateProject, deleteProjects, columns, rows, a
             { isEditMode && rowIDToEdit === row.id
               ? <Input
                 type='text'
-                defaultValue={editedRow ? editedRow.firstName : row.firstName}
+                defaultValue={editedRow ? editedRow.title : row.title}
                 id={row.id}
-                name='firstName'
+                name='title'
                 onChange={ (e) => handleOnChangeField(e, row.id) }
               />
-              : row.firstName
+              : row.title
             }
           </td>
           <td>
             { isEditMode && rowIDToEdit === row.id
+              ? <Select 
+                onChange={e => handleOnChangeSelect(e, row.id)}
+                name="floors"
+                defaultValue={row.floors}
+                style={{ width: 100 }}
+                options={[
+                  { value: 1, label: '1' },
+                  { value: 2, label: '2' }
+                ]}
+              />
+              : row.floors === 1 ? '1' : '2' 
+            }
+          </td>
+          <td>
+          { isEditMode && rowIDToEdit === row.id
               ? <Input
                 type='text'
-                defaultValue={editedRow ? editedRow.lastName : row.lastName}
+                defaultValue={editedRow ? editedRow.size : row.size}
                 id={row.id}
-                name='lastName'
+                name='size'
                 onChange={ (e) => handleOnChangeField(e, row.id) }
               />
-              : row.lastName
-            }
-          </td>
-          <td>
-            { isEditMode && rowIDToEdit === row.id
-              ? <Form.Select onChange={e => handleOnChangeField(e, row.id)} name="role" defaultValue={row.role}>
-                <option value='Admin'>Admin</option>
-                <option value='Editor'>Editor</option>
-                <option value='Subscriber'>Subscriber</option>
-              </Form.Select>
-              : row.role
+              : row.size
             }
           </td>
         </tr>
       })}
       </tbody>
     </Table>
+    </>
   );
 };
 
 export default Dashboard;
+

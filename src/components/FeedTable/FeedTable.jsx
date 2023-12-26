@@ -16,6 +16,7 @@ const FeedTable = ({ updateFile, updateProject, deleteProjects, columns, rows, a
 
   useEffect(() => {
     setRowsState(rows);
+    console.log(rows)
   }, [rows]);
 
   // Обработчик события для редактирования строки
@@ -84,9 +85,9 @@ const FeedTable = ({ updateFile, updateProject, deleteProjects, columns, rows, a
         if (row.id === editedRow.id) {
           //пробегаемся по всем строкам и если находим редактируемую, то смотрти какое поле изменилось в editedRow
           if (editedRow.type) row.type = editedRow.type;
-          if (editedRow.firstName) row.firstName = editedRow.firstName;
-          if (editedRow.lastName) row.lastName = editedRow.lastName;
-          if (editedRow.role) row.role = editedRow.role;
+          if (editedRow.title) row.title = editedRow.title;
+          if (editedRow.floors) row.floors = editedRow.floors;
+          if (editedRow.size) row.size = editedRow.size;
           updateProject(row)
         }
         
@@ -101,9 +102,9 @@ const FeedTable = ({ updateFile, updateProject, deleteProjects, columns, rows, a
     //   // Создаем новый массив данных, обновляя измененную строку
     //   const newData = rowsState.map(row => {
     //     if (row.id === editedRow.id) {
-    //       if (editedRow.firstName) row.firstName = editedRow.firstName;
-    //       if (editedRow.lastName) row.lastName = editedRow.lastName;
-    //       if (editedRow.role) row.role = editedRow.role;
+    //       if (editedRow.title) row.title = editedRow.title;
+    //       if (editedRow.floors) row.floors = editedRow.floors;
+    //       if (editedRow.size) row.size = editedRow.size;
     //       console.log(row)
     //     }
         
@@ -124,7 +125,7 @@ const FeedTable = ({ updateFile, updateProject, deleteProjects, columns, rows, a
         {columns.map((column, index) => {
           if (index === 1) {
             //пустая шапка под actions
-            return <><th></th><th key={column.field}>{ column.fieldName }</th></>
+            return <><th key={"empty"}></th><th key={column.field}>{ column.fieldName }</th></>
           }else{
           return <th key={column.field}>{ column.fieldName }</th>
           }
@@ -180,34 +181,34 @@ const FeedTable = ({ updateFile, updateProject, deleteProjects, columns, rows, a
             { isEditMode && rowIDToEdit === row.id
               ? <Input
                 type='text'
-                defaultValue={editedRow ? editedRow.firstName : row.firstName}
+                defaultValue={editedRow ? editedRow.title : row.title}
                 id={row.id}
-                name='firstName'
+                name='title'
                 onChange={ (e) => handleOnChangeField(e, row.id) }
               />
-              : row.firstName
+              : row.title
             }
           </td>
           <td>
             { isEditMode && rowIDToEdit === row.id
               ? <Input
                 type='text'
-                defaultValue={editedRow ? editedRow.lastName : row.lastName}
+                defaultValue={editedRow ? editedRow.floors : row.floors}
                 id={row.id}
-                name='lastName'
+                name='floors'
                 onChange={ (e) => handleOnChangeField(e, row.id) }
               />
-              : row.lastName
+              : row.floors
             }
           </td>
           <td>
             { isEditMode && rowIDToEdit === row.id
-              ? <Form.Select onChange={e => handleOnChangeField(e, row.id)} name="role" defaultValue={row.role}>
+              ? <Form.Select onChange={e => handleOnChangeField(e, row.id)} name="size" defaultValue={row.size}>
                 <option value='Admin'>Admin</option>
                 <option value='Editor'>Editor</option>
                 <option value='Subscriber'>Subscriber</option>
               </Form.Select>
-              : row.role
+              : row.size
             }
           </td>
         </tr>

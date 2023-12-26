@@ -10,6 +10,7 @@ import Dashboard from "../Dashboard/Dashboard";
 import "./App.css";
 import Header from "../Header/Header";
 import FeedTable from "../FeedTable/FeedTable";
+import Filters from "../Filters/Filters";
 
 function App() {
   const colDashboard = [
@@ -18,17 +19,17 @@ function App() {
     { field: "direct", fieldName: "Я.Директ" },
     { field: "avito", fieldName: "Avito" },
     { field: "type", fieldName: "Тип" },
-    { field: "firstName", fieldName: "First Name" },
-    { field: "lastName", fieldName: "Last Name" },
-    { field: "role", fieldName: "User's role" },
+    { field: "title", fieldName: "Название" },
+    { field: "floors", fieldName: "Этажей" },
+    { field: "size", fieldName: "Площадь м²" },
   ];
 
   const columns = [
     { field: "id", fieldName: "ID" },
     { field: "type", fieldName: "Тип" },
-    { field: "firstName", fieldName: "First Name" },
-    { field: "lastName", fieldName: "Last Name" },
-    { field: "role", fieldName: "User's role" },
+    { field: "title", fieldName: "Название" },
+    { field: "floors", fieldName: "Этажей" },
+    { field: "size", fieldName: "Площадь м²" },
   ];
 
   const handleUpdateProject = (project) => {
