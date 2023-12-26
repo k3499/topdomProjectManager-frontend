@@ -166,6 +166,7 @@ const Dashboard = ({ updateFile, updateProject, deleteProjects, columns, rows, a
       </tr>
       </thead>
       <tbody>
+        {rowsState.length === 0 && <tr><td colSpan={columns.length+1} className='table__no-data'>Ничего не найдено</td></tr>}
       {rowsState.map((row) => {
         return <tr key={row.id}>
           <td>

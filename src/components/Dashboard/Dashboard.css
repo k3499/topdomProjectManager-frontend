@@ -36,3 +36,7 @@ table td {
 .custom-table__action-btn:last-of-type {
   margin-right: 0;
 }
+.table__no-data {
+  text-align: center;
+  padding: 10px 5px;
+}
