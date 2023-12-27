@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Form, Table } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import { DeleteOutlined, EditOutlined, SaveOutlined, RollbackOutlined, InfoCircleOutlined} from '@ant-design/icons';
 import './Dashboard.css';
-import {Button, Popconfirm, message, Checkbox, Select, Input } from 'antd';
+import { Popconfirm, message, Checkbox, Select, Input } from 'antd';
 import Filters from '../Filters/Filters';
 
 const Dashboard = ({ updateFile, updateProject, deleteProjects, columns, rows, actions }) => {
@@ -40,8 +40,7 @@ const Dashboard = ({ updateFile, updateProject, deleteProjects, columns, rows, a
   }
 
   const cancelRemove = (e) => {
-    console.log(e);
-    message.error('Click on No');
+    message.error('Удаление отменено');
   };
 
   // Обработчик события для изменения значения поля
@@ -94,7 +93,7 @@ const Dashboard = ({ updateFile, updateProject, deleteProjects, columns, rows, a
         return row;
       })
       //updateProject(newData);
-      console.log(newData)
+      message.success('Изменения сохранены', 2.5)
       setRowsState(newData);
       setEditedRow(undefined)
 

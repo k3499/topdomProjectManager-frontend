@@ -1,6 +1,14 @@
 .filters__wrapper {
   margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
 }
 .input__search {
   width: 300px;
+}
+.addButton {
+  background: #1b1b1b;
+}
+.addButton:hover {
+  background: #272727 !important;
 }

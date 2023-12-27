@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import './Filters.css';
-import { Input} from 'antd';
+import { Input, Button } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 
 const Filters = ({ data, handlefilteredRows }) => {
-  const [searchText, setSearchText] = useState('');
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -26,8 +25,7 @@ const Filters = ({ data, handlefilteredRows }) => {
 
       return titleMatch || floorsMatch;
     });
-    setSearchText(search);
-    console.log(handlefilteredRows);
+    
     handlefilteredRows(filteredData);
   }
   return (
@@ -38,6 +36,7 @@ const Filters = ({ data, handlefilteredRows }) => {
           prefix={<SearchOutlined/>}
           className='input__search'
       />
+      <Button type="primary" className='addButton'>Добавить</Button>
    </div>
   );
 };
