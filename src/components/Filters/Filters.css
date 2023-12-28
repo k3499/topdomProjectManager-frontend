@@ -12,3 +12,12 @@
 .addButton:hover {
   background: #272727 !important;
 }
+.block {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.5s;
+}
+
+.block.visible {
+  height: 200px;
+}

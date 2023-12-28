@@ -149,7 +149,7 @@ const Dashboard = ({ updateFile, updateProject, deleteProjects, columns, rows, a
   }
   return (
     <>
-    <Filters data={rows} handlefilteredRows={filteredRows} />
+    <Filters data={rows} handlefilteredRows={filteredRows} columns={columns}/>
     <Table striped bordered hover>
       <thead className='table__head'>
       <tr>
@@ -258,7 +258,7 @@ const Dashboard = ({ updateFile, updateProject, deleteProjects, columns, rows, a
                 onChange={e => handleOnChangeSelect(e, row.id)}
                 name="floors"
                 defaultValue={row.floors}
-                style={{ width: 100 }}
+                style={{ width: 60 }}
                 options={[
                   { value: 1, label: '1' },
                   { value: 2, label: '2' }
@@ -274,6 +274,7 @@ const Dashboard = ({ updateFile, updateProject, deleteProjects, columns, rows, a
                 defaultValue={editedRow ? editedRow.size : row.size}
                 id={row.id}
                 name='size'
+                style={{ width: 90 }}
                 onChange={ (e) => handleOnChangeField(e, row.id) }
               />
               : row.size

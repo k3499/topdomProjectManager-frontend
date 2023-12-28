@@ -5,7 +5,7 @@ import './FeedTable.css';
 import { Select, Input } from 'antd';
 import Filters from '../Filters/Filters';
 
-const FeedTable = ({ updateFile, updateProject, deleteProjects, columns, rows, actions }) => {
+const FeedTable = ({ pageTitle, updateFile, updateProject, deleteProjects, columns, rows, actions }) => {
   // Состояние для определения, находится ли компонент в режиме редактирования или нет
   const [isEditMode, setIsEditMode] = useState(false);
   // Состояние для хранения идентификатора редактируемой строки
@@ -97,24 +97,6 @@ const FeedTable = ({ updateFile, updateProject, deleteProjects, columns, rows, a
 
       setRowsState(newData);
       setEditedRow(undefined)
-
-    // setTimeout(() => {
-    //   setIsEditMode(false);
-    //   // Создаем новый массив данных, обновляя измененную строку
-    //   const newData = rowsState.map(row => {
-    //     if (row.id === editedRow.id) {
-    //       if (editedRow.title) row.title = editedRow.title;
-    //       if (editedRow.floors) row.floors = editedRow.floors;
-    //       if (editedRow.size) row.size = editedRow.size;
-    //       console.log(row)
-    //     }
-        
-    //     return row;
-    //   })
-
-    //   setRowsState(newData);
-    //   setEditedRow(undefined)
-    // }, 1000)
   }
   function filteredRows (rows){
     console.log( rows);
@@ -122,6 +104,7 @@ const FeedTable = ({ updateFile, updateProject, deleteProjects, columns, rows, a
   }
   return (
     <>
+    <h1 className='title'>{pageTitle}</h1>
     <Filters data={rows} handlefilteredRows={filteredRows} />
     <Table striped bordered hover>
       <thead className='table__head'>

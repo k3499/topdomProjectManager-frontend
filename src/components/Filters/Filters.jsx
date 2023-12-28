@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import './Filters.css';
 import { Input, Button } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
+import AddProjectForm from '../AddProjectForm/AddProjectForm';
 
-const Filters = ({ data, handlefilteredRows }) => {
+const Filters = ({ data, handlefilteredRows, columns }) => {
+  const [isBlockVisible, setBlockVisible] = useState(false);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -28,16 +30,29 @@ const Filters = ({ data, handlefilteredRows }) => {
     
     handlefilteredRows(filteredData);
   }
+
+  const toggleAddBlockVisibility = () => {
+    setBlockVisible(!isBlockVisible);
+  };
+
   return (
-   <div className="filters__wrapper">
-      <Input 
-          onChange={handleSearch}
-          placeholder="Поиск..." 
-          prefix={<SearchOutlined/>}
-          className='input__search'
-      />
-      <Button type="primary" className='addButton'>Добавить</Button>
-   </div>
+    <>
+      <div className="filters__wrapper">
+        <Input 
+            onChange={handleSearch}
+            placeholder="Поиск..." 
+            prefix={<SearchOutlined/>}
+            className='input__search'
+        />
+        <Button onClick={toggleAddBlockVisibility} type="primary" className='addButton'>Добавить</Button>
+      </div>
+
+      <AddProjectForm 
+        isBlockVisible={isBlockVisible} 
+        columns={columns} 
+        toggleAddBlockVisibility={toggleAddBlockVisibility}
+      /> 
+   </>
   );
 };
 

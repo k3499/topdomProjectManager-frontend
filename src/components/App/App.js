@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   updateFile,
@@ -6,13 +6,15 @@ import {
   getProjects,
   deleteProjects,
 } from "../../utils/api";
-import { colDashboard, columns } from "../../utils/constants";
+import { colDashboard, columns, pageTitle } from "../../utils/constants";
 import Dashboard from "../Dashboard/Dashboard";
 import "./App.css";
 import Header from "../Header/Header";
 import FeedTable from "../FeedTable/FeedTable";
 
 function App() {
+  const [addProjectVisible, setAddProjectVisible] = useState(false);
+
   const handleUpdateProject = (project) => {
     updateProject(project);
   };
@@ -50,6 +52,7 @@ function App() {
                 path='cian'
                 element={
                   <FeedTable
+                    pageTitle={pageTitle.cian}
                     updateFile={handleUpdateFile}
                     updateProject={handleUpdateProject}
                     deleteProjects={handleUdeleteProjects}
@@ -64,6 +67,7 @@ function App() {
                 path='direct'
                 element={
                   <FeedTable
+                    pageTitle={pageTitle.direct}
                     updateFile={handleUpdateFile}
                     updateProject={handleUpdateProject}
                     deleteProjects={handleUdeleteProjects}
@@ -78,6 +82,7 @@ function App() {
                 path='avito'
                 element={
                   <FeedTable
+                    pageTitle={pageTitle.avito}
                     updateFile={handleUpdateFile}
                     updateProject={handleUpdateProject}
                     deleteProjects={handleUdeleteProjects}

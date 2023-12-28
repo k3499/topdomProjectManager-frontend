@@ -7,7 +7,7 @@ const Headers = {
 const colDashboard = [
   { field: "id", fieldName: "ID" },
   { field: "cian", fieldName: "Cian" },
-  { field: "direct", fieldName: "Я.Директ" },
+  { field: "direct", fieldName: "Директ" },
   { field: "avito", fieldName: "Avito" },
   { field: "type", fieldName: "Тип" },
   { field: "title", fieldName: "Название" },
@@ -23,4 +23,20 @@ const columns = [
   { field: "size", fieldName: "Площадь м²" },
 ];
 
-export { BASE_URL, Headers, colDashboard, columns };
+const colAdd = [
+  { field: "cian", fieldName: "Cian" },
+  { field: "direct", fieldName: "Директ" },
+  { field: "avito", fieldName: "Avito" },
+  { field: "type", fieldName: "Тип" },
+  { field: "title", fieldName: "Название" },
+  { field: "floors", fieldName: "Этажей" },
+  { field: "size", fieldName: "Площадь м²" },
+];
+
+const pageTitle = {
+  cian: "Проекты в Cian",
+  direct: "Проекты в Я.Директ",
+  avito: "Проекты в Avito",
+};
+
+export { BASE_URL, Headers, colDashboard, columns, pageTitle, colAdd };
