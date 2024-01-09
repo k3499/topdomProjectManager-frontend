@@ -62,7 +62,7 @@ const AddProjectForm = ({isBlockVisible, toggleAddBlockVisibility}) => {
           onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
-      <Table striped bordered hover>
+      <Table striped bordered hover className="addProjectTable">
         <thead className='table__head'>
         <tr>
           {/* Отображаем заголовки столбцов */}
@@ -118,7 +118,7 @@ const AddProjectForm = ({isBlockVisible, toggleAddBlockVisibility}) => {
               <Input
                 type='text'
                 name='title'
-                style={{ width: 250 }}
+                style={{ width: 340 }}
                 required
               />
             </Form.Item>
@@ -161,11 +161,11 @@ const AddProjectForm = ({isBlockVisible, toggleAddBlockVisibility}) => {
           </tr>
         </tbody>
         </Table>
-        <Form.Item>
-        <Button type="primary" htmlType="submit" loading={isLoading} onClick={() => enterLoading(0)}>
-          Submit
+
+        <Button className='saveProjectBtn' align="right" type="primary" htmlType="submit" loading={isLoading} onClick={() => enterLoading(0)}>
+          Сохранить
         </Button>
-      </Form.Item>
+
       </Form>
     </div>
   );
