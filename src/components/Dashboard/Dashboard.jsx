@@ -208,7 +208,7 @@ const Dashboard = ({
             return (
               <>
                 <tr key={row.id} className="table__row">
-                  <td>{row.id}</td>
+                  <td className="table__id">{row.id}</td>
                   {actions && (
                     <td className="table__actions">
                       {/* Кнопка сохранения изменений */}
@@ -262,7 +262,7 @@ const Dashboard = ({
                       )}
                     </td>
                   )}
-                  <td>
+                  <td className="table__checkbox">
                     <Checkbox
                       checked={row.cian}
                       onChange={(e) =>
@@ -272,7 +272,7 @@ const Dashboard = ({
                       {row.cian}
                     </Checkbox>
                   </td>
-                  <td>
+                  <td className="table__checkbox">
                     <Checkbox
                       checked={row.direct}
                       onChange={(e) =>
@@ -282,7 +282,7 @@ const Dashboard = ({
                       {row.direct}
                     </Checkbox>
                   </td>
-                  <td>
+                  <td className="table__checkbox">
                     <Checkbox
                       checked={row.avito}
                       onChange={(e) =>

@@ -3,7 +3,7 @@
   margin-left: auto;
   margin-top: 20px;
 }
-.table__body::before {
+.AddTable__body::before {
   content: "";
   display: block;
   height: 10px;

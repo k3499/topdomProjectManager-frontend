@@ -153,6 +153,21 @@ const AddProjectForm = ({ isBlockVisible, toggleAddBlockVisibility }) => {
                   <Input type="number" name="size" style={{ width: 90 }} />
                 </Form.Item>
               </td>
+              <td>
+                <Form.Item
+                  name="town"
+                  rules={[{ required: true, message: "Заполните поле" }]}
+                >
+                  <Select
+                    name="town"
+                    style={{ width: 130 }}
+                    options={[
+                      { value: "nasledie", label: "Наследие" },
+                      { value: "riga", label: "Riga life" },
+                    ]}
+                  />
+                </Form.Item>
+              </td>
             </tr>
           </tbody>
         </Table>

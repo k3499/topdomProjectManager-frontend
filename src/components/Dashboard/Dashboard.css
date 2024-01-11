@@ -8,11 +8,15 @@ table td {
   vertical-align: middle;
   padding: 0 5px;
 }
+.table__id {
+  text-align: center;
+}
 .custom-table__action-btn {
   cursor: pointer;
   border: 1px solid #eee;
   background: none;
   margin-right: 5px;
+  margin-left: 5px;
 }
 .custom-table__action-btn svg {
   pointer-events: none;
@@ -38,9 +42,14 @@ table td {
 }
 .table__actions {
   padding: 0;
+  text-align: center;
+}
+.table__checkbox {
+  text-align: center;
 }
 .custom-table__action-btn:last-of-type {
-  margin-right: 0;
+  margin-right: 5px;
+  margin-left: 0;
 }
 .table__no-data {
   text-align: center;
