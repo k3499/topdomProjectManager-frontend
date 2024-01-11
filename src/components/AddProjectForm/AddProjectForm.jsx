@@ -10,12 +10,6 @@ const AddProjectForm = ({isBlockVisible, toggleAddBlockVisibility}) => {
   const [isLoading, setIsLoading] = useState(false)
   const [form] = Form.useForm();
 
-  const enterLoading = () => {
-    setTimeout(() => {
-      setIsLoading(true);
-    });
-  };
-
   const onFinish = async (values) => {
     setIsLoading(true); // Устанавливаем isLoading в true перед началом отправки формы
     
@@ -162,7 +156,7 @@ const AddProjectForm = ({isBlockVisible, toggleAddBlockVisibility}) => {
         </tbody>
         </Table>
 
-        <Button className='saveProjectBtn' align="right" type="primary" htmlType="submit" loading={isLoading} onClick={() => enterLoading(0)}>
+        <Button className='saveProjectBtn' align="right" type="primary" htmlType="submit" loading={isLoading} >
           Сохранить
         </Button>
 
