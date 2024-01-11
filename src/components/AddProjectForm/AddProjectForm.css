@@ -1,5 +1,10 @@
-.saveProjectBtn{
-    display: block;
-    margin-left: auto;
-    margin-top: 20px;
+.saveProjectBtn {
+  display: block;
+  margin-left: auto;
+  margin-top: 20px;
+}
+.table__body::before {
+  content: "";
+  display: block;
+  height: 10px;
 }

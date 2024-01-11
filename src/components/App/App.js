@@ -31,12 +31,12 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <div className='wrapper'>
+        <div className="wrapper">
           <Header />
-          <main className='main'>
+          <main className="main">
             <Routes>
               <Route
-                path='*'
+                path="*"
                 element={
                   <Dashboard
                     updateFile={handleUpdateFile}
@@ -49,7 +49,7 @@ function App() {
                 }
               />
               <Route
-                path='cian'
+                path="cian"
                 element={
                   <FeedTable
                     pageTitle={pageTitle.cian}
@@ -64,7 +64,7 @@ function App() {
                 }
               />
               <Route
-                path='direct'
+                path="direct"
                 element={
                   <FeedTable
                     pageTitle={pageTitle.direct}
@@ -79,7 +79,7 @@ function App() {
                 }
               />
               <Route
-                path='avito'
+                path="avito"
                 element={
                   <FeedTable
                     pageTitle={pageTitle.avito}

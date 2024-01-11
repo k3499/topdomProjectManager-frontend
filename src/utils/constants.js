@@ -13,6 +13,7 @@ const colDashboard = [
   { field: "title", fieldName: "Название" },
   { field: "floors", fieldName: "Этажей" },
   { field: "size", fieldName: "Площадь м²" },
+  { field: "town", fieldName: "Поселок" },
 ];
 
 const columns = [
@@ -21,6 +22,7 @@ const columns = [
   { field: "title", fieldName: "Название" },
   { field: "floors", fieldName: "Этажей" },
   { field: "size", fieldName: "Площадь м²" },
+  { field: "town", fieldName: "Поселок" },
 ];
 
 const colAdd = [
@@ -31,6 +33,7 @@ const colAdd = [
   { field: "title", fieldName: "Название" },
   { field: "floors", fieldName: "Этажей" },
   { field: "size", fieldName: "Площадь м²" },
+  { field: "town", fieldName: "Поселок" },
 ];
 
 const pageTitle = {
