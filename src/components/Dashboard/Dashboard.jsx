@@ -184,7 +184,7 @@ const Dashboard = ({
                 //пустая шапка под actions
                 return (
                   <React.Fragment key={column.field + index}>
-                    <th></th>
+                    <th key={"blank"}></th>
                     {/* Добавлен ключ к заголовку столбца */}
                     <th key={column.field}>{column.fieldName}</th>
                   </React.Fragment>
@@ -206,7 +206,7 @@ const Dashboard = ({
           )}
           {rowsState.map((row) => {
             return (
-              <>
+              <React.Fragment key={row.id}>
                 <tr key={row.id} className="table__row">
                   <td className="table__id">{row.id}</td>
                   {actions && (
@@ -366,38 +366,47 @@ const Dashboard = ({
                       row.size
                     )}
                   </td>
-                  {row.type !== "home" ? (
-                    <div style={{ width: 120 }}></div>
-                  ) : (
-                    <td>
-                      {isEditMode && rowIDToEdit === row.id ? (
-                        <Select
-                          onChange={(e) => handleOnChangeSelect(e, row.id)}
-                          name="town"
-                          defaultValue={row.town}
-                          style={{ width: 120 }}
-                          options={[
-                            { value: "nasledie", label: "Наследие" },
-                            { value: "riga", label: "Riga life" },
-                          ]}
-                        />
-                      ) : (
-                        (() => {
-                          switch (row.town) {
-                            case "nasledie":
-                              return "Наследие";
-                            case "riga":
-                              return "Riga life";
-                            default:
-                              return "";
-                          }
-                        })()
-                      )}
-                    </td>
-                  )}
+                  {/* {row.type !== "home" ? (
+                    <td style={{ width: 120 }}></td>
+                  ) : ( */}
+                  <td>
+                    {console.log(
+                      (editedRow && editedRow.type !== "home") ||
+                        row.type !== "home"
+                    )}
+                    {isEditMode && rowIDToEdit === row.id ? (
+                      <Select
+                        onChange={(e) => handleOnChangeSelect(e, row.id)}
+                        name="town"
+                        defaultValue={row.town}
+                        style={{ width: 120 }}
+                        // если в editedRow поле type не равно home то ставим disabled
+                        disabled={
+                          (editedRow && editedRow.type !== "home") ||
+                          row.type !== "home"
+                        }
+                        options={[
+                          { value: "nasledie", label: "Наследие" },
+                          { value: "riga", label: "Riga life" },
+                        ]}
+                      />
+                    ) : (
+                      (() => {
+                        switch (row.town) {
+                          case "nasledie":
+                            return "Наследие";
+                          case "riga":
+                            return "Riga life";
+                          default:
+                            return "";
+                        }
+                      })()
+                    )}
+                  </td>
+                  {/* )} */}
                 </tr>
                 <tr></tr>
-              </>
+              </React.Fragment>
             );
           })}
         </tbody>

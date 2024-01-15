@@ -1,3 +1,4 @@
+import axios from "axios";
 import { BASE_URL, Headers } from "./constants";
 
 // export const register = (email, password, name) => (
@@ -84,6 +85,19 @@ export const getProjects = (site) => {
   } else if (site === "avito") {
     //return getAvitoData();
   } else {
+    axios
+      .get(`${BASE_URL}`, {
+        method: "getAllOnMain",
+      })
+      .then((response) => {
+        // Обработка успешного ответа
+        console.log(response.data);
+      })
+      .catch((error) => {
+        // Обработка ошибок
+        console.error(error);
+      });
+
     const data = [
       {
         id: 1,
