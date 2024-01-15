@@ -79,6 +79,7 @@ export const getProjects = (site) => {
         size: 73,
       },
     ];
+
     return data;
   } else if (site === "direct") {
     //return getDirectData();
