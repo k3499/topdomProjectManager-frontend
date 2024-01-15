@@ -87,7 +87,7 @@ export const getProjects = (site) => {
     //return getAvitoData();
   } else {
     axios
-      .post(`${BASE_URL}index.php`, {
+      .get(`${BASE_URL}index.php`, {
         method: "getAllOnMain",
       })
       .then((response) => {
