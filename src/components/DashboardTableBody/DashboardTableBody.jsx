@@ -38,6 +38,7 @@ const DashboardTableBody = ({ columns, actions, rowsState, setRowsState }) => {
         if (editedRow.floors) row.floors = editedRow.floors;
         if (editedRow.sq) row.sq = editedRow.sq;
         if (editedRow.town) row.town = editedRow.town;
+        updateProject(editedRow);
       }
       return row;
     });
@@ -135,18 +136,11 @@ const DashboardTableBody = ({ columns, actions, rowsState, setRowsState }) => {
   };
 
   // Обработчик события для изменения значения выпадающего списка
-  const handleOnChangeSelect = (e, rowID) => {
-    console.log({
-      editedRow,
-    });
+  const handleOnChangeSelect = (e, rowID, name) => {
     //Обновляем состояние редактируемой строки
-    console.log({
-      type: e,
-      id: rowID,
-    });
     setEditedRow((prevRow) => ({
       ...(prevRow && prevRow.id ? prevRow : { id: rowID }),
-      type: e,
+      [name]: e,
     }));
   };
   return (
@@ -293,8 +287,8 @@ const DashboardTableBody = ({ columns, actions, rowsState, setRowsState }) => {
                 <td>
                   {isEditMode && rowIDToEdit === row.id ? (
                     <Select
-                      onChange={(e) => handleOnChangeSelect(e, row.id)}
-                      name="floors"
+                      onChange={(e) => handleOnChangeSelect(e, row.id, "floor")}
+                      name="floor"
                       defaultValue={row.floors}
                       style={{ width: 60 }}
                       options={[

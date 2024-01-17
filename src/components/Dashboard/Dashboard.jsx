@@ -86,6 +86,7 @@ const Dashboard = ({
           actions={actions}
           rowsState={rowsState}
           setRowsState={setRowsState}
+          updateProject={updateProject}
         />
       </Table>
     </>

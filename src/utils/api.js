@@ -16,8 +16,15 @@ import { BASE_URL, Headers } from "./constants";
 //       .catch((err) => console.log(err))
 //   );
 
-export const updateProject = (project) => {
-  console.log(project);
+export const updateProject = async (project) => {
+  try {
+    const response = await axios.post(`${BASE_URL}index.php`, project);
+    // Обработка успешного ответа от сервера
+    console.log(response.data);
+  } catch (error) {
+    // Обработка ошибки
+    console.error(error);
+  }
 };
 
 export const updateFile = (newFileData) => {
