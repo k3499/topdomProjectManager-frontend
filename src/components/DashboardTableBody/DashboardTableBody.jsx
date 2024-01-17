@@ -33,10 +33,10 @@ const DashboardTableBody = ({ columns, actions, rowsState, setRowsState }) => {
     const newData = rowsState.map((row) => {
       if (row.id === editedRow.id) {
         //пробегаемся по всем строкам и если находим редактируемую, то смотрти какое поле изменилось в editedRow
-        if (editedRow.type) row.type = editedRow.type;
-        if (editedRow.title) row.title = editedRow.title;
+        if (editedRow.category_obj) row.category_obj = editedRow.category_obj;
+        if (editedRow.name) row.name = editedRow.name;
         if (editedRow.floors) row.floors = editedRow.floors;
-        if (editedRow.size) row.size = editedRow.size;
+        if (editedRow.sq) row.sq = editedRow.sq;
         if (editedRow.town) row.town = editedRow.town;
       }
       return row;
@@ -68,7 +68,7 @@ const DashboardTableBody = ({ columns, actions, rowsState, setRowsState }) => {
         return row;
       } else {
         deleteProjects(row);
-        message.success(`Проект${` "${row.title}"`} был удален`);
+        message.success(`Проект${` "${row.name}"`} был удален`);
         return null;
       }
     });
@@ -253,7 +253,7 @@ const DashboardTableBody = ({ columns, actions, rowsState, setRowsState }) => {
                     <Select
                       onChange={(e) => handleOnChangeType(e, row.id)}
                       name="type"
-                      defaultValue={row.type}
+                      defaultValue={row.category_obj}
                       style={{ width: 130 }}
                       options={[
                         { value: "project", label: "Проект" },
@@ -263,10 +263,10 @@ const DashboardTableBody = ({ columns, actions, rowsState, setRowsState }) => {
                     />
                   ) : (
                     (() => {
-                      switch (row.type) {
+                      switch (row.category_obj) {
                         case "project":
                           return "Проект";
-                        case "home":
+                        case "Готовый дом":
                           return "Готовый дом";
                         case "plot":
                           return "Участок";
@@ -281,13 +281,13 @@ const DashboardTableBody = ({ columns, actions, rowsState, setRowsState }) => {
                   {isEditMode && rowIDToEdit === row.id ? (
                     <Input
                       type="text"
-                      defaultValue={editedRow ? editedRow.title : row.title}
+                      defaultValue={editedRow ? editedRow.name : row.name}
                       id={row.id}
-                      name="title"
+                      name="name"
                       onChange={(e) => handleOnChangeField(e, row.id)}
                     />
                   ) : (
-                    row.title
+                    row.name
                   )}
                 </td>
                 <td>
