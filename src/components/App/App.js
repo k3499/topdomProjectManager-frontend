@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   updateFile,
@@ -27,6 +27,7 @@ function App() {
   };
 
   let projects = getProjects();
+  console.log(projects);
   let cianProjects = getProjects("cian");
   return (
     <>
@@ -43,7 +44,6 @@ function App() {
                     updateProject={handleUpdateProject}
                     deleteProjects={handleUdeleteProjects}
                     columns={colDashboard}
-                    rows={projects}
                     actions
                   />
                 }

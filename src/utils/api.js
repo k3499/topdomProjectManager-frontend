@@ -24,7 +24,7 @@ export const updateFile = (newFileData) => {
   console.log(newFileData);
 };
 
-export const getProjects = (site) => {
+export const getProjects = async (site) => {
   if (site === "cian") {
     const data = [
       {
@@ -86,101 +86,16 @@ export const getProjects = (site) => {
   } else if (site === "avito") {
     //return getAvitoData();
   } else {
-    axios
-      .get(`${BASE_URL}index.php?method=getAllOnMain`)
-      .then((response) => {
-        // Обработка успешного ответа
-        console.log(response.data);
-      })
-      .catch((error) => {
-        // Обработка ошибок
-        console.error(error);
-      });
-
-    const data = [
-      {
-        id: 1,
-        cian: true,
-        direct: true,
-        avito: true,
-        type: "project",
-        title: "Проект дома из пеноблоков 1.67",
-        floors: 1,
-        size: 73,
-      },
-      {
-        id: 2,
-        cian: false,
-        direct: true,
-        avito: true,
-        type: "home",
-        title: "Проект дома из пеноблоков 1.67",
-        floors: 1,
-        size: 73,
-        town: "nasledie",
-      },
-      {
-        id: 3,
-        cian: true,
-        direct: false,
-        avito: true,
-        type: "plot",
-        title: "Проект дома из кирпича 1.67",
-        floors: 1,
-        size: 73,
-      },
-      {
-        id: 4,
-        cian: true,
-        direct: true,
-        avito: true,
-        type: "plot",
-        title: "Проект дома из пеноблоков 1.67",
-        floors: 1,
-        size: 73,
-      },
-      {
-        id: 5,
-        cian: true,
-        direct: false,
-        avito: true,
-        type: "plot",
-        title: "Проект дома из пеноблоков 1.63",
-        floors: 1,
-        size: 73,
-      },
-      {
-        id: 6,
-        cian: true,
-        direct: true,
-        avito: true,
-        type: "plot",
-        title: "Проект дома из пеноблоков 1.64",
-        floors: 1,
-        size: 73,
-      },
-      {
-        id: 7,
-        cian: true,
-        direct: false,
-        avito: true,
-        type: "plot",
-        title: "Проект дома из кирпича 1.37",
-        floors: 1,
-        size: 73,
-      },
-      {
-        id: 8,
-        cian: true,
-        direct: true,
-        avito: true,
-        type: "plot",
-        title: "Проект дома из пеноблоков 1.27",
-        floors: 1,
-        size: 73,
-      },
-    ];
-    return data;
+    try {
+      const response = await axios.get(
+        `${BASE_URL}index.php?method=getAllOnMain`
+      );
+      const data = response.data;
+      return data;
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
   }
 };
 
