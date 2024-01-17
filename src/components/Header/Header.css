@@ -7,6 +7,7 @@
   align-items: center;
   padding-top: 25px;
   box-sizing: border-box;
+  position: fixed;
 }
 .logo {
   width: 49px;
