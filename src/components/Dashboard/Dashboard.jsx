@@ -17,6 +17,7 @@ import {
   updateProject,
   getProjects,
   deleteProjects,
+  createProject,
 } from "../../utils/api";
 
 const Dashboard = ({
@@ -58,6 +59,7 @@ const Dashboard = ({
         data={rowsState}
         handlefilteredRows={filteredRows}
         columns={columns}
+        createProject={createProject}
       />
       <Table striped bordered hover className="table">
         <thead className="table__head">
@@ -87,6 +89,7 @@ const Dashboard = ({
           rowsState={rowsState}
           setRowsState={setRowsState}
           updateProject={updateProject}
+          deleteProjects={deleteProjects}
         />
       </Table>
     </>

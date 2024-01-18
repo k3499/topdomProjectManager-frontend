@@ -16,13 +16,26 @@ import { BASE_URL, Headers } from "./constants";
 //       .catch((err) => console.log(err))
 //   );
 
-export const updateProject = async (project) => {
+export const createProject = async (project) => {
   try {
-    const response = await axios.post(`${BASE_URL}index.php`, project);
-    // Обработка успешного ответа от сервера
+    const response = await axios.post(`${BASE_URL}index.php`, {
+      method: "create",
+      data: { ...project },
+    });
     console.log(response.data);
   } catch (error) {
-    // Обработка ошибки
+    console.error(error);
+  }
+};
+
+export const updateProject = async (project) => {
+  try {
+    const response = await axios.post(`${BASE_URL}index.php`, {
+      method: "update",
+      data: { ...project },
+    });
+    console.log(response.data);
+  } catch (error) {
     console.error(error);
   }
 };
@@ -106,6 +119,16 @@ export const getProjects = async (site) => {
   }
 };
 
-export const deleteProjects = (project) => {
-  console.log(`Типо тут удалили ${project.firstName}`);
+export const deleteProjects = async (project) => {
+  try {
+    const response = await axios.delete(`${BASE_URL}index.php`, {
+      data: {
+        method: "deleteOnId",
+        data: { id: project.id },
+      },
+    });
+  } catch (error) {
+    // Обработка ошибки
+    console.error(error);
+  }
 };

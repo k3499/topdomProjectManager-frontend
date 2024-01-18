@@ -4,7 +4,7 @@ import { Input, Button } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import AddProjectForm from "../AddProjectForm/AddProjectForm";
 
-const Filters = ({ data, handlefilteredRows, columns }) => {
+const Filters = ({ data, handlefilteredRows, columns, createProject }) => {
   const [isBlockVisible, setBlockVisible] = useState(false);
 
   const handleSearch = (e) => {
@@ -57,6 +57,7 @@ const Filters = ({ data, handlefilteredRows, columns }) => {
         isBlockVisible={isBlockVisible}
         columns={columns}
         toggleAddBlockVisibility={toggleAddBlockVisibility}
+        createProject={createProject}
       />
     </>
   );

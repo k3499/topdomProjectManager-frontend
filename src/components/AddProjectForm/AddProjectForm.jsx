@@ -13,20 +13,24 @@ import {
 import { colAdd } from "../../utils/constants";
 import { useState } from "react";
 
-const AddProjectForm = ({ isBlockVisible, toggleAddBlockVisibility }) => {
+const AddProjectForm = ({
+  isBlockVisible,
+  toggleAddBlockVisibility,
+  createProject,
+}) => {
   const [projectToAdd, setProjectToAdd] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [form] = Form.useForm();
 
   const onFinish = async (values) => {
     setIsLoading(true); // Устанавливаем isLoading в true перед началом отправки формы
-
+    values.is_cian = values.is_cian ? 1 : 0;
+    values.is_derect = values.is_derect ? 1 : 0;
+    values.is_avito = values.is_avito ? 1 : 0;
     try {
-      // Имитируем задержку с помощью setTimeout
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      // Ваши действия при отправке формы (например, запрос на сервер)
-
+      // Вызываем асинхронный запрос createProject
+      await createProject(values);
+      console.log(values);
       message.success(`Проект добавлен`);
     } catch (error) {
       message.error("Проект не добавлен");
@@ -57,7 +61,7 @@ const AddProjectForm = ({ isBlockVisible, toggleAddBlockVisibility }) => {
         name="basic"
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
-        initialValues={{ cian: false, direct: false, avito: false }}
+        initialValues={{ is_cian: false, is_derect: false, is_avito: false }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
@@ -79,31 +83,31 @@ const AddProjectForm = ({ isBlockVisible, toggleAddBlockVisibility }) => {
           <tbody className="table__body">
             <tr>
               <td>
-                <Form.Item name="cian" valuePropName="checked">
+                <Form.Item name="is_cian" valuePropName="checked">
                   <Checkbox></Checkbox>
                 </Form.Item>
               </td>
               <td>
-                <Form.Item name="direct" valuePropName="checked">
+                <Form.Item name="is_derect" valuePropName="checked">
                   <Checkbox></Checkbox>
                 </Form.Item>
               </td>
               <td>
-                <Form.Item name="avito" valuePropName="checked">
+                <Form.Item name="is_avito" valuePropName="checked">
                   <Checkbox></Checkbox>
                 </Form.Item>
               </td>
               <td>
                 <Form.Item
-                  name="type"
+                  name="category_obj"
                   rules={[{ required: true, message: "Заполните поле" }]}
                 >
                   <Select
-                    name="type"
+                    name="category_obj"
                     style={{ width: 100 }}
                     options={[
-                      { value: "home", label: "Дом" },
-                      { value: "plot", label: "Участок" },
+                      { value: "Готовый дом", label: "Готовый дом" },
+                      { value: "Участок", label: "Участок" },
                     ]}
                     required
                   />
@@ -111,12 +115,12 @@ const AddProjectForm = ({ isBlockVisible, toggleAddBlockVisibility }) => {
               </td>
               <td>
                 <Form.Item
-                  name="title"
+                  name="name"
                   rules={[{ required: true, message: "Заполните поле" }]}
                 >
                   <Input
                     type="text"
-                    name="title"
+                    name="name"
                     style={{ width: 340 }}
                     required
                   />
@@ -124,11 +128,11 @@ const AddProjectForm = ({ isBlockVisible, toggleAddBlockVisibility }) => {
               </td>
               <td>
                 <Form.Item
-                  name="floors"
+                  name="floor"
                   rules={[{ required: true, message: "Заполните поле" }]}
                 >
                   <Select
-                    name="floors"
+                    name="floor"
                     style={{ width: 60 }}
                     options={[
                       { value: 1, label: "1" },
@@ -139,7 +143,7 @@ const AddProjectForm = ({ isBlockVisible, toggleAddBlockVisibility }) => {
               </td>
               <td>
                 <Form.Item
-                  name="size"
+                  name="sq"
                   rules={[
                     {
                       required: true,
