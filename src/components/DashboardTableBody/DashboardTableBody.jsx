@@ -109,6 +109,7 @@ const DashboardTableBody = React.memo(
         id: rowID,
         [fieldName]: status ? 0 : 1,
       };
+
       console.log();
       updateProject(dataToUpdate);
       setRowsState(updatedRows);
