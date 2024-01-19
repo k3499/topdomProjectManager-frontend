@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { Table } from "react-bootstrap";
 import {
   DeleteOutlined,
@@ -30,13 +30,22 @@ const Dashboard = ({
   // Состояние для хранения данных строк таблицы
   const [rowsState, setRowsState] = useState([]);
 
+  // Состояние для определения, находится ли компонент в режиме редактирования или нет
+  const [isEditMode, setIsEditMode] = useState(false);
+  // Используйте useMemo для мемоизации массива строк
+  const memoizedRowsState = useMemo(() => rowsState, [rowsState]);
+
+  // Используйте useCallback для мемоизации функции setRowsState
+  const memoizedSetRowsState = useCallback(
+    (newRowsState) => {
+      setRowsState(newRowsState);
+    },
+    [setRowsState]
+  );
+
   useEffect(() => {
     fetchData();
   }, []);
-
-  useEffect(() => {
-    console.log(rowsState);
-  }, [rowsState]);
 
   async function fetchData() {
     try {
@@ -86,10 +95,12 @@ const Dashboard = ({
         <DashboardTableBody
           columns={columns}
           actions={actions}
-          rowsState={rowsState}
-          setRowsState={setRowsState}
+          rowsState={memoizedRowsState}
+          setRowsState={memoizedSetRowsState}
           updateProject={updateProject}
           deleteProjects={deleteProjects}
+          isEditMode={isEditMode}
+          setIsEditMode={setIsEditMode}
         />
       </Table>
     </>

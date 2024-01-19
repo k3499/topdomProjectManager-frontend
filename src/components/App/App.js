@@ -6,7 +6,7 @@ import {
   getProjects,
   deleteProjects,
 } from "../../utils/api";
-import { colDashboard, columns, pageTitle } from "../../utils/constants";
+import { colDashboard, colCian, pageTitle } from "../../utils/constants";
 import Dashboard from "../Dashboard/Dashboard";
 import "./App.css";
 import Header from "../Header/Header";
@@ -18,7 +18,7 @@ function App() {
   const handleUpdateProject = (project) => {
     updateProject(project);
   };
-  const handleUdeleteProjects = (project) => {
+  const handledeleteProjects = (project) => {
     deleteProjects(project);
   };
 
@@ -26,9 +26,6 @@ function App() {
     updateFile(project);
   };
 
-  let projects = getProjects();
-  console.log(projects);
-  let cianProjects = getProjects("cian");
   return (
     <>
       <BrowserRouter>
@@ -42,7 +39,7 @@ function App() {
                   <Dashboard
                     updateFile={handleUpdateFile}
                     updateProject={handleUpdateProject}
-                    deleteProjects={handleUdeleteProjects}
+                    deleteProjects={handledeleteProjects}
                     columns={colDashboard}
                     actions
                   />
@@ -55,24 +52,23 @@ function App() {
                     pageTitle={pageTitle.cian}
                     updateFile={handleUpdateFile}
                     updateProject={handleUpdateProject}
-                    deleteProjects={handleUdeleteProjects}
-                    columns={columns}
-                    rows={cianProjects}
+                    deleteProjects={handledeleteProjects}
+                    columns={colCian}
                     actions
-                    cian
+                    feedName="cian"
                   />
                 }
               />
-              <Route
+              {/* <Route
                 path="direct"
                 element={
                   <FeedTable
                     pageTitle={pageTitle.direct}
                     updateFile={handleUpdateFile}
                     updateProject={handleUpdateProject}
-                    deleteProjects={handleUdeleteProjects}
-                    columns={columns}
-                    rows={projects}
+                    deleteProjects={handledeleteProjects}
+                    columns={colCian}
+                    //rows={projects}
                     actions
                     direct
                   />
@@ -85,14 +81,14 @@ function App() {
                     pageTitle={pageTitle.avito}
                     updateFile={handleUpdateFile}
                     updateProject={handleUpdateProject}
-                    deleteProjects={handleUdeleteProjects}
-                    columns={columns}
+                    deleteProjects={handledeleteProjects}
+                    columns={colCian}
                     rows={projects}
                     actions
                     avito
                   />
                 }
-              />
+              /> */}
             </Routes>
           </main>
         </div>

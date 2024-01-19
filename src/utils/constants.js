@@ -9,31 +9,37 @@ const colDashboard = [
   { field: "cian", fieldName: "Cian" },
   { field: "direct", fieldName: "Директ" },
   { field: "avito", fieldName: "Avito" },
-  { field: "type", fieldName: "Тип" },
+  { field: "category_obj", fieldName: "Тип" },
   { field: "title", fieldName: "Название" },
   { field: "floors", fieldName: "Этажей" },
-  { field: "size", fieldName: "Площадь м²" },
+  { field: "sq", fieldName: "Площадь м²" },
   { field: "town", fieldName: "Поселок" },
 ];
 
-const columns = [
+const colCian = [
   { field: "id", fieldName: "ID" },
-  { field: "type", fieldName: "Тип" },
-  { field: "title", fieldName: "Название" },
+  { field: "category_obj", fieldName: "Тип" },
+  { field: "name", fieldName: "Название" },
   { field: "floors", fieldName: "Этажей" },
-  { field: "size", fieldName: "Площадь м²" },
+  { field: "sq", fieldName: "Площадь м²" },
   { field: "town", fieldName: "Поселок" },
+  { field: "address", fieldName: "Адрес" },
+  { field: "phone", fieldName: "Телефон" },
+  { field: "cadastr_number", fieldName: "Кадастр" },
+  { field: "area_land", fieldName: "Площадь м²" },
+  { field: "price", fieldName: "Цена" },
+  { field: "photo_planirovka", fieldName: "План" },
+  { field: "description", fieldName: "Описание" },
 ];
 
 const colAdd = [
   { field: "cian", fieldName: "Cian" },
   { field: "direct", fieldName: "Директ" },
   { field: "avito", fieldName: "Avito" },
-  { field: "type", fieldName: "Тип" },
-  { field: "title", fieldName: "Название" },
+  { field: "category_obj", fieldName: "Тип" },
+  { field: "name", fieldName: "Название" },
   { field: "floors", fieldName: "Этажей" },
-  { field: "size", fieldName: "Площадь м²" },
-  { field: "town", fieldName: "Поселок" },
+  { field: "sq", fieldName: "Площадь м²" },
 ];
 
 const pageTitle = {
@@ -42,4 +48,4 @@ const pageTitle = {
   avito: "Проекты в Avito",
 };
 
-export { BASE_URL, Headers, colDashboard, columns, pageTitle, colAdd };
+export { BASE_URL, Headers, colDashboard, colCian, pageTitle, colAdd };

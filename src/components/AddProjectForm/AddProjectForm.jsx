@@ -25,7 +25,7 @@ const AddProjectForm = ({
   const onFinish = async (values) => {
     setIsLoading(true); // Устанавливаем isLoading в true перед началом отправки формы
     values.is_cian = values.is_cian ? 1 : 0;
-    values.is_derect = values.is_derect ? 1 : 0;
+    values.is_direct = values.is_direct ? 1 : 0;
     values.is_avito = values.is_avito ? 1 : 0;
     try {
       // Вызываем асинхронный запрос createProject
@@ -61,7 +61,7 @@ const AddProjectForm = ({
         name="basic"
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
-        initialValues={{ is_cian: false, is_derect: false, is_avito: false }}
+        initialValues={{ is_cian: false, is_direct: false, is_avito: false }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
@@ -88,7 +88,7 @@ const AddProjectForm = ({
                 </Form.Item>
               </td>
               <td>
-                <Form.Item name="is_derect" valuePropName="checked">
+                <Form.Item name="is_direct" valuePropName="checked">
                   <Checkbox></Checkbox>
                 </Form.Item>
               </td>

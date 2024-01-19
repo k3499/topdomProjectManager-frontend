@@ -45,67 +45,24 @@ export const updateFile = (newFileData) => {
 };
 
 export const getProjects = async (site) => {
+  console.log("site", site);
   if (site === "cian") {
-    const data = [
-      {
-        id: 1,
-        cian: true,
-        direct: true,
-        avito: true,
-        type: "project",
-        title: "Проект дома из пеноблоков 1.67",
-        floors: 1,
-        size: 73,
-        town: "nasledie",
-      },
-      {
-        id: 2,
-        cian: false,
-        direct: true,
-        avito: true,
-        type: "home",
-        title: "Проект дома из пеноблоков 1.67",
-        floors: 1,
-        size: 73,
-      },
-      {
-        id: 3,
-        cian: true,
-        direct: false,
-        avito: true,
-        type: "plot",
-        title: "Проект дома из кирпича 1.67",
-        floors: 1,
-        size: 73,
-      },
-      {
-        id: 4,
-        cian: true,
-        direct: true,
-        avito: true,
-        type: "plot",
-        title: "Проект дома из пеноблоков 1.67",
-        floors: 1,
-        size: 73,
-      },
-      {
-        id: 5,
-        cian: true,
-        direct: false,
-        avito: true,
-        type: "plot",
-        title: "Проект дома из пеноблоков 1.63",
-        floors: 1,
-        size: 73,
-      },
-    ];
-
-    return data;
+    try {
+      const response = await axios.get(
+        `${BASE_URL}index.php?method=getAllCIan`
+      );
+      const data = response.data;
+      return data;
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
   } else if (site === "direct") {
     //return getDirectData();
   } else if (site === "avito") {
     //return getAvitoData();
   } else {
+    console.log("site", site);
     try {
       const response = await axios.get(
         `${BASE_URL}index.php?method=getAllOnMain`
