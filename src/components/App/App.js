@@ -10,7 +10,7 @@ import { colDashboard, colCian, pageTitle } from "../../utils/constants";
 import Dashboard from "../Dashboard/Dashboard";
 import "./App.css";
 import Header from "../Header/Header";
-import FeedTable from "../FeedTable/FeedTable";
+import CianTable from "../CianTable/CianTable";
 
 function App() {
   const [addProjectVisible, setAddProjectVisible] = useState(false);
@@ -48,7 +48,7 @@ function App() {
               <Route
                 path="cian"
                 element={
-                  <FeedTable
+                  <CianTable
                     pageTitle={pageTitle.cian}
                     updateFile={handleUpdateFile}
                     updateProject={handleUpdateProject}

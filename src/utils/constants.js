@@ -26,9 +26,8 @@ const colCian = [
   { field: "address", fieldName: "Адрес" },
   { field: "phone", fieldName: "Телефон" },
   { field: "cadastr_number", fieldName: "Кадастр" },
-  { field: "area_land", fieldName: "Площадь м²" },
+  { field: "area_land", fieldName: "Земля м²" },
   { field: "price", fieldName: "Цена" },
-  { field: "photo_planirovka", fieldName: "План" },
   { field: "description", fieldName: "Описание" },
 ];
 

@@ -1,16 +1,8 @@
 import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { Table } from "react-bootstrap";
-import {
-  DeleteOutlined,
-  EditOutlined,
-  SaveOutlined,
-  RollbackOutlined,
-  InfoCircleOutlined,
-} from "@ant-design/icons";
-import "./FeedTable.css";
-import { Popconfirm, message, Checkbox, Select, Input } from "antd";
+import "./CianTable.css";
 import Filters from "../Filters/Filters";
-import DashboardTableBody from "../DashboardTableBody/DashboardTableBody";
+import CianTableBody from "../CianTableBody/CianTableBody";
 
 import {
   updateFile,
@@ -65,6 +57,7 @@ const FeedTable = ({
   }
   return (
     <>
+      <h1>{feedName}</h1>
       <Filters
         data={rowsState}
         handlefilteredRows={filteredRows}
@@ -93,7 +86,7 @@ const FeedTable = ({
           </tr>
         </thead>
 
-        <DashboardTableBody
+        <CianTableBody
           columns={columns}
           actions={actions}
           rowsState={memoizedRowsState}
