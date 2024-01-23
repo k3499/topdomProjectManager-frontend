@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import "./DashboardTableRow.css";
 import { Popconfirm, message, Checkbox, Select, Input } from "antd";
 import {
@@ -11,20 +11,12 @@ import {
 
 const DashboardTableRow = React.memo(
   ({
-    columns,
     actions,
     rowsState,
     setRowsState,
     updateProject,
-    //setEditedRow,
     row,
-    //rowIDToEdit,
-    //handleSaveRowChanges,
-    //editedRow,
-    //handleEdit,
     deleteProjects,
-    //isEditMode,
-    //setIsEditMode,
   }) => {
     // Состояние для определения, находится ли компонент в режиме редактирования или нет
     const [isEditMode, setIsEditMode] = useState(false);
@@ -37,11 +29,6 @@ const DashboardTableRow = React.memo(
       //обработчик клика по чекбоксу выбора файла для сохранения
       e.target.checked ? (status = false) : (status = true);
       e.target.checked = status;
-
-      const newFileData = {
-        id: rowID,
-        [fieldName]: !e.target.checked,
-      };
 
       // Обновляем значение `status` в состоянии строки `row`
       const updatedRow = {

@@ -1,40 +1,18 @@
 import React, { useState, useEffect, useMemo, useCallback } from "react";
 import { Table } from "react-bootstrap";
-import {
-  DeleteOutlined,
-  EditOutlined,
-  SaveOutlined,
-  RollbackOutlined,
-  InfoCircleOutlined,
-} from "@ant-design/icons";
 import "./Dashboard.css";
-import { Popconfirm, message, Checkbox, Select, Input } from "antd";
 import Filters from "../Filters/Filters";
 import DashboardTableBody from "../DashboardTableBody/DashboardTableBody";
 
-import {
-  updateFile,
-  updateProject,
-  getProjects,
-  deleteProjects,
-  createProject,
-} from "../../utils/api";
+import { getProjects, createProject } from "../../utils/api";
 
-const Dashboard = ({
-  updateFile,
-  updateProject,
-  deleteProjects,
-  columns,
-  actions,
-}) => {
+const Dashboard = ({ updateProject, deleteProjects, columns, actions }) => {
   // Состояние для хранения данных строк таблицы
   const [rowsState, setRowsState] = useState([]);
-  // Состояние для определения, находится ли компонент в режиме редактирования или нет
-  const [isEditMode, setIsEditMode] = useState(false);
-  // Используйте useMemo для мемоизации массива строк
+  // useMemo для мемоизации массива строк
   const memoizedRowsState = useMemo(() => rowsState, [rowsState]);
 
-  // Используйте useCallback для мемоизации функции setRowsState
+  // useCallback для мемоизации функции setRowsState
   const memoizedSetRowsState = useCallback(
     (newRowsState) => {
       setRowsState(newRowsState);
@@ -99,8 +77,6 @@ const Dashboard = ({
           setRowsState={memoizedSetRowsState}
           updateProject={updateProject}
           deleteProjects={deleteProjects}
-          isEditMode={isEditMode}
-          //setIsEditMode={setIsEditMode}
         />
       </Table>
     </>

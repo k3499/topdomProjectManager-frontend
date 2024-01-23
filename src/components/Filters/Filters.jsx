@@ -6,29 +6,39 @@ import AddProjectForm from "../AddProjectForm/AddProjectForm";
 
 const Filters = ({ data, handlefilteredRows, columns, createProject }) => {
   const [isBlockVisible, setBlockVisible] = useState(false);
+  const [dataAfterFilter, setDataAfterFilter] = useState(data);
 
   const handleSearch = (e) => {
     e.preventDefault();
     let search = e.target.value;
-    const filteredData = data.filter((item) => {
-      let titleMatch, floorsMatch;
 
-      if (typeof item.title === "string" && typeof search === "string") {
-        titleMatch = item.title.toLowerCase().includes(search.toLowerCase());
+    if (search.trim() === "") {
+      console.log("empty string");
+      handlefilteredRows(data); // Возвращаем оригинальный data, если search пустая строка
+      return;
+    }
+
+    const filteredData = dataAfterFilter.filter((item) => {
+      let nameMatch, floorMatch;
+
+      if (typeof item.name === "string" && typeof search === "string") {
+        nameMatch = item.name.toLowerCase().includes(search.toLowerCase());
       } else {
-        titleMatch = item.title === search;
+        nameMatch = item.name === search;
       }
 
       if (typeof search === "string") {
-        floorsMatch = false;
+        floorMatch = false;
       } else {
-        floorsMatch = item.floors === search;
+        floorMatch = item.floor === search;
       }
 
-      return titleMatch || floorsMatch;
+      return nameMatch || floorMatch;
     });
 
     handlefilteredRows(filteredData);
+
+    console.log();
   };
 
   const toggleAddBlockVisibility = () => {
