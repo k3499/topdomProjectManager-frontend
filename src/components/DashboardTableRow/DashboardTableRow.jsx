@@ -16,16 +16,23 @@ const DashboardTableRow = React.memo(
     rowsState,
     setRowsState,
     updateProject,
-    setEditedRow,
+    //setEditedRow,
     row,
-    rowIDToEdit,
-    handleSaveRowChanges,
-    editedRow,
-    handleEdit,
+    //rowIDToEdit,
+    //handleSaveRowChanges,
+    //editedRow,
+    //handleEdit,
     deleteProjects,
-    isEditMode,
-    setIsEditMode,
+    //isEditMode,
+    //setIsEditMode,
   }) => {
+    // Состояние для определения, находится ли компонент в режиме редактирования или нет
+    const [isEditMode, setIsEditMode] = useState(false);
+    // Состояние для хранения идентификатора редактируемой строки
+    const [rowIDToEdit, setRowIDToEdit] = useState(undefined);
+    // Состояние для хранения измененной строки
+    const [editedRow, setEditedRow] = useState();
+
     const handleChange = (e, rowID, status, fieldName, row) => {
       //обработчик клика по чекбоксу выбора файла для сохранения
       e.target.checked ? (status = false) : (status = true);
@@ -63,22 +70,17 @@ const DashboardTableRow = React.memo(
       //Обновляем состояние редактируемой строки
       console.log({
         id: rowID,
-        type: e,
+        category_obj: e,
       });
       setEditedRow((prevRow) => ({
         ...(prevRow && prevRow.id ? prevRow : { id: rowID }),
-        type: e,
+        category_obj: e,
       }));
     };
 
     // Обработчик события для изменения значения поля
     const handleOnChangeField = (e, rowID) => {
       const { name: fieldName, value } = e.target;
-      //Обновляем состояние редактируемой строки
-      // console.log({
-      //   id: rowID,
-      //   [fieldName]: value,
-      // });
       setEditedRow((prevRow) => ({
         ...(prevRow && prevRow.id ? prevRow : { id: rowID }), // проверяем наличие prevRow и id
         [fieldName]: value,
@@ -118,6 +120,35 @@ const DashboardTableRow = React.memo(
       });
       setRowsState(newData);
     };
+
+    // Обработчик события для сохранения изменений строки
+    const handleSaveRowChanges = () => {
+      setIsEditMode(false);
+      // Создаем новый массив данных, обновляя измененную строку
+      const newData = rowsState.map((row) => {
+        if (row.id === editedRow.id) {
+          //пробегаемся по всем строкам и если находим редактируемую, то смотрти какое поле изменилось в editedRow
+          if (editedRow.category_obj) row.category_obj = editedRow.category_obj;
+          if (editedRow.name) row.name = editedRow.name;
+          if (editedRow.floor) row.floor = editedRow.floor;
+          if (editedRow.sq) row.sq = editedRow.sq;
+          if (editedRow.town) row.town = editedRow.town;
+          updateProject(editedRow);
+        }
+        return row;
+      });
+      //updateProject(newData);
+      message.success("Изменения сохранены", 2.5);
+      setRowsState(newData);
+      setEditedRow(undefined);
+    };
+
+    // Обработчик события для редактирования строки
+    const handleEdit = useCallback((rowID) => {
+      setIsEditMode(true);
+      setEditedRow(undefined);
+      setRowIDToEdit(rowID);
+    }, []);
 
     return (
       <tr className="table__row">
@@ -205,23 +236,23 @@ const DashboardTableRow = React.memo(
           {isEditMode && rowIDToEdit === row.id ? (
             <Select
               onChange={(e) => handleOnChangeType(e, row.id)}
-              name="type"
+              name="category_obj"
               defaultValue={row.category_obj}
               style={{ width: 130 }}
               options={[
-                { value: "project", label: "Проект" },
-                { value: "home", label: "Готовый дом" },
-                { value: "plot", label: "Участок" },
+                { value: "Проект", label: "Проект" },
+                { value: "Готовый дом", label: "Готовый дом" },
+                { value: "Участок", label: "Участок" },
               ]}
             />
           ) : (
             (() => {
               switch (row.category_obj) {
-                case "project":
+                case "Проект":
                   return "Проект";
                 case "Готовый дом":
                   return "Готовый дом";
-                case "plot":
+                case "Участок":
                   return "Участок";
                 default:
                   return "";
@@ -267,7 +298,7 @@ const DashboardTableRow = React.memo(
               type="text"
               defaultValue={editedRow ? editedRow.sq : row.sq}
               id={row.id}
-              name="size"
+              name="sq"
               style={{ width: 90 }}
               onChange={(e) => handleOnChangeField(e, row.id)}
             />
@@ -286,7 +317,8 @@ const DashboardTableRow = React.memo(
               style={{ width: 120 }}
               // если в editedRow поле type не равно home то ставим disabled
               disabled={
-                row.type !== "home" || (editedRow && editedRow.type !== "home")
+                row.category_obj !== "Готовый дом" ||
+                (editedRow && editedRow.category_obj !== "Готовый дом")
               }
               options={[
                 { value: "nasledie", label: "Наследие" },

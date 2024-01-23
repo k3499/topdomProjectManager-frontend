@@ -20,7 +20,7 @@ const colCian = [
   { field: "id", fieldName: "ID" },
   { field: "category_obj", fieldName: "Тип" },
   { field: "name", fieldName: "Название" },
-  { field: "floors", fieldName: "Этажей" },
+  { field: "floor", fieldName: "Этажей" },
   { field: "sq", fieldName: "Площадь м²" },
   { field: "town", fieldName: "Поселок" },
   { field: "address", fieldName: "Адрес" },
@@ -28,6 +28,24 @@ const colCian = [
   { field: "cadastr_number", fieldName: "Кадастр" },
   { field: "area_land", fieldName: "Земля м²" },
   { field: "price", fieldName: "Цена" },
+  { field: "description", fieldName: "Описание" },
+];
+
+const colAvito = [
+  { field: "id", fieldName: "ID" },
+  { field: "category_obj", fieldName: "Тип" },
+  { field: "name", fieldName: "Название" },
+  { field: "floor", fieldName: "Этажей" },
+  { field: "sq", fieldName: "Площадь м²" },
+  { field: "town", fieldName: "Поселок" },
+  { field: "address", fieldName: "Адрес" },
+  { field: "phone", fieldName: "Телефон" },
+  { field: "cadastr_number", fieldName: "Кадастр" },
+  { field: "area_land", fieldName: "Земля м²" },
+  { field: "price", fieldName: "Цена" },
+  { field: "rooms", fieldName: "Комнаты" },
+  { field: "wallsType", fieldName: "Материал" },
+  { field: "renovation", fieldName: "Ремонт" },
   { field: "description", fieldName: "Описание" },
 ];
 
@@ -47,4 +65,12 @@ const pageTitle = {
   avito: "Проекты в Avito",
 };
 
-export { BASE_URL, Headers, colDashboard, colCian, pageTitle, colAdd };
+export {
+  BASE_URL,
+  Headers,
+  colDashboard,
+  colCian,
+  colAvito,
+  pageTitle,
+  colAdd,
+};

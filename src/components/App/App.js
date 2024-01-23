@@ -6,11 +6,17 @@ import {
   getProjects,
   deleteProjects,
 } from "../../utils/api";
-import { colDashboard, colCian, pageTitle } from "../../utils/constants";
+import {
+  colDashboard,
+  colCian,
+  colAvito,
+  pageTitle,
+} from "../../utils/constants";
 import Dashboard from "../Dashboard/Dashboard";
 import "./App.css";
 import Header from "../Header/Header";
 import CianTable from "../CianTable/CianTable";
+import AvitoTable from "../AvitoTable/AvitoTable";
 
 function App() {
   const [addProjectVisible, setAddProjectVisible] = useState(false);
@@ -59,36 +65,34 @@ function App() {
                   />
                 }
               />
-              {/* <Route
+              {/*<Route
                 path="direct"
                 element={
-                  <FeedTable
+                  <directTable
                     pageTitle={pageTitle.direct}
                     updateFile={handleUpdateFile}
                     updateProject={handleUpdateProject}
                     deleteProjects={handledeleteProjects}
-                    columns={colCian}
-                    //rows={projects}
+                    columns={coldirect}
                     actions
-                    direct
+                    feedName="direct"
                   />
                 }
-              />
+              />*/}
               <Route
                 path="avito"
                 element={
-                  <FeedTable
+                  <AvitoTable
                     pageTitle={pageTitle.avito}
                     updateFile={handleUpdateFile}
                     updateProject={handleUpdateProject}
                     deleteProjects={handledeleteProjects}
-                    columns={colCian}
-                    rows={projects}
+                    columns={colAvito}
                     actions
-                    avito
+                    feedName="avito"
                   />
                 }
-              /> */}
+              />
             </Routes>
           </main>
         </div>

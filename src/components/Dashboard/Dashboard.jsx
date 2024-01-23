@@ -29,7 +29,6 @@ const Dashboard = ({
 }) => {
   // Состояние для хранения данных строк таблицы
   const [rowsState, setRowsState] = useState([]);
-
   // Состояние для определения, находится ли компонент в режиме редактирования или нет
   const [isEditMode, setIsEditMode] = useState(false);
   // Используйте useMemo для мемоизации массива строк
@@ -52,6 +51,7 @@ const Dashboard = ({
       const data = await getProjects();
       // Установите данные в состояние rows
       setRowsState(data);
+      console.log(data);
     } catch (error) {
       // Обработка ошибок
       console.error(error);
@@ -100,7 +100,7 @@ const Dashboard = ({
           updateProject={updateProject}
           deleteProjects={deleteProjects}
           isEditMode={isEditMode}
-          setIsEditMode={setIsEditMode}
+          //setIsEditMode={setIsEditMode}
         />
       </Table>
     </>

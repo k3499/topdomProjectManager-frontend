@@ -1,5 +1,5 @@
-import React, { useState, useEffect, memo, useCallback } from "react";
-import "./CianTableRow.css";
+import React, { useState, useEffect, memo } from "react";
+import "./AvitoTableRow.css";
 import { Popconfirm, message, Select, Input } from "antd";
 import {
   DeleteOutlined,
@@ -9,6 +9,8 @@ import {
   InfoCircleOutlined,
 } from "@ant-design/icons";
 
+import Address from "./../Address/Address";
+
 const { TextArea } = Input;
 const CianTableRow = React.memo(
   ({
@@ -17,16 +19,19 @@ const CianTableRow = React.memo(
     rowsState,
     setRowsState,
     updateProject,
-    setEditedRow,
+    //setEditedRow,
     row,
-    rowIDToEdit,
-    handleSaveRowChanges,
-    editedRow,
-    handleEdit,
+    //rowIDToEdit,
+    //handleSaveRowChanges,
+    //editedRow,
+    //handleEdit,
     deleteProjects,
-    isEditMode,
-    setIsEditMode,
+    //isEditMode,
+    //setIsEditMode,
   }) => {
+    const [editedRow, setEditedRow] = useState();
+    const [rowIDToEdit, setRowIDToEdit] = useState(undefined);
+    const [isEditMode, setIsEditMode] = useState(false);
     const handleChange = (e, rowID, status, fieldName, row) => {
       //обработчик клика по чекбоксу выбора файла для сохранения
       e.target.checked ? (status = false) : (status = true);
@@ -64,11 +69,11 @@ const CianTableRow = React.memo(
       //Обновляем состояние редактируемой строки
       console.log({
         id: rowID,
-        type: e,
+        category_obj: e,
       });
       setEditedRow((prevRow) => ({
         ...(prevRow && prevRow.id ? prevRow : { id: rowID }),
-        type: e,
+        category_obj: e,
       }));
     };
 
@@ -79,6 +84,7 @@ const CianTableRow = React.memo(
         ...(prevRow && prevRow.id ? prevRow : { id: rowID }), // проверяем наличие prevRow и id
         [fieldName]: value,
       }));
+      console.log(editedRow);
     };
 
     // Обработчик события для изменения значения выпадающего списка
@@ -113,6 +119,43 @@ const CianTableRow = React.memo(
         }
       });
       setRowsState(newData);
+    };
+
+    // Обработчик события для сохранения изменений строки
+    const handleSaveRowChanges = () => {
+      setIsEditMode(false);
+      // Создаем новый массив данных, обновляя измененную строку
+      const newData = rowsState.map((row) => {
+        console.log(editedRow, row.id);
+        if (row.id === editedRow.id) {
+          //пробегаемся по всем строкам и если находим редактируемую, то смотрти какое поле изменилось в editedRow
+          if (editedRow.category_obj) row.category_obj = editedRow.category_obj;
+          if (editedRow.name) row.name = editedRow.name;
+          if (editedRow.floors) row.floors = editedRow.floors;
+          if (editedRow.sq) row.sq = editedRow.sq;
+          if (editedRow.town) row.town = editedRow.town;
+          if (editedRow.address) row.address = editedRow.address;
+          if (editedRow.phone) row.phone = editedRow.phone;
+          if (editedRow.cadastr_number)
+            row.cadastr_number = editedRow.cadastr_number;
+          if (editedRow.area_land) row.area_land = editedRow.area_land;
+          if (editedRow.price) row.price = editedRow.price;
+          if (editedRow.description) row.description = editedRow.description;
+          updateProject(editedRow);
+        }
+        return row;
+      });
+      //updateProject(newData);
+      message.success("Изменения сохранены", 2.5);
+      setRowsState(newData);
+      setEditedRow(undefined);
+    };
+
+    // Обработчик события для редактирования строки
+    const handleEdit = (rowID) => {
+      setIsEditMode(true);
+      setEditedRow(undefined);
+      setRowIDToEdit(rowID);
     };
 
     return (
@@ -171,23 +214,23 @@ const CianTableRow = React.memo(
           {isEditMode && rowIDToEdit === row.id ? (
             <Select
               onChange={(e) => handleOnChangeType(e, row.id)}
-              name="type"
+              name="category_obj"
               defaultValue={row.category_obj}
               style={{ width: 130 }}
               options={[
-                { value: "project", label: "Проект" },
-                { value: "home", label: "Готовый дом" },
-                { value: "plot", label: "Участок" },
+                { value: "Проект", label: "Проект" },
+                { value: "Готовый дом", label: "Готовый дом" },
+                { value: "Участок", label: "Участок" },
               ]}
             />
           ) : (
             (() => {
               switch (row.category_obj) {
-                case "project":
+                case "Проект":
                   return "Проект";
                 case "Готовый дом":
                   return "Готовый дом";
-                case "plot":
+                case "Участок":
                   return "Участок";
                 default:
                   return "";
@@ -233,7 +276,7 @@ const CianTableRow = React.memo(
               type="text"
               defaultValue={editedRow ? editedRow.sq : row.sq}
               id={row.id}
-              name="size"
+              name="sq"
               style={{ width: 90 }}
               onChange={(e) => handleOnChangeField(e, row.id)}
             />
@@ -252,7 +295,8 @@ const CianTableRow = React.memo(
               style={{ width: 120 }}
               // если в editedRow поле type не равно home то ставим disabled
               disabled={
-                row.type !== "home" || (editedRow && editedRow.type !== "home")
+                row.category_obj !== "Готовый дом" ||
+                (editedRow && editedRow.category_obj !== "Готовый дом")
               }
               options={[
                 { value: "nasledie", label: "Наследие" },
@@ -272,7 +316,8 @@ const CianTableRow = React.memo(
             })()
           )}
         </td>
-        <td>
+        <Address row isEditMode rowIDToEdit editedRow handleOnChangeField />
+        {/* <td>
           {isEditMode && rowIDToEdit === row.id ? (
             <Input
               type="text"
@@ -284,7 +329,7 @@ const CianTableRow = React.memo(
           ) : (
             row.address
           )}
-        </td>
+        </td> */}
         <td>
           {isEditMode && rowIDToEdit === row.id ? (
             <Input

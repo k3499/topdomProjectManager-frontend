@@ -45,7 +45,6 @@ export const updateFile = (newFileData) => {
 };
 
 export const getProjects = async (site) => {
-  console.log("site", site);
   if (site === "cian") {
     try {
       const response = await axios.get(
@@ -60,9 +59,17 @@ export const getProjects = async (site) => {
   } else if (site === "direct") {
     //return getDirectData();
   } else if (site === "avito") {
-    //return getAvitoData();
+    try {
+      const response = await axios.get(
+        `${BASE_URL}index.php?method=getAllAvito`
+      );
+      const data = response.data;
+      return data;
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
   } else {
-    console.log("site", site);
     try {
       const response = await axios.get(
         `${BASE_URL}index.php?method=getAllOnMain`
