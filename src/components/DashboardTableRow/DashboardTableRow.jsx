@@ -1,13 +1,6 @@
 import React, { useState, useCallback } from "react";
 import "./DashboardTableRow.css";
-import { Popconfirm, message, Checkbox, Select, Input } from "antd";
-import {
-  DeleteOutlined,
-  EditOutlined,
-  SaveOutlined,
-  RollbackOutlined,
-  InfoCircleOutlined,
-} from "@ant-design/icons";
+import { message } from "antd";
 
 import Id from "../FormInputs/Id/Id";
 import Actions from "../FormInputs/Actions/Actions";
@@ -19,14 +12,7 @@ import Size from "../FormInputs/Size/Size";
 import Town from "../FormInputs/Town/Town";
 
 const DashboardTableRow = React.memo(
-  ({
-    actions,
-    rowsState,
-    setRowsState,
-    updateProject,
-    row,
-    deleteProjects,
-  }) => {
+  ({ rowsState, setRowsState, updateProject, row, deleteProjects }) => {
     // Состояние для определения, находится ли компонент в режиме редактирования или нет
     const [isEditMode, setIsEditMode] = useState(false);
     // Состояние для хранения идентификатора редактируемой строки

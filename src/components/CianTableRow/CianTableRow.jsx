@@ -1,6 +1,6 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState } from "react";
 import "./CianTableRow.css";
-import { message, Select, Input } from "antd";
+import { message, Input } from "antd";
 import Id from "../FormInputs/Id/Id";
 import Actions from "../FormInputs/Actions/Actions";
 import CategoryObj from "../FormInputs/CategoryObj/CategoryObj";
@@ -8,6 +8,7 @@ import Name from "../FormInputs/Name/Name";
 import Floor from "../FormInputs/Floor/Floor";
 import Size from "../FormInputs/Size/Size";
 import Town from "../FormInputs/Town/Town";
+import Address from "../FormInputs/Address/Address";
 
 const { TextArea } = Input;
 const CianTableRow = React.memo(
@@ -122,20 +123,13 @@ const CianTableRow = React.memo(
           rowIDToEdit={rowIDToEdit}
           handleOnChangeSelect={handleOnChangeSelect}
         />
-
-        <td>
-          {isEditMode && rowIDToEdit === row.id ? (
-            <Input
-              type="text"
-              defaultValue={editedRow ? editedRow.address : row.address}
-              id={row.id}
-              name="address"
-              onChange={(e) => handleOnChangeField(e, row.id)}
-            />
-          ) : (
-            row.address
-          )}
-        </td>
+        <Address
+          row={row}
+          isEditMode={isEditMode}
+          rowIDToEdit={rowIDToEdit}
+          editedRow={editedRow}
+          handleOnChangeField={handleOnChangeField}
+        />
         <td>
           {isEditMode && rowIDToEdit === row.id ? (
             <Input

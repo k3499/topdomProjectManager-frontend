@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./AvitoTableRow.css";
-import { message, Select, Input } from "antd";
-import Address from "./../Address/Address";
+import { message, Input } from "antd";
+import Address from "../FormInputs/Address/Address";
 import Id from "../FormInputs/Id/Id";
 import Actions from "../FormInputs/Actions/Actions";
 import CategoryObj from "../FormInputs/CategoryObj/CategoryObj";
@@ -125,20 +125,13 @@ const AvitoTableRow = React.memo(
           rowIDToEdit={rowIDToEdit}
           handleOnChangeSelect={handleOnChangeSelect}
         />
-        <Address row isEditMode rowIDToEdit editedRow handleOnChangeField />
-        {/* <td>
-          {isEditMode && rowIDToEdit === row.id ? (
-            <Input
-              type="text"
-              defaultValue={editedRow ? editedRow.address : row.address}
-              id={row.id}
-              name="address"
-              onChange={(e) => handleOnChangeField(e, row.id)}
-            />
-          ) : (
-            row.address
-          )}
-        </td> */}
+        <Address
+          row={row}
+          isEditMode={isEditMode}
+          rowIDToEdit={rowIDToEdit}
+          editedRow={editedRow}
+          handleOnChangeField={handleOnChangeField}
+        />
         <td>
           {isEditMode && rowIDToEdit === row.id ? (
             <Input
