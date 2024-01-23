@@ -13,13 +13,6 @@ import AvitoTableRow from "../AvitoTableRow/AvitoTableRow";
 
 const AvitoTableBody = React.memo(
   ({ columns, actions, rowsState, setRowsState }) => {
-    // Состояние для определения, находится ли компонент в режиме редактирования или нет
-    //const [isEditMode, setIsEditMode] = useState(false);
-    // Состояние для хранения идентификатора редактируемой строки
-    //const [rowIDToEdit, setRowIDToEdit] = useState(undefined);
-    // Состояние для хранения измененной строки
-    // const [editedRow, setEditedRow] = useState();
-
     return (
       <>
         <tbody>
@@ -36,18 +29,11 @@ const AvitoTableBody = React.memo(
               <AvitoTableRow
                 key={row.id}
                 row={row}
-                //isEditMode={isEditMode && rowIDToEdit === row.id}
                 updateProject={updateProject}
-                //setEditedRow={setEditedRow}
-                //rowIDToEdit={rowIDToEdit}
-                //handleSaveRowChanges={handleSaveRowChanges}
-                //editedRow={editedRow}
-                //handleEdit={handleEdit}
                 deleteProjects={deleteProjects}
                 rowsState={rowsState}
                 setRowsState={setRowsState}
                 actions={actions}
-                //setIsEditMode={setIsEditMode}
               />
             );
           })}

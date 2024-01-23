@@ -1,26 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AvitoTableRow.css";
-import { Popconfirm, message, Select, Input } from "antd";
-import {
-  DeleteOutlined,
-  EditOutlined,
-  SaveOutlined,
-  RollbackOutlined,
-  InfoCircleOutlined,
-} from "@ant-design/icons";
-
+import { message, Select, Input } from "antd";
 import Address from "./../Address/Address";
+import Id from "../FormInputs/Id/Id";
+import Actions from "../FormInputs/Actions/Actions";
+import CategoryObj from "../FormInputs/CategoryObj/CategoryObj";
 
 const { TextArea } = Input;
-const CianTableRow = React.memo(
-  ({
-    actions,
-    rowsState,
-    setRowsState,
-    updateProject,
-    row,
-    deleteProjects,
-  }) => {
+const AvitoTableRow = React.memo(
+  ({ rowsState, setRowsState, updateProject, row, deleteProjects }) => {
     const [editedRow, setEditedRow] = useState();
     const [rowIDToEdit, setRowIDToEdit] = useState(undefined);
     const [isEditMode, setIsEditMode] = useState(false);
@@ -57,31 +45,6 @@ const CianTableRow = React.memo(
       }));
     };
 
-    const cancelRemove = (e) => {
-      message.error("Удаление отменено");
-    };
-
-    // Обработчик события для отмены редактирования строки
-    const handleCancelEditing = () => {
-      setIsEditMode(false);
-      setEditedRow(undefined);
-    };
-
-    // Обработчик события для удаления строки
-    const handleRemoveRow = (rowID) => {
-      // Создаем новый массив данных, исключая удаляемую строку
-      const newData = rowsState.filter((row) => {
-        if (row.id !== rowID) {
-          return row;
-        } else {
-          deleteProjects(row);
-          message.success(`Проект${` "${row.name}"`} был удален`);
-          return null;
-        }
-      });
-      setRowsState(newData);
-    };
-
     // Обработчик события для сохранения изменений строки
     const handleSaveRowChanges = () => {
       setIsEditMode(false);
@@ -111,94 +74,28 @@ const CianTableRow = React.memo(
       setRowsState(newData);
       setEditedRow(undefined);
     };
-
-    // Обработчик события для редактирования строки
-    const handleEdit = (rowID) => {
-      setIsEditMode(true);
-      setEditedRow(undefined);
-      setRowIDToEdit(rowID);
-    };
-
     return (
       <tr className="table__row">
-        <td className="table__id">{row.id}</td>
-        {actions && (
-          <td className="table__actions">
-            {/* Кнопка сохранения изменений */}
-            {isEditMode && rowIDToEdit === row.id ? (
-              <button
-                onClick={() => handleSaveRowChanges()}
-                className="custom-table__action-btn"
-                disabled={!editedRow}
-              >
-                <SaveOutlined style={{ fontSize: "13px", color: "#646464" }} />
-              </button>
-            ) : (
-              <button
-                onClick={() => handleEdit(row.id)}
-                className="custom-table__action-btn"
-              >
-                <EditOutlined style={{ fontSize: "13px", color: "#646464" }} />
-              </button>
-            )}
-
-            {/* Кнопка отмены редактирования */}
-            {isEditMode && rowIDToEdit === row.id ? (
-              <button
-                onClick={() => handleCancelEditing()}
-                className="custom-table__action-btn"
-              >
-                <RollbackOutlined
-                  style={{ fontSize: "13px", color: "#646464" }}
-                />
-              </button>
-            ) : (
-              <Popconfirm
-                title="Удаление проекта"
-                description="Уверены, что хотите удалить проект?"
-                onConfirm={() => handleRemoveRow(row.id)}
-                onCancel={cancelRemove}
-                okText="Да"
-                cancelText="Отмена"
-                icon={<InfoCircleOutlined style={{ color: "red" }} />}
-              >
-                <button className="custom-table__action-btn">
-                  <DeleteOutlined
-                    style={{ fontSize: "13px", color: "#646464" }}
-                  />
-                </button>
-              </Popconfirm>
-            )}
-          </td>
-        )}
-        <td>
-          {isEditMode && rowIDToEdit === row.id ? (
-            <Select
-              onChange={(e) => handleOnChangeType(e, row.id)}
-              name="category_obj"
-              defaultValue={row.category_obj}
-              style={{ width: 130 }}
-              options={[
-                { value: "Проект", label: "Проект" },
-                { value: "Готовый дом", label: "Готовый дом" },
-                { value: "Участок", label: "Участок" },
-              ]}
-            />
-          ) : (
-            (() => {
-              switch (row.category_obj) {
-                case "Проект":
-                  return "Проект";
-                case "Готовый дом":
-                  return "Готовый дом";
-                case "Участок":
-                  return "Участок";
-                default:
-                  return "";
-              }
-            })()
-          )}
-        </td>
+        <Id id={row.id} />
+        <Actions
+          row={row}
+          isEditMode={isEditMode}
+          rowIDToEdit={rowIDToEdit}
+          setRowIDToEdit={setRowIDToEdit}
+          editedRow={editedRow}
+          rowsState={rowsState}
+          setRowsState={setRowsState}
+          setIsEditMode={setIsEditMode}
+          setEditedRow={setEditedRow}
+          deleteProjects={deleteProjects}
+          handleSaveRowChanges={handleSaveRowChanges}
+        />
+        <CategoryObj
+          row={row}
+          isEditMode={isEditMode}
+          rowIDToEdit={rowIDToEdit}
+          handleOnChangeType={handleOnChangeType}
+        />
 
         <td className="table__name">
           {isEditMode && rowIDToEdit === row.id ? (
@@ -371,4 +268,4 @@ const CianTableRow = React.memo(
   }
 );
 
-export default CianTableRow;
+export default AvitoTableRow;
