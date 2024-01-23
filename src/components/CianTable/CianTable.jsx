@@ -4,16 +4,9 @@ import "./CianTable.css";
 import Filters from "../Filters/Filters";
 import CianTableBody from "../CianTableBody/CianTableBody";
 
-import {
-  updateFile,
-  updateProject,
-  getProjects,
-  deleteProjects,
-  createProject,
-} from "../../utils/api";
+import { getProjects, createProject } from "../../utils/api";
 
 const FeedTable = ({
-  updateFile,
   updateProject,
   deleteProjects,
   columns,
@@ -22,7 +15,6 @@ const FeedTable = ({
 }) => {
   // Состояние для хранения данных строк таблицы
   const [rowsState, setRowsState] = useState([]);
-
   // Состояние для определения, находится ли компонент в режиме редактирования или нет
   const [isEditMode, setIsEditMode] = useState(false);
   // Используйте useMemo для мемоизации массива строк
@@ -94,7 +86,6 @@ const FeedTable = ({
           updateProject={updateProject}
           deleteProjects={deleteProjects}
           isEditMode={isEditMode}
-          //setIsEditMode={setIsEditMode}
         />
       </Table>
     </>

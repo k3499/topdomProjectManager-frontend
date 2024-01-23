@@ -14,55 +14,16 @@ import Address from "./../Address/Address";
 const { TextArea } = Input;
 const CianTableRow = React.memo(
   ({
-    columns,
     actions,
     rowsState,
     setRowsState,
     updateProject,
-    //setEditedRow,
     row,
-    //rowIDToEdit,
-    //handleSaveRowChanges,
-    //editedRow,
-    //handleEdit,
     deleteProjects,
-    //isEditMode,
-    //setIsEditMode,
   }) => {
     const [editedRow, setEditedRow] = useState();
     const [rowIDToEdit, setRowIDToEdit] = useState(undefined);
     const [isEditMode, setIsEditMode] = useState(false);
-    const handleChange = (e, rowID, status, fieldName, row) => {
-      //обработчик клика по чекбоксу выбора файла для сохранения
-      e.target.checked ? (status = false) : (status = true);
-      e.target.checked = status;
-
-      const newFileData = {
-        id: rowID,
-        [fieldName]: !e.target.checked,
-      };
-
-      // Обновляем значение `status` в состоянии строки `row`
-      const updatedRow = {
-        ...row,
-        [fieldName]: !status,
-      };
-      // Обновляем состояние строк
-      const updatedRows = rowsState.map((r) => {
-        if (r.id === rowID) {
-          return updatedRow;
-        }
-        return r;
-      });
-
-      const dataToUpdate = {
-        id: rowID,
-        [fieldName]: status ? 0 : 1,
-      };
-      console.log(updatedRows);
-      updateProject(dataToUpdate);
-      setRowsState(updatedRows);
-    };
 
     // Обработчик события для изменения значения выпадающего списка
     const handleOnChangeType = (e, rowID) => {
