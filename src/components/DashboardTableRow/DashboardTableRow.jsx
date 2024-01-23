@@ -13,6 +13,10 @@ import Id from "../FormInputs/Id/Id";
 import Actions from "../FormInputs/Actions/Actions";
 import FileCheckbox from "../FormInputs/FileCheckbox/FileCheckbox";
 import CategoryObj from "../FormInputs/CategoryObj/CategoryObj";
+import Name from "../FormInputs/Name/Name";
+import Floor from "../FormInputs/Floor/Floor";
+import Size from "../FormInputs/Size/Size";
+import Town from "../FormInputs/Town/Town";
 
 const DashboardTableRow = React.memo(
   ({
@@ -118,85 +122,31 @@ const DashboardTableRow = React.memo(
           rowIDToEdit={rowIDToEdit}
           handleOnChangeType={handleOnChangeType}
         />
-        <td className="table__name">
-          {isEditMode && rowIDToEdit === row.id ? (
-            <Input
-              type="text"
-              defaultValue={editedRow ? editedRow.name : row.name}
-              id={row.id}
-              style={{ width: 150 }}
-              name="name"
-              onChange={(e) => handleOnChangeField(e, row.id)}
-            />
-          ) : (
-            row.name
-          )}
-        </td>
-        <td>
-          {isEditMode && rowIDToEdit === row.id ? (
-            <Select
-              onChange={(e) => handleOnChangeSelect(e, row.id, "floor")}
-              name="floor"
-              defaultValue={row.floor}
-              style={{ width: 60 }}
-              options={[
-                { value: 1, label: "1" },
-                { value: 2, label: "2" },
-              ]}
-            />
-          ) : row.floor === 1 ? (
-            "1"
-          ) : (
-            "2"
-          )}
-        </td>
-        <td>
-          {isEditMode && rowIDToEdit === row.id ? (
-            <Input
-              type="text"
-              defaultValue={editedRow ? editedRow.sq : row.sq}
-              id={row.id}
-              name="sq"
-              style={{ width: 90 }}
-              onChange={(e) => handleOnChangeField(e, row.id)}
-            />
-          ) : (
-            row.sq
-          )}
-        </td>
-        <td>
-          {isEditMode && rowIDToEdit === row.id ? (
-            <Select
-              onChange={(e) => {
-                handleOnChangeSelect(e, row.id);
-              }}
-              name="town"
-              defaultValue={row.town}
-              style={{ width: 120 }}
-              // если в editedRow поле type не равно home то ставим disabled
-              disabled={
-                row.category_obj !== "Готовый дом" ||
-                (editedRow && editedRow.category_obj !== "Готовый дом")
-              }
-              options={[
-                { value: "nasledie", label: "Наследие" },
-                { value: "riga", label: "Riga life" },
-              ]}
-            />
-          ) : (
-            (() => {
-              switch (row.town) {
-                case "nasledie":
-                  return "Наследие";
-                case "riga":
-                  return "Riga life";
-                default:
-                  return "";
-              }
-            })()
-          )}
-        </td>
-        {/* )} */}
+        <Name
+          row={row}
+          isEditMode={isEditMode}
+          rowIDToEdit={rowIDToEdit}
+          handleOnChangeField={handleOnChangeField}
+        />
+        <Floor
+          row={row}
+          isEditMode={isEditMode}
+          rowIDToEdit={rowIDToEdit}
+          handleOnChangeSelect={handleOnChangeSelect}
+        />
+        <Size
+          row={row}
+          isEditMode={isEditMode}
+          rowIDToEdit={rowIDToEdit}
+          handleOnChangeField={handleOnChangeField}
+          editedRow={editedRow}
+        />
+        <Town
+          row={row}
+          isEditMode={isEditMode}
+          rowIDToEdit={rowIDToEdit}
+          handleOnChangeSelect={handleOnChangeSelect}
+        />
       </tr>
     );
   }
