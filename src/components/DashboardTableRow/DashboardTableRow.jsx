@@ -248,12 +248,13 @@ const DashboardTableRow = React.memo(
           )}
         </td>
 
-        <td>
+        <td className="table__name">
           {isEditMode && rowIDToEdit === row.id ? (
             <Input
               type="text"
               defaultValue={editedRow ? editedRow.name : row.name}
               id={row.id}
+              style={{ width: 150 }}
               name="name"
               onChange={(e) => handleOnChangeField(e, row.id)}
             />

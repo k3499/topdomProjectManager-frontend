@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo, useCallback } from "react";
+import React, { useState, useCallback } from "react";
 import "./CianTableRow.css";
 import { Popconfirm, message, Select, Input } from "antd";
 import {
@@ -196,12 +196,13 @@ const CianTableRow = React.memo(
           )}
         </td>
 
-        <td>
+        <td className="table__name">
           {isEditMode && rowIDToEdit === row.id ? (
             <Input
               type="text"
               defaultValue={editedRow ? editedRow.name : row.name}
               id={row.id}
+              style={{ width: 150 }}
               name="name"
               onChange={(e) => handleOnChangeField(e, row.id)}
             />
@@ -345,7 +346,7 @@ const CianTableRow = React.memo(
             row.price
           )}
         </td>
-        <td>
+        <td className="table__description">
           {isEditMode && rowIDToEdit === row.id ? (
             <TextArea
               type="textarea"

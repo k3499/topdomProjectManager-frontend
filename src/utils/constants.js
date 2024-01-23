@@ -51,12 +51,13 @@ const colAvito = [
 
 const colAdd = [
   { field: "cian", fieldName: "Cian" },
-  { field: "direct", fieldName: "Директ" },
+  { field: "direct", fieldName: "Direct" },
   { field: "avito", fieldName: "Avito" },
   { field: "category_obj", fieldName: "Тип" },
   { field: "name", fieldName: "Название" },
   { field: "floors", fieldName: "Этажей" },
   { field: "sq", fieldName: "Площадь м²" },
+  { field: "town", fieldName: "Поселок" },
 ];
 
 const pageTitle = {
