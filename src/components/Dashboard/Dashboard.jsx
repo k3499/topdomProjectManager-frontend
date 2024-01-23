@@ -29,7 +29,6 @@ const Dashboard = ({ updateProject, deleteProjects, columns, actions }) => {
       const data = await getProjects();
       // Установите данные в состояние rows
       setRowsState(data);
-      console.log(data);
     } catch (error) {
       // Обработка ошибок
       console.error(error);

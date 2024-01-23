@@ -7,7 +7,7 @@ const Headers = {
 const colDashboard = [
   { field: "id", fieldName: "ID" },
   { field: "cian", fieldName: "Cian" },
-  { field: "direct", fieldName: "Директ" },
+  { field: "direct", fieldName: "Direct" },
   { field: "avito", fieldName: "Avito" },
   { field: "category_obj", fieldName: "Тип" },
   { field: "title", fieldName: "Название" },

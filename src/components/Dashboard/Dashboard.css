@@ -8,6 +8,7 @@
 table td {
   vertical-align: middle;
   padding: 0 5px;
+  box-sizing: border-box;
 }
 .table__id {
   text-align: center;
@@ -40,6 +41,7 @@ table td {
 .table__head tr th {
   padding: 0 5px;
   min-width: 35px;
+  box-sizing: border-box;
 }
 .table__actions {
   padding: 0;
