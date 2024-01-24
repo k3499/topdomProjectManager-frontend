@@ -9,8 +9,12 @@ import Floor from "../FormInputs/Floor/Floor";
 import Size from "../FormInputs/Size/Size";
 import Town from "../FormInputs/Town/Town";
 import Address from "../FormInputs/Address/Address";
+import Phone from "../FormInputs/Phone/Phone";
+import Cadastr from "../FormInputs/Cadastr/Cadastr";
+import AreaLand from "../FormInputs/AreaLand/AreaLand";
+import Price from "../FormInputs/Price/Price";
+import Description from "../FormInputs/Description/Description";
 
-const { TextArea } = Input;
 const CianTableRow = React.memo(
   ({ rowsState, setRowsState, updateProject, row, deleteProjects }) => {
     const [isEditMode, setIsEditMode] = useState(false);
@@ -130,80 +134,41 @@ const CianTableRow = React.memo(
           editedRow={editedRow}
           handleOnChangeField={handleOnChangeField}
         />
-        <td>
-          {isEditMode && rowIDToEdit === row.id ? (
-            <Input
-              type="text"
-              prefix="+7 "
-              defaultValue={editedRow ? editedRow.phone : row.phone}
-              id={row.id}
-              style={{ width: 125 }}
-              name="phone"
-              onChange={(e) => handleOnChangeField(e, row.id)}
-            />
-          ) : (
-            row.phone
-          )}
-        </td>
-        <td>
-          {isEditMode && rowIDToEdit === row.id ? (
-            <Input
-              type="text"
-              defaultValue={
-                editedRow ? editedRow.cadastr_number : row.cadastr_number
-              }
-              id={row.id}
-              name="cadastr_number"
-              onChange={(e) => handleOnChangeField(e, row.id)}
-            />
-          ) : (
-            row.cadastr_number
-          )}
-        </td>
-        <td>
-          {isEditMode && rowIDToEdit === row.id ? (
-            <Input
-              type="text"
-              defaultValue={editedRow ? editedRow.area_land : row.area_land}
-              id={row.id}
-              style={{ width: 70 }}
-              name="area_land"
-              onChange={(e) => handleOnChangeField(e, row.id)}
-            />
-          ) : (
-            row.area_land
-          )}
-        </td>
-        <td>
-          {isEditMode && rowIDToEdit === row.id ? (
-            <Input
-              type="text"
-              defaultValue={editedRow ? editedRow.price : row.price}
-              id={row.id}
-              style={{ width: 100 }}
-              prefix="₽"
-              name="price"
-              onChange={(e) => handleOnChangeField(e, row.id)}
-            />
-          ) : (
-            row.price
-          )}
-        </td>
-        <td className="table__description">
-          {isEditMode && rowIDToEdit === row.id ? (
-            <TextArea
-              type="textarea"
-              defaultValue={editedRow ? editedRow.description : row.description}
-              id={row.id}
-              style={{ width: 200 }}
-              rows={1}
-              name="description"
-              onChange={(e) => handleOnChangeField(e, row.id)}
-            />
-          ) : (
-            row.description
-          )}
-        </td>
+        <Phone
+          row={row}
+          isEditMode={isEditMode}
+          rowIDToEdit={rowIDToEdit}
+          editedRow={editedRow}
+          handleOnChangeField={handleOnChangeField}
+        />
+        <Cadastr
+          row={row}
+          isEditMode={isEditMode}
+          rowIDToEdit={rowIDToEdit}
+          editedRow={editedRow}
+          handleOnChangeField={handleOnChangeField}
+        />
+        <AreaLand
+          row={row}
+          isEditMode={isEditMode}
+          rowIDToEdit={rowIDToEdit}
+          editedRow={editedRow}
+          handleOnChangeField={handleOnChangeField}
+        />
+        <Price
+          row={row}
+          isEditMode={isEditMode}
+          rowIDToEdit={rowIDToEdit}
+          editedRow={editedRow}
+          handleOnChangeField={handleOnChangeField}
+        />
+        <Description
+          row={row}
+          isEditMode={isEditMode}
+          rowIDToEdit={rowIDToEdit}
+          editedRow={editedRow}
+          handleOnChangeField={handleOnChangeField}
+        />
       </tr>
     );
   }
