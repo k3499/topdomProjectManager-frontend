@@ -1,0 +1,47 @@
+.login__wrapper {
+  background: rgba(0, 0, 0, 0.9);
+  width: 100%;
+}
+.login__bgLeft {
+  width: 575px;
+  height: 372px;
+  background: url(/public/img/login-bg.png) no-repeat;
+  position: absolute;
+  bottom: 0;
+}
+.login__bgRight {
+  width: 575px;
+  height: 372px;
+  background: url(/public/img/login-bg.png) no-repeat;
+  position: absolute;
+  bottom: -142px;
+  right: 0;
+  -moz-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  -webkit-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+.login__popup {
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 85px 90px 52px 90px;
+  background: #fff;
+  border-radius: 10px;
+  width: 720px;
+}
+.submitBtn {
+  border-radius: 10px;
+  background: #000;
+  height: 60px;
+  width: 100%;
+  color: #fff;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+}
+.submitBtn:hover {
+  background: #141414 !important;
+}

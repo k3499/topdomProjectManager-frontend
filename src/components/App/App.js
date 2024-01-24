@@ -17,9 +17,11 @@ import "./App.css";
 import Header from "../Header/Header";
 import CianTable from "../CianTable/CianTable";
 import AvitoTable from "../AvitoTable/AvitoTable";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import LoginPage from "../LoginPage/LoginPage";
 
 function App() {
-  const [addProjectVisible, setAddProjectVisible] = useState(false);
+  const [user, setUser] = useState(null);
 
   const handleUpdateProject = (project) => {
     updateProject(project);
@@ -36,36 +38,37 @@ function App() {
     <>
       <BrowserRouter>
         <div className="wrapper">
-          <Header />
-          <main className="main">
+          {user && <Header />}
+          <main className={user ? "main" : "login__wrapper"}>
             <Routes>
-              <Route
-                path="*"
-                element={
-                  <Dashboard
-                    updateFile={handleUpdateFile}
-                    updateProject={handleUpdateProject}
-                    deleteProjects={handledeleteProjects}
-                    columns={colDashboard}
-                    actions
-                  />
-                }
-              />
-              <Route
-                path="cian"
-                element={
-                  <CianTable
-                    pageTitle={pageTitle.cian}
-                    updateFile={handleUpdateFile}
-                    updateProject={handleUpdateProject}
-                    deleteProjects={handledeleteProjects}
-                    columns={colCian}
-                    actions
-                    feedName="cian"
-                  />
-                }
-              />
-              {/*<Route
+              <Route element={<ProtectedRoute isAlowed={!!user} />}>
+                <Route
+                  index
+                  element={
+                    <Dashboard
+                      updateFile={handleUpdateFile}
+                      updateProject={handleUpdateProject}
+                      deleteProjects={handledeleteProjects}
+                      columns={colDashboard}
+                      actions
+                    />
+                  }
+                />
+                <Route
+                  path="cian"
+                  element={
+                    <CianTable
+                      pageTitle={pageTitle.cian}
+                      updateFile={handleUpdateFile}
+                      updateProject={handleUpdateProject}
+                      deleteProjects={handledeleteProjects}
+                      columns={colCian}
+                      actions
+                      feedName="cian"
+                    />
+                  }
+                />
+                {/*<Route
                 path="direct"
                 element={
                   <directTable
@@ -79,20 +82,23 @@ function App() {
                   />
                 }
               />*/}
-              <Route
-                path="avito"
-                element={
-                  <AvitoTable
-                    pageTitle={pageTitle.avito}
-                    updateFile={handleUpdateFile}
-                    updateProject={handleUpdateProject}
-                    deleteProjects={handledeleteProjects}
-                    columns={colAvito}
-                    actions
-                    feedName="avito"
-                  />
-                }
-              />
+                <Route
+                  path="avito"
+                  element={
+                    <AvitoTable
+                      pageTitle={pageTitle.avito}
+                      updateFile={handleUpdateFile}
+                      updateProject={handleUpdateProject}
+                      deleteProjects={handledeleteProjects}
+                      columns={colAvito}
+                      actions
+                      feedName="avito"
+                    />
+                  }
+                />
+              </Route>
+              <Route path="*" element={<p>404 не найдено</p>} />
+              <Route path="login" element={<LoginPage />} />
             </Routes>
           </main>
         </div>
