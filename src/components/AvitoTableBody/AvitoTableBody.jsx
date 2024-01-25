@@ -1,14 +1,6 @@
-import React, { useState, useEffect, memo, useCallback } from "react";
+import React from "react";
 import "./AvitoTableBody.css";
-import { Popconfirm, message, Checkbox, Select, Input } from "antd";
-import Filters from "../Filters/Filters";
-
-import {
-  updateFile,
-  updateProject,
-  getProjects,
-  deleteProjects,
-} from "../../utils/api";
+import { updateProject, deleteProjects } from "../../utils/api";
 import AvitoTableRow from "../AvitoTableRow/AvitoTableRow";
 
 const AvitoTableBody = React.memo(

@@ -35,7 +35,6 @@ const colDirect = [
   { field: "id", fieldName: "ID" },
   { field: "category_obj", fieldName: "Тип" },
   { field: "name", fieldName: "Название" },
-  { field: "floor", fieldName: "Этажей" },
   { field: "sq", fieldName: "Площадь м²" },
   { field: "town", fieldName: "Поселок" },
   { field: "address", fieldName: "Адрес" },
@@ -44,8 +43,6 @@ const colDirect = [
   { field: "area_land", fieldName: "Земля м²" },
   { field: "price", fieldName: "Цена" },
   { field: "description", fieldName: "Описание" },
-  { field: "rooms", fieldName: "Комнаты" },
-  { field: "wallsType", fieldName: "Материал" },
   { field: "renovation", fieldName: "Ремонт" },
 ];
 
@@ -80,7 +77,7 @@ const colAdd = [
 
 const pageTitle = {
   cian: "Проекты в Cian",
-  direct: "Проекты в Я.Директ",
+  direct: "Проекты в Яндекс Недвижимость",
   avito: "Проекты в Avito",
 };
 
@@ -89,6 +86,7 @@ export {
   Headers,
   colDashboard,
   colCian,
+  colDirect,
   colAvito,
   pageTitle,
   colAdd,

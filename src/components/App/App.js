@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import {
-  updateFile,
-  updateProject,
-  getProjects,
-  deleteProjects,
-} from "../../utils/api";
+import { updateFile, updateProject, deleteProjects } from "../../utils/api";
 import {
   colDashboard,
   colCian,
+  colDirect,
   colAvito,
   pageTitle,
 } from "../../utils/constants";
@@ -51,7 +47,6 @@ function App() {
                       updateProject={handleUpdateProject}
                       deleteProjects={handledeleteProjects}
                       columns={colDashboard}
-                      actions
                     />
                   }
                 />
@@ -64,7 +59,6 @@ function App() {
                       updateProject={handleUpdateProject}
                       deleteProjects={handledeleteProjects}
                       columns={colCian}
-                      actions
                       feedName="cian"
                     />
                   }
@@ -77,8 +71,7 @@ function App() {
                       updateFile={handleUpdateFile}
                       updateProject={handleUpdateProject}
                       deleteProjects={handledeleteProjects}
-                      columns={colCian}
-                      actions
+                      columns={colDirect}
                       feedName="direct"
                     />
                   }
@@ -92,7 +85,6 @@ function App() {
                       updateProject={handleUpdateProject}
                       deleteProjects={handledeleteProjects}
                       columns={colAvito}
-                      actions
                       feedName="avito"
                     />
                   }

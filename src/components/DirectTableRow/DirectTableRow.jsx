@@ -13,6 +13,7 @@ import Cadastr from "../FormInputs/Cadastr/Cadastr";
 import AreaLand from "../FormInputs/AreaLand/AreaLand";
 import Price from "../FormInputs/Price/Price";
 import Description from "../FormInputs/Description/Description";
+import Renovation from "../FormInputs/Renovation/Renovation";
 
 const DirectTableRow = React.memo(
   ({ rowsState, setRowsState, updateProject, row, deleteProjects }) => {
@@ -62,7 +63,6 @@ const DirectTableRow = React.memo(
           //пробегаемся по всем строкам и если находим редактируемую, то смотрти какое поле изменилось в editedRow
           if (editedRow.category_obj) row.category_obj = editedRow.category_obj;
           if (editedRow.name) row.name = editedRow.name;
-          if (editedRow.floors) row.floors = editedRow.floors;
           if (editedRow.sq) row.sq = editedRow.sq;
           if (editedRow.town) row.town = editedRow.town;
           if (editedRow.address) row.address = editedRow.address;
@@ -72,6 +72,7 @@ const DirectTableRow = React.memo(
           if (editedRow.area_land) row.area_land = editedRow.area_land;
           if (editedRow.price) row.price = editedRow.price;
           if (editedRow.description) row.description = editedRow.description;
+          if (editedRow.renovation) row.renovation = editedRow.renovation;
           updateProject(editedRow);
         }
         return row;
@@ -108,12 +109,6 @@ const DirectTableRow = React.memo(
           isEditMode={isEditMode}
           rowIDToEdit={rowIDToEdit}
           handleOnChangeField={handleOnChangeField}
-        />
-        <Floor
-          row={row}
-          isEditMode={isEditMode}
-          rowIDToEdit={rowIDToEdit}
-          handleOnChangeSelect={handleOnChangeSelect}
         />
         <Size
           row={row}
@@ -169,6 +164,12 @@ const DirectTableRow = React.memo(
           rowIDToEdit={rowIDToEdit}
           editedRow={editedRow}
           handleOnChangeField={handleOnChangeField}
+        />
+        <Renovation
+          row={row}
+          isEditMode={isEditMode}
+          rowIDToEdit={rowIDToEdit}
+          handleOnChangeSelect={handleOnChangeSelect}
         />
       </tr>
     );

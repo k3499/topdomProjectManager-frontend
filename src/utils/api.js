@@ -1,5 +1,5 @@
 import axios from "axios";
-import { BASE_URL, Headers } from "./constants";
+import { BASE_URL } from "./constants";
 
 // export const register = (email, password, name) => (
 //     fetch(`${BASE_URL}/signup`, {
@@ -57,7 +57,16 @@ export const getProjects = async (site) => {
       return [];
     }
   } else if (site === "direct") {
-    //return getDirectData();
+    try {
+      const response = await axios.get(
+        `${BASE_URL}index.php?method=getAllDirect`
+      );
+      const data = response.data;
+      return data;
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
   } else if (site === "avito") {
     try {
       const response = await axios.get(
