@@ -1,6 +1,8 @@
 .login__wrapper {
   background: rgba(0, 0, 0, 0.9);
   width: 100%;
+  position: relative;
+  overflow: hidden;
 }
 .login__bgLeft {
   width: 575px;
@@ -30,7 +32,16 @@
   padding: 85px 90px 52px 90px;
   background: #fff;
   border-radius: 10px;
-  width: 720px;
+  width: 600px;
+}
+.login__input {
+  background-color: rgb(245, 245, 245) !important;
+  padding: 10px;
+  font-size: 1.1rem;
+}
+.login__input input {
+  background-color: rgb(245, 245, 245) !important;
+  padding-left: 7px !important;
 }
 .submitBtn {
   border-radius: 10px;

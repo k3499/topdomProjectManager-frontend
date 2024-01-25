@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { updateFile, updateProject, deleteProjects } from "../../utils/api";
 import {
@@ -18,7 +18,12 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import LoginPage from "../LoginPage/LoginPage";
 
 function App() {
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    handleCheckAuth();
+    console.log(user);
+  }, []);
 
   const handleUpdateProject = (project) => {
     updateProject(project);
@@ -29,6 +34,16 @@ function App() {
 
   const handleUpdateFile = (project) => {
     updateFile(project);
+  };
+
+  const login = (values) => {
+    localStorage.setItem("user", JSON.stringify(values));
+  };
+  const handleCheckAuth = () => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      setUser(true);
+    }
   };
 
   return (
@@ -91,7 +106,12 @@ function App() {
                 />
               </Route>
               <Route path="*" element={<p>404 не найдено</p>} />
-              <Route path="login" element={<LoginPage />} />
+              <Route
+                path="login"
+                element={
+                  <LoginPage login={login} user={user} setUser={setUser} />
+                }
+              />
             </Routes>
           </main>
         </div>
