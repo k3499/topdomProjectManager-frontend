@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./AvitoTableRow.css";
 import { message, Input } from "antd";
 import Address from "../FormInputs/Address/Address";
 import Id from "../FormInputs/Id/Id";
@@ -14,11 +13,8 @@ import Cadastr from "../FormInputs/Cadastr/Cadastr";
 import AreaLand from "../FormInputs/AreaLand/AreaLand";
 import Price from "../FormInputs/Price/Price";
 import Description from "../FormInputs/Description/Description";
-import WallsType from "../FormInputs/WallsType/WallsType";
-import Renovation from "../FormInputs/Renovation/Renovation";
-import Rooms from "../FormInputs/Rooms/Rooms";
 
-const AvitoTableRow = React.memo(
+const DirectTableRow = React.memo(
   ({ rowsState, setRowsState, updateProject, row, deleteProjects }) => {
     const [editedRow, setEditedRow] = useState();
     const [rowIDToEdit, setRowIDToEdit] = useState(undefined);
@@ -76,9 +72,6 @@ const AvitoTableRow = React.memo(
           if (editedRow.area_land) row.area_land = editedRow.area_land;
           if (editedRow.price) row.price = editedRow.price;
           if (editedRow.description) row.description = editedRow.description;
-          if (editedRow.rooms) row.rooms = editedRow.rooms;
-          if (editedRow.wallsType) row.wallsType = editedRow.wallsType;
-          if (editedRow.renovation) row.renovation = editedRow.renovation;
           updateProject(editedRow);
         }
         return row;
@@ -177,27 +170,9 @@ const AvitoTableRow = React.memo(
           editedRow={editedRow}
           handleOnChangeField={handleOnChangeField}
         />
-        <Rooms
-          row={row}
-          isEditMode={isEditMode}
-          rowIDToEdit={rowIDToEdit}
-          handleOnChangeSelect={handleOnChangeSelect}
-        />
-        <WallsType
-          row={row}
-          isEditMode={isEditMode}
-          rowIDToEdit={rowIDToEdit}
-          handleOnChangeSelect={handleOnChangeSelect}
-        />
-        <Renovation
-          row={row}
-          isEditMode={isEditMode}
-          rowIDToEdit={rowIDToEdit}
-          handleOnChangeSelect={handleOnChangeSelect}
-        />
       </tr>
     );
   }
 );
 
-export default AvitoTableRow;
+export default DirectTableRow;

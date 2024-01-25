@@ -16,12 +16,13 @@ import Dashboard from "../Dashboard/Dashboard";
 import "./App.css";
 import Header from "../Header/Header";
 import CianTable from "../CianTable/CianTable";
+import DirectTable from "../DirectTable/DirectTable";
 import AvitoTable from "../AvitoTable/AvitoTable";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import LoginPage from "../LoginPage/LoginPage";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(true);
 
   const handleUpdateProject = (project) => {
     updateProject(project);
@@ -68,20 +69,20 @@ function App() {
                     />
                   }
                 />
-                {/*<Route
-                path="direct"
-                element={
-                  <directTable
-                    pageTitle={pageTitle.direct}
-                    updateFile={handleUpdateFile}
-                    updateProject={handleUpdateProject}
-                    deleteProjects={handledeleteProjects}
-                    columns={coldirect}
-                    actions
-                    feedName="direct"
-                  />
-                }
-              />*/}
+                <Route
+                  path="direct"
+                  element={
+                    <DirectTable
+                      pageTitle={pageTitle.direct}
+                      updateFile={handleUpdateFile}
+                      updateProject={handleUpdateProject}
+                      deleteProjects={handledeleteProjects}
+                      columns={colCian}
+                      actions
+                      feedName="direct"
+                    />
+                  }
+                />
                 <Route
                   path="avito"
                   element={

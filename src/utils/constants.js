@@ -31,6 +31,24 @@ const colCian = [
   { field: "description", fieldName: "Описание" },
 ];
 
+const colDirect = [
+  { field: "id", fieldName: "ID" },
+  { field: "category_obj", fieldName: "Тип" },
+  { field: "name", fieldName: "Название" },
+  { field: "floor", fieldName: "Этажей" },
+  { field: "sq", fieldName: "Площадь м²" },
+  { field: "town", fieldName: "Поселок" },
+  { field: "address", fieldName: "Адрес" },
+  { field: "phone", fieldName: "Телефон" },
+  { field: "cadastr_number", fieldName: "Кадастр" },
+  { field: "area_land", fieldName: "Земля м²" },
+  { field: "price", fieldName: "Цена" },
+  { field: "description", fieldName: "Описание" },
+  { field: "rooms", fieldName: "Комнаты" },
+  { field: "wallsType", fieldName: "Материал" },
+  { field: "renovation", fieldName: "Ремонт" },
+];
+
 const colAvito = [
   { field: "id", fieldName: "ID" },
   { field: "category_obj", fieldName: "Тип" },
@@ -43,10 +61,10 @@ const colAvito = [
   { field: "cadastr_number", fieldName: "Кадастр" },
   { field: "area_land", fieldName: "Земля м²" },
   { field: "price", fieldName: "Цена" },
+  { field: "description", fieldName: "Описание" },
   { field: "rooms", fieldName: "Комнаты" },
   { field: "wallsType", fieldName: "Материал" },
   { field: "renovation", fieldName: "Ремонт" },
-  { field: "description", fieldName: "Описание" },
 ];
 
 const colAdd = [
