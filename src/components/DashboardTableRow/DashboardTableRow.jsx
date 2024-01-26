@@ -19,6 +19,8 @@ const DashboardTableRow = React.memo(
     const [rowIDToEdit, setRowIDToEdit] = useState(undefined);
     // Состояние для хранения измененной строки
     const [editedRow, setEditedRow] = useState();
+    // Состояние для хранения типа объекта
+    const [type, setType] = useState(row.category_obj);
 
     // Обработчик события для изменения значения выпадающего списка
     const handleOnChangeType = (e, rowID) => {
@@ -106,6 +108,7 @@ const DashboardTableRow = React.memo(
           row={row}
           isEditMode={isEditMode}
           rowIDToEdit={rowIDToEdit}
+          setType={setType}
           handleOnChangeType={handleOnChangeType}
         />
         <Name
@@ -129,6 +132,7 @@ const DashboardTableRow = React.memo(
         />
         <Town
           row={row}
+          type={type}
           isEditMode={isEditMode}
           rowIDToEdit={rowIDToEdit}
           handleOnChangeSelect={handleOnChangeSelect}

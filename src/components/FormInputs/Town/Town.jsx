@@ -1,6 +1,7 @@
 import { Select } from "antd";
 const Town = ({
   row,
+  type,
   isEditMode,
   rowIDToEdit,
   editedRow,
@@ -18,8 +19,7 @@ const Town = ({
           style={{ width: 120 }}
           // если в editedRow поле type не равно home то ставим disabled
           disabled={
-            row.category_obj !== "Готовый дом" ||
-            (editedRow && editedRow.category_obj !== "Готовый дом")
+            type !== "Готовый дом" || (editedRow && type !== "Готовый дом")
           }
           options={[
             { value: "nasledie", label: "Наследие" },

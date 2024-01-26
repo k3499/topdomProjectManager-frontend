@@ -39,6 +39,10 @@
   padding: 10px;
   font-size: 1.1rem;
 }
+.login__input:active,
+.login__input:focus {
+  border-color: rgba(0, 0, 0, 0.9) !important;
+}
 .login__input input {
   background-color: rgb(245, 245, 245) !important;
   padding-left: 7px !important;

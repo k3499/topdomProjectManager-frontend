@@ -1,10 +1,20 @@
 import { Select } from "antd";
-const CategoryObj = ({ row, isEditMode, rowIDToEdit, handleOnChangeType }) => {
+const CategoryObj = ({
+  row,
+  isEditMode,
+  rowIDToEdit,
+  setType,
+  handleOnChangeType,
+}) => {
+  const OnChangeType = (e, id) => {
+    handleOnChangeType(e, id);
+    setType(e);
+  };
   return (
     <td>
       {isEditMode && rowIDToEdit === row.id ? (
         <Select
-          onChange={(e) => handleOnChangeType(e, row.id)}
+          onChange={(e) => OnChangeType(e, row.id)}
           name="category_obj"
           defaultValue={row.category_obj}
           style={{ width: 130 }}
