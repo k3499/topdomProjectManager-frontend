@@ -21,6 +21,7 @@ const AddProjectForm = ({
   const [projectToAdd, setProjectToAdd] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [form] = Form.useForm();
+  const [type, setType] = useState();
 
   const onFinish = async (values) => {
     setIsLoading(true); // Устанавливаем isLoading в true перед началом отправки формы
@@ -110,6 +111,9 @@ const AddProjectForm = ({
                       { value: "Участок", label: "Участок" },
                     ]}
                     required
+                    onChange={(e) => {
+                      setType(e);
+                    }}
                   />
                 </Form.Item>
               </td>
@@ -160,7 +164,7 @@ const AddProjectForm = ({
               <td>
                 <Form.Item
                   name="town"
-                  rules={[{ required: true, message: "Заполните поле" }]}
+                  rules={[{ required: false, message: "Заполните поле" }]}
                 >
                   <Select
                     name="town"
@@ -169,6 +173,7 @@ const AddProjectForm = ({
                       { value: "nasledie", label: "Наследие" },
                       { value: "riga", label: "Riga life" },
                     ]}
+                    disabled={type !== "Готовый дом"}
                   />
                 </Form.Item>
               </td>
