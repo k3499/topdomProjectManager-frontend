@@ -17,8 +17,10 @@ const Name = ({
           name="name"
           onChange={(e) => handleOnChangeField(e, row.id)}
         />
-      ) : (
+      ) : row.name ? (
         row.name
+      ) : (
+        row.category_obj + " " + row.floor + "." + row.number
       )}
     </td>
   );
