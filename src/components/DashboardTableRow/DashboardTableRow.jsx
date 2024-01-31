@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import "./DashboardTableRow.css";
-import { message } from "antd";
+import { message, Collapse } from "antd";
 
 import Id from "../FormInputs/Id/Id";
 import Actions from "../FormInputs/Actions/Actions";
@@ -10,6 +10,8 @@ import Name from "../FormInputs/Name/Name";
 import Floor from "../FormInputs/Floor/Floor";
 import Size from "../FormInputs/Size/Size";
 import Town from "../FormInputs/Town/Town";
+import ImageSpoiler from "../FormInputs/ImageSpoilerBtn/ImageSpoilerBtn";
+import ImageLoader from "../FormInputs/ImageLoader/ImageLoader";
 
 const DashboardTableRow = React.memo(
   ({ rowsState, setRowsState, updateProject, row, deleteProjects }) => {
@@ -21,6 +23,8 @@ const DashboardTableRow = React.memo(
     const [editedRow, setEditedRow] = useState();
     // Состояние для хранения типа объекта
     const [type, setType] = useState(row.category_obj);
+    // Состояние статуса спойлера картинок
+    const [imageSpoilerStatus, setImageSpoilerStatus] = useState(false);
 
     // Обработчик события для изменения значения выпадающего списка
     const handleOnChangeType = (e, rowID) => {
@@ -82,62 +86,77 @@ const DashboardTableRow = React.memo(
       setRowIDToEdit(rowID);
     }, []);
 
+    const text = `
+  A dog is a type of domesticated animal.
+  Known for its loyalty and faithfulness,
+  it can be found as a welcome guest in many households across the world.
+`;
+
     return (
-      <tr className="table__row">
-        <Id id={row.id} />
-        <Actions
-          row={row}
-          isEditMode={isEditMode}
-          rowIDToEdit={rowIDToEdit}
-          setRowIDToEdit={setRowIDToEdit}
-          editedRow={editedRow}
-          rowsState={rowsState}
-          setRowsState={setRowsState}
-          setIsEditMode={setIsEditMode}
-          setEditedRow={setEditedRow}
-          deleteProjects={deleteProjects}
-          handleSaveRowChanges={handleSaveRowChanges}
-        />
-        <FileCheckbox
-          row={row}
-          rowsState={rowsState}
-          updateProject={updateProject}
-          setRowsState={setRowsState}
-        />
-        <CategoryObj
-          row={row}
-          isEditMode={isEditMode}
-          rowIDToEdit={rowIDToEdit}
-          setType={setType}
-          handleOnChangeType={handleOnChangeType}
-        />
-        <Name
-          row={row}
-          isEditMode={isEditMode}
-          rowIDToEdit={rowIDToEdit}
-          handleOnChangeField={handleOnChangeField}
-        />
-        <Floor
-          row={row}
-          isEditMode={isEditMode}
-          rowIDToEdit={rowIDToEdit}
-          handleOnChangeSelect={handleOnChangeSelect}
-        />
-        <Size
-          row={row}
-          isEditMode={isEditMode}
-          rowIDToEdit={rowIDToEdit}
-          handleOnChangeField={handleOnChangeField}
-          editedRow={editedRow}
-        />
-        <Town
-          row={row}
-          type={type}
-          isEditMode={isEditMode}
-          rowIDToEdit={rowIDToEdit}
-          handleOnChangeSelect={handleOnChangeSelect}
-        />
-      </tr>
+      <>
+        <tr className="table__row">
+          <Id id={row.id} />
+          <Actions
+            row={row}
+            isEditMode={isEditMode}
+            rowIDToEdit={rowIDToEdit}
+            setRowIDToEdit={setRowIDToEdit}
+            editedRow={editedRow}
+            rowsState={rowsState}
+            setRowsState={setRowsState}
+            setIsEditMode={setIsEditMode}
+            setEditedRow={setEditedRow}
+            deleteProjects={deleteProjects}
+            handleSaveRowChanges={handleSaveRowChanges}
+          />
+          <FileCheckbox
+            row={row}
+            rowsState={rowsState}
+            updateProject={updateProject}
+            setRowsState={setRowsState}
+          />
+          <CategoryObj
+            row={row}
+            isEditMode={isEditMode}
+            rowIDToEdit={rowIDToEdit}
+            setType={setType}
+            handleOnChangeType={handleOnChangeType}
+          />
+          <Name
+            row={row}
+            isEditMode={isEditMode}
+            rowIDToEdit={rowIDToEdit}
+            handleOnChangeField={handleOnChangeField}
+          />
+          <Floor
+            row={row}
+            isEditMode={isEditMode}
+            rowIDToEdit={rowIDToEdit}
+            handleOnChangeSelect={handleOnChangeSelect}
+          />
+          <Size
+            row={row}
+            isEditMode={isEditMode}
+            rowIDToEdit={rowIDToEdit}
+            handleOnChangeField={handleOnChangeField}
+            editedRow={editedRow}
+          />
+          <Town
+            row={row}
+            type={type}
+            isEditMode={isEditMode}
+            rowIDToEdit={rowIDToEdit}
+            handleOnChangeSelect={handleOnChangeSelect}
+          />
+          <ImageSpoiler
+            row={row}
+            imageSpoilerStatus={imageSpoilerStatus}
+            setImageSpoilerStatus={setImageSpoilerStatus}
+          />
+        </tr>
+
+        {imageSpoilerStatus && <ImageLoader />}
+      </>
     );
   }
 );
