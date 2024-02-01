@@ -105,3 +105,17 @@ export const deleteProjects = async (project) => {
     console.error(error);
   }
 };
+
+export const deleteImage = async (id, type) => {
+  try {
+    const response = await axios.delete(`${BASE_URL}index.php`, {
+      data: {
+        method: "deleteOnId",
+        data: { id: id },
+      },
+    });
+  } catch (error) {
+    // Обработка ошибки
+    console.error(error);
+  }
+};

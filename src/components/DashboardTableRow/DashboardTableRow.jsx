@@ -155,7 +155,7 @@ const DashboardTableRow = React.memo(
           />
         </tr>
 
-        {imageSpoilerStatus && <ImageLoader />}
+        {imageSpoilerStatus && <ImageLoader id={row.id} />}
       </>
     );
   }

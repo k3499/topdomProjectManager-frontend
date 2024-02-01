@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { message, Modal, Upload, Divider } from "antd";
+import { BASE_URL } from "../../../utils/constants";
+import { deleteImage } from "../../../utils/api";
+import "./ImageLoader.css";
 
-const ImageLoader = ({}) => {
+const ImageLoader = ({ id }) => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
   const [previewOpen, setPreviewOpen] = useState(false);
@@ -108,6 +111,12 @@ const ImageLoader = ({}) => {
   };
 
   const handleCancel = () => setPreviewOpen(false);
+
+  const handleRemove = (type) => {
+    // Отправка запроса на удаление файла с использованием функции deleteFile из api.js
+    console.log(id, type);
+    deleteImage(id, type);
+  };
   return (
     <tr class="table__image-spoiler">
       <td colSpan="40">
@@ -115,12 +124,13 @@ const ImageLoader = ({}) => {
           <Divider orientation="left">Главное изображение</Divider>
 
           <Upload
-            action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
+            action={BASE_URL + "?method=upload&type=cover&id=" + id}
             listType="picture-card"
             fileList={mainPhotoList}
             onPreview={handlePreview}
             beforeUpload={beforeUpload}
             onChange={handleChangeMain}
+            onRemove={handleRemove("cover")}
           >
             {mainPhotoList.length >= 1 ? null : uploadButton}
           </Upload>
@@ -135,7 +145,7 @@ const ImageLoader = ({}) => {
 
           <Divider orientation="left">Другие изображения</Divider>
           <Upload
-            action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
+            action={BASE_URL + "?method=upload&type=main&id=" + id}
             listType="picture-card"
             fileList={fileList}
             //className="upload-list-inline"
@@ -156,7 +166,7 @@ const ImageLoader = ({}) => {
 
           <Divider orientation="left">Планировки</Divider>
           <Upload
-            action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
+            action={BASE_URL + "?method=upload&type=plan&id=" + id}
             listType="picture-card"
             fileList={planList}
             //className="upload-list-inline"
