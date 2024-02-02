@@ -12,6 +12,7 @@ import Size from "../FormInputs/Size/Size";
 import Town from "../FormInputs/Town/Town";
 import ImageSpoiler from "../FormInputs/ImageSpoilerBtn/ImageSpoilerBtn";
 import ImageLoader from "../FormInputs/ImageLoader/ImageLoader";
+import Link from "../FormInputs/Link/Link";
 
 const DashboardTableRow = React.memo(
   ({ rowsState, setRowsState, updateProject, row, deleteProjects }) => {
@@ -25,8 +26,7 @@ const DashboardTableRow = React.memo(
     const [type, setType] = useState(row.category_obj);
     // Состояние статуса спойлера картинок
     const [imageSpoilerStatus, setImageSpoilerStatus] = useState(false);
-
-    // Обработчик события для изменения значения выпадающего списка
+    // Состояние статуса спойлера картинок
     const handleOnChangeType = (e, rowID) => {
       //Обновляем состояние редактируемой строки
       console.log({
@@ -153,6 +153,7 @@ const DashboardTableRow = React.memo(
             imageSpoilerStatus={imageSpoilerStatus}
             setImageSpoilerStatus={setImageSpoilerStatus}
           />
+          {row.category_obj !== "Участок" && <Link row={row} />}
         </tr>
 
         {imageSpoilerStatus && <ImageLoader id={row.id} />}

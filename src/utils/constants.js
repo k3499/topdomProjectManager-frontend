@@ -14,7 +14,8 @@ const colDashboard = [
   { field: "floors", fieldName: "Этажей" },
   { field: "sq", fieldName: "Площадь м²" },
   { field: "town", fieldName: "Поселок" },
-  { field: "image", fieldName: "Картинки" },
+  { field: "image", fieldName: "Фото" },
+  { field: "link", fieldName: "Ссылка" },
 ];
 
 const colCian = [
