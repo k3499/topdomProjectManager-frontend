@@ -14,6 +14,7 @@ import Cadastr from "../FormInputs/Cadastr/Cadastr";
 import AreaLand from "../FormInputs/AreaLand/AreaLand";
 import Price from "../FormInputs/Price/Price";
 import Description from "../FormInputs/Description/Description";
+import Link from "../FormInputs/Link/Link";
 
 const CianTableRow = React.memo(
   ({ rowsState, setRowsState, updateProject, row, deleteProjects }) => {
@@ -169,6 +170,7 @@ const CianTableRow = React.memo(
           editedRow={editedRow}
           handleOnChangeField={handleOnChangeField}
         />
+        {row.category_obj !== "Участок" && <Link row={row} />}
       </tr>
     );
   }

@@ -116,6 +116,20 @@ export const deleteProjects = async (project) => {
     console.error(error);
   }
 };
+export const getImage = async (id, type) => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}index.php?method=getPhoto&id=${id}&img_type=${type}`
+    );
+
+    const data = response.data;
+    return data;
+  } catch (error) {
+    // Обработка ошибки
+    console.error(error);
+    return [];
+  }
+};
 
 export const deleteImage = async (id, type) => {
   // try {

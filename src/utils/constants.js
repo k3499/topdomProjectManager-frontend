@@ -32,6 +32,7 @@ const colCian = [
   { field: "area_land", fieldName: "Земля м²" },
   { field: "price", fieldName: "Цена" },
   { field: "description", fieldName: "Описание" },
+  { field: "link", fieldName: "Ссылка" },
 ];
 
 const colDirect = [
@@ -47,6 +48,7 @@ const colDirect = [
   { field: "price", fieldName: "Цена" },
   { field: "description", fieldName: "Описание" },
   { field: "renovation", fieldName: "Ремонт" },
+  { field: "link", fieldName: "Ссылка" },
 ];
 
 const colAvito = [
@@ -65,6 +67,7 @@ const colAvito = [
   { field: "rooms", fieldName: "Комнаты" },
   { field: "wallsType", fieldName: "Материал" },
   { field: "renovation", fieldName: "Ремонт" },
+  { field: "link", fieldName: "Ссылка" },
 ];
 
 const colDomclick = [
@@ -80,9 +83,7 @@ const colDomclick = [
   { field: "area_land", fieldName: "Земля м²" },
   { field: "price", fieldName: "Цена" },
   { field: "description", fieldName: "Описание" },
-  { field: "rooms", fieldName: "Комнаты" },
-  { field: "wallsType", fieldName: "Материал" },
-  { field: "renovation", fieldName: "Ремонт" },
+  { field: "link", fieldName: "Ссылка" },
 ];
 
 const colAdd = [

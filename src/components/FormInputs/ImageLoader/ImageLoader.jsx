@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { message, Modal, Upload, Divider } from "antd";
 import { BASE_URL } from "../../../utils/constants";
-import { deleteImage } from "../../../utils/api";
+import { deleteImage, getImage } from "../../../utils/api";
 import "./ImageLoader.css";
 
 const ImageLoader = ({ id }) => {
@@ -11,56 +11,23 @@ const ImageLoader = ({ id }) => {
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
-  const [mainPhotoList, setMainPhotoList] = useState([
-    {
-      uid: "-1",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-  ]);
+  const [mainPhotoList, setMainPhotoList] = useState([]);
+  const [fileList, setFileList] = useState([]);
+  const [planList, setPlanList] = useState([]);
 
-  const [fileList, setFileList] = useState([
-    {
-      uid: "-1",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-    {
-      uid: "-2",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-    {
-      uid: "-3",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-    {
-      uid: "-4",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-  ]);
+  useEffect(() => {
+    getImage(id, "Main").then((res) => {
+      setMainPhotoList(res);
+    });
 
-  const [planList, setPlanList] = useState([
-    {
-      uid: "-1",
-      name: "image.png",
-      status: "done",
-      url: "https://топдом.рф/images/1-269/TOPDOM.RF-1-269_Main_1689150612_800.jpg",
-    },
-    {
-      uid: "-2",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-  ]);
+    getImage(id, "Fasad").then((res) => {
+      setFileList(res);
+    });
+
+    getImage(id, "Plan").then((res) => {
+      setPlanList(res);
+    });
+  }, []);
 
   const uploadButton = (
     <button style={{ border: 0, background: "none" }} type="button">

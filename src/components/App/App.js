@@ -6,6 +6,7 @@ import {
   colCian,
   colDirect,
   colAvito,
+  colDomclick,
   pageTitle,
 } from "../../utils/constants";
 import Dashboard from "../Dashboard/Dashboard";
@@ -113,7 +114,7 @@ function App() {
                       updateFile={handleUpdateFile}
                       updateProject={handleUpdateProject}
                       deleteProjects={handledeleteProjects}
-                      columns={colAvito}
+                      columns={colDomclick}
                       feedName="domclick"
                     />
                   }

@@ -7,6 +7,7 @@ import AvitoTableBody from "../AvitoTableBody/AvitoTableBody";
 import { getProjects, createProject } from "../../utils/api";
 
 const AvitoTable = ({
+  pageTitle,
   updateProject,
   deleteProjects,
   columns,
@@ -49,7 +50,7 @@ const AvitoTable = ({
   }
   return (
     <>
-      <h1>{feedName}</h1>
+      <h1>{pageTitle}</h1>
       <Filters
         data={rowsState}
         handlefilteredRows={filteredRows}

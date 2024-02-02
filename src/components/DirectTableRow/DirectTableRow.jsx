@@ -14,6 +14,7 @@ import AreaLand from "../FormInputs/AreaLand/AreaLand";
 import Price from "../FormInputs/Price/Price";
 import Description from "../FormInputs/Description/Description";
 import Renovation from "../FormInputs/Renovation/Renovation";
+import Link from "../FormInputs/Link/Link";
 
 const DirectTableRow = React.memo(
   ({ rowsState, setRowsState, updateProject, row, deleteProjects }) => {
@@ -171,6 +172,7 @@ const DirectTableRow = React.memo(
           rowIDToEdit={rowIDToEdit}
           handleOnChangeSelect={handleOnChangeSelect}
         />
+        {row.category_obj !== "Участок" && <Link row={row} />}
       </tr>
     );
   }

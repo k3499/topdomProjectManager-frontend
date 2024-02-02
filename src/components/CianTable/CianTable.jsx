@@ -7,6 +7,7 @@ import CianTableBody from "../CianTableBody/CianTableBody";
 import { getProjects, createProject } from "../../utils/api";
 
 const FeedTable = ({
+  pageTitle,
   updateProject,
   deleteProjects,
   columns,
@@ -49,7 +50,7 @@ const FeedTable = ({
   }
   return (
     <>
-      <h1>{feedName}</h1>
+      <h1>{pageTitle}</h1>
       <Filters
         data={rowsState}
         handlefilteredRows={filteredRows}
