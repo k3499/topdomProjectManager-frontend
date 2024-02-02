@@ -19,6 +19,9 @@ const Header = () => {
       <NavLink to="/avito" className="menu__item menu__item_avito">
         Avito
       </NavLink>
+      <NavLink to="/domclick" className="menu__item menu__item_domclick">
+        Dom Click
+      </NavLink>
       <Link to="/" className="avatar">
         <Avatar
           style={{ backgroundColor: "#1b1b1b", verticalAlign: "middle" }}

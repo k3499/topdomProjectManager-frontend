@@ -57,6 +57,16 @@ const FileCheckbox = ({ row, rowsState, updateProject, setRowsState }) => {
           {row.avito}
         </Checkbox>
       </td>
+      <td className="table__checkbox">
+        <Checkbox
+          checked={!!row.is_domclick}
+          onChange={(e) =>
+            handleChange(e, row.id, row.is_domclick, "is_domclick", row)
+          }
+        >
+          {row.domclick}
+        </Checkbox>
+      </td>
     </>
   );
 };

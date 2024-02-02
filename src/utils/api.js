@@ -78,6 +78,17 @@ export const getProjects = async (site) => {
       console.error(error);
       return [];
     }
+  } else if (site === "domclick") {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}index.php?method=getAllDomclick`
+      );
+      const data = response.data;
+      return data;
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
   } else {
     try {
       const response = await axios.get(

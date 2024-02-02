@@ -9,6 +9,7 @@ const colDashboard = [
   { field: "cian", fieldName: "Cian" },
   { field: "direct", fieldName: "Direct" },
   { field: "avito", fieldName: "Avito" },
+  { field: "domclick", fieldName: "DomClick" },
   { field: "category_obj", fieldName: "Тип" },
   { field: "title", fieldName: "Название" },
   { field: "floors", fieldName: "Этажей" },
@@ -66,6 +67,24 @@ const colAvito = [
   { field: "renovation", fieldName: "Ремонт" },
 ];
 
+const colDomclick = [
+  { field: "id", fieldName: "ID" },
+  { field: "category_obj", fieldName: "Тип" },
+  { field: "name", fieldName: "Название" },
+  { field: "floor", fieldName: "Этажей" },
+  { field: "sq", fieldName: "Площадь м²" },
+  { field: "town", fieldName: "Поселок" },
+  { field: "address", fieldName: "Адрес" },
+  { field: "phone", fieldName: "Телефон" },
+  { field: "cadastr_number", fieldName: "Кадастр" },
+  { field: "area_land", fieldName: "Земля м²" },
+  { field: "price", fieldName: "Цена" },
+  { field: "description", fieldName: "Описание" },
+  { field: "rooms", fieldName: "Комнаты" },
+  { field: "wallsType", fieldName: "Материал" },
+  { field: "renovation", fieldName: "Ремонт" },
+];
+
 const colAdd = [
   { field: "cian", fieldName: "Cian" },
   { field: "direct", fieldName: "Direct" },
@@ -81,6 +100,7 @@ const pageTitle = {
   cian: "Проекты в Cian",
   direct: "Проекты в Яндекс Недвижимость",
   avito: "Проекты в Avito",
+  domclick: "Проекты в DomClick",
 };
 
 export {
@@ -90,6 +110,7 @@ export {
   colCian,
   colDirect,
   colAvito,
+  colDomclick,
   pageTitle,
   colAdd,
 };

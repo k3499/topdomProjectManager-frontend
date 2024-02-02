@@ -14,6 +14,7 @@ import Header from "../Header/Header";
 import CianTable from "../CianTable/CianTable";
 import DirectTable from "../DirectTable/DirectTable";
 import AvitoTable from "../AvitoTable/AvitoTable";
+import DomclickTable from "../DomclickTable/DomclickTable";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import LoginPage from "../LoginPage/LoginPage";
 
@@ -101,6 +102,19 @@ function App() {
                       deleteProjects={handledeleteProjects}
                       columns={colAvito}
                       feedName="avito"
+                    />
+                  }
+                />
+                <Route
+                  path="domclick"
+                  element={
+                    <DomclickTable
+                      pageTitle={pageTitle.domclick}
+                      updateFile={handleUpdateFile}
+                      updateProject={handleUpdateProject}
+                      deleteProjects={handledeleteProjects}
+                      columns={colAvito}
+                      feedName="domclick"
                     />
                   }
                 />

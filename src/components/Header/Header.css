@@ -62,6 +62,14 @@
   background: url(../../../public/img/avito-active.svg) no-repeat 50%;
   background-size: 27px;
 }
+.menu__item_domclick {
+  background: url(../../../public/img/domclick.svg) no-repeat 50%;
+  background-size: 27px;
+}
+.menu__item_domclick:hover {
+  background: url(../../../public/img/domclick-active.svg) no-repeat 50%;
+  background-size: 27px;
+}
 .avatar {
   margin-top: auto;
 }
