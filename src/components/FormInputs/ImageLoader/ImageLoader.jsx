@@ -163,6 +163,7 @@ const ImageLoader = ({ id }) => {
                 onPreview={handlePreview}
                 beforeUpload={beforeUpload}
                 onChange={handleChangePlan}
+                style={{ width: "300px" }}
               >
                 {planList.length >= 2 ? null : uploadButton}
               </Upload>

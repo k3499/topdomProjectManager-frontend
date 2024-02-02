@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./AvitoTableRow.css";
-import { message, Input } from "antd";
+import { message } from "antd";
 import Address from "../FormInputs/Address/Address";
 import Id from "../FormInputs/Id/Id";
 import Actions from "../FormInputs/Actions/Actions";
@@ -17,6 +17,7 @@ import Description from "../FormInputs/Description/Description";
 import WallsType from "../FormInputs/WallsType/WallsType";
 import Renovation from "../FormInputs/Renovation/Renovation";
 import Rooms from "../FormInputs/Rooms/Rooms";
+import Link from "../FormInputs/Link/Link";
 
 const AvitoTableRow = React.memo(
   ({ rowsState, setRowsState, updateProject, row, deleteProjects }) => {
@@ -195,6 +196,7 @@ const AvitoTableRow = React.memo(
           rowIDToEdit={rowIDToEdit}
           handleOnChangeSelect={handleOnChangeSelect}
         />
+        {row.category_obj !== "Участок" && <Link row={row} />}
       </tr>
     );
   }
