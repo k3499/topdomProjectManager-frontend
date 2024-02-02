@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
-import { message, Modal, Upload, Divider } from "antd";
+import { message, Modal, Upload, Divider, Skeleton } from "antd";
 import { BASE_URL } from "../../../utils/constants";
 import { deleteImage, getImage } from "../../../utils/api";
 import "./ImageLoader.css";
 
 const ImageLoader = ({ id }) => {
-  const [loading, setLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
@@ -16,18 +15,19 @@ const ImageLoader = ({ id }) => {
   const [planList, setPlanList] = useState([]);
 
   useEffect(() => {
-    getImage(id, "Main").then((res) => {
-      setMainPhotoList(res);
-    });
+    setIsLoading(true); // Устанавливаем состояние загрузки в true при начале загрузки
 
-    getImage(id, "Fasad").then((res) => {
-      setFileList(res);
+    Promise.all([
+      getImage(id, "Main"),
+      getImage(id, "Fasad"),
+      getImage(id, "Plan"),
+    ]).then(([mainRes, fileRes, planRes]) => {
+      setMainPhotoList(mainRes);
+      setFileList(fileRes);
+      setPlanList(planRes);
+      setIsLoading(false); // Устанавливаем состояние загрузки в false по окончанию загрузки
     });
-
-    getImage(id, "Plan").then((res) => {
-      setPlanList(res);
-    });
-  }, []);
+  }, [id]);
 
   const uploadButton = (
     <button style={{ border: 0, background: "none" }} type="button">
@@ -89,68 +89,97 @@ const ImageLoader = ({ id }) => {
       <td colSpan="40">
         <div className="image-spoiler">
           <Divider orientation="left">Главное изображение</Divider>
-
-          <Upload
-            action={BASE_URL + "?method=upload&type=cover&id=" + id}
-            listType="picture-card"
-            fileList={mainPhotoList}
-            onPreview={handlePreview}
-            beforeUpload={beforeUpload}
-            onChange={handleChangeMain}
-            onRemove={handleRemove("cover")}
-          >
-            {mainPhotoList.length >= 1 ? null : uploadButton}
-          </Upload>
-          <Modal
-            open={previewOpen}
-            title={previewTitle}
-            footer={null}
-            onCancel={handleCancel}
-          >
-            <img alt="example" style={{ width: "100%" }} src={previewImage} />
-          </Modal>
+          {isLoading ? (
+            <Skeleton.Image active={true} />
+          ) : (
+            <>
+              <Upload
+                action={BASE_URL + "?method=upload&type=cover&id=" + id}
+                listType="picture-card"
+                fileList={mainPhotoList}
+                onPreview={handlePreview}
+                beforeUpload={beforeUpload}
+                onChange={handleChangeMain}
+                onRemove={handleRemove("cover")}
+              >
+                {mainPhotoList.length >= 1 ? null : uploadButton}
+              </Upload>
+              <Modal
+                open={previewOpen}
+                title={previewTitle}
+                footer={null}
+                onCancel={handleCancel}
+              >
+                <img
+                  alt="example"
+                  style={{ width: "100%" }}
+                  src={previewImage}
+                />
+              </Modal>
+            </>
+          )}
 
           <Divider orientation="left">Другие изображения</Divider>
-          <Upload
-            action={BASE_URL + "?method=upload&type=main&id=" + id}
-            listType="picture-card"
-            fileList={fileList}
-            //className="upload-list-inline"
-            onPreview={handlePreview}
-            beforeUpload={beforeUpload}
-            onChange={handleChangeAll}
-          >
-            {fileList.length >= 4 ? null : uploadButton}
-          </Upload>
-          <Modal
-            open={previewOpen}
-            title={previewTitle}
-            footer={null}
-            onCancel={handleCancel}
-          >
-            <img alt="example" style={{ width: "100%" }} src={previewImage} />
-          </Modal>
+          {isLoading ? (
+            <Skeleton.Image active={true} />
+          ) : (
+            <>
+              <Upload
+                action={BASE_URL + "?method=upload&type=main&id=" + id}
+                listType="picture-card"
+                fileList={fileList}
+                //className="upload-list-inline"
+                onPreview={handlePreview}
+                beforeUpload={beforeUpload}
+                onChange={handleChangeAll}
+              >
+                {fileList.length >= 4 ? null : uploadButton}
+              </Upload>
+              <Modal
+                open={previewOpen}
+                title={previewTitle}
+                footer={null}
+                onCancel={handleCancel}
+              >
+                <img
+                  alt="example"
+                  style={{ width: "100%" }}
+                  src={previewImage}
+                />
+              </Modal>
+            </>
+          )}
 
           <Divider orientation="left">Планировки</Divider>
-          <Upload
-            action={BASE_URL + "?method=upload&type=plan&id=" + id}
-            listType="picture-card"
-            fileList={planList}
-            //className="upload-list-inline"
-            onPreview={handlePreview}
-            beforeUpload={beforeUpload}
-            onChange={handleChangePlan}
-          >
-            {planList.length >= 2 ? null : uploadButton}
-          </Upload>
-          <Modal
-            open={previewOpen}
-            title={previewTitle}
-            footer={null}
-            onCancel={handleCancel}
-          >
-            <img alt="example" style={{ width: "100%" }} src={previewImage} />
-          </Modal>
+          {isLoading ? (
+            <Skeleton.Image active={true} />
+          ) : (
+            <>
+              <Upload
+                action={BASE_URL + "?method=upload&type=plan&id=" + id}
+                listType="picture-card"
+                fileList={planList}
+                //className="upload-list-inline"
+                onPreview={handlePreview}
+                beforeUpload={beforeUpload}
+                onChange={handleChangePlan}
+              >
+                {planList.length >= 2 ? null : uploadButton}
+              </Upload>
+              <Modal
+                open={previewOpen}
+                title={previewTitle}
+                footer={null}
+                onCancel={handleCancel}
+              >
+                <img
+                  alt="example"
+                  style={{ width: "100%" }}
+                  src={previewImage}
+                />
+              </Modal>
+            </>
+          )}
         </div>
       </td>
     </tr>
