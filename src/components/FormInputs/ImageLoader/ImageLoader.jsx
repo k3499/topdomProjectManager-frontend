@@ -95,7 +95,7 @@ const ImageLoader = ({ id }) => {
             <>
               <Upload
                 action={
-                  BASE_URL + "index.php?method=upload&type=cover&id=" + id
+                  BASE_URL + "index.php?method=addPhoto&type=cover&id=" + id
                 }
                 listType="picture-card"
                 fileList={mainPhotoList}
@@ -127,7 +127,9 @@ const ImageLoader = ({ id }) => {
           ) : (
             <>
               <Upload
-                action={BASE_URL + "index.php?method=upload&type=main&id=" + id}
+                action={
+                  BASE_URL + "index.php?method=addPhoto&type=main&id=" + id
+                }
                 listType="picture-card"
                 fileList={fileList}
                 //className="upload-list-inline"
@@ -158,7 +160,9 @@ const ImageLoader = ({ id }) => {
           ) : (
             <>
               <Upload
-                action={BASE_URL + "index.php?method=upload&type=plan&id=" + id}
+                action={
+                  BASE_URL + "index.php?method=addPhoto&type=plan&id=" + id
+                }
                 listType="picture-card"
                 fileList={planList}
                 //className="upload-list-inline"
