@@ -16,19 +16,21 @@ const DirectTableBody = React.memo(
             </tr>
           )}
 
-          {rowsState.map((row) => {
-            return (
-              <DirectTableRow
-                key={row.id}
-                row={row}
-                updateProject={updateProject}
-                deleteProjects={deleteProjects}
-                rowsState={rowsState}
-                setRowsState={setRowsState}
-                actions={actions}
-              />
-            );
-          })}
+          {rowsState
+            ? rowsState.map((row) => {
+                return (
+                  <DirectTableRow
+                    key={row.id}
+                    row={row}
+                    updateProject={updateProject}
+                    deleteProjects={deleteProjects}
+                    rowsState={rowsState}
+                    setRowsState={setRowsState}
+                    actions={actions}
+                  />
+                );
+              })
+            : null}
         </tbody>
       </>
     );
