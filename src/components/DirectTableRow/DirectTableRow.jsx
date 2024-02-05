@@ -172,7 +172,16 @@ const DirectTableRow = React.memo(
           rowIDToEdit={rowIDToEdit}
           handleOnChangeSelect={handleOnChangeSelect}
         />
-        {row.category_obj !== "Участок" && <Link row={row} />}
+        {row.category_obj !== "Участок" && (
+          <Link
+            row={row}
+            link={
+              row.floor === 1
+                ? "/stroitelstvo-odnoehtazhnyh-domov-pod-klyuch-proekty-i-ceny/"
+                : "/stroitelstvo-dvuhehtazhnyh-domov-pod-klyuch-proekty-i-ceny/"
+            }
+          />
+        )}
       </tr>
     );
   }

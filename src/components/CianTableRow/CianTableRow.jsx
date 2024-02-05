@@ -62,7 +62,7 @@ const CianTableRow = React.memo(
           //пробегаемся по всем строкам и если находим редактируемую, то смотрти какое поле изменилось в editedRow
           if (editedRow.category_obj) row.category_obj = editedRow.category_obj;
           if (editedRow.name) row.name = editedRow.name;
-          if (editedRow.floors) row.floors = editedRow.floors;
+          if (editedRow.floor) row.floor = editedRow.floor;
           if (editedRow.sq) row.sq = editedRow.sq;
           if (editedRow.town) row.town = editedRow.town;
           if (editedRow.address) row.address = editedRow.address;
@@ -170,7 +170,16 @@ const CianTableRow = React.memo(
           editedRow={editedRow}
           handleOnChangeField={handleOnChangeField}
         />
-        {row.category_obj !== "Участок" && <Link row={row} />}
+        {row.category_obj !== "Участок" && (
+          <Link
+            row={row}
+            link={
+              row.floor === 1
+                ? "/stroitelstvo-odnoehtazhnyh-domov-pod-klyuch-proekty-i-ceny/"
+                : "/stroitelstvo-dvuhehtazhnyh-domov-pod-klyuch-proekty-i-ceny/"
+            }
+          />
+        )}
       </tr>
     );
   }

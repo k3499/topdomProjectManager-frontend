@@ -79,19 +79,6 @@ const DashboardTableRow = React.memo(
       setEditedRow(undefined);
     };
 
-    // Обработчик события для редактирования строки
-    const handleEdit = useCallback((rowID) => {
-      setIsEditMode(true);
-      setEditedRow(undefined);
-      setRowIDToEdit(rowID);
-    }, []);
-
-    const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
-
     return (
       <>
         <tr className="table__row">
@@ -153,7 +140,16 @@ const DashboardTableRow = React.memo(
             imageSpoilerStatus={imageSpoilerStatus}
             setImageSpoilerStatus={setImageSpoilerStatus}
           />
-          {row.category_obj !== "Участок" && <Link row={row} />}
+          {row.category_obj !== "Участок" && (
+            <Link
+              row={row}
+              link={
+                row.floor === 1
+                  ? "/stroitelstvo-odnoehtazhnyh-domov-pod-klyuch-proekty-i-ceny/"
+                  : "/stroitelstvo-dvuhehtazhnyh-domov-pod-klyuch-proekty-i-ceny/"
+              }
+            />
+          )}
         </tr>
 
         {imageSpoilerStatus && <ImageLoader id={row.id} />}

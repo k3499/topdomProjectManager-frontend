@@ -3,20 +3,13 @@ import { ExportOutlined } from "@ant-design/icons";
 
 let floorCategory;
 
-const Link = ({ row }) => {
-  useEffect(() => {
-    row.floor === 1
-      ? (floorCategory =
-          "/stroitelstvo-dvuhehtazhnyh-domov-pod-klyuch-proekty-i-ceny/")
-      : (floorCategory =
-          "/stroitelstvo-odnoehtazhnyh-domov-pod-klyuch-proekty-i-ceny/");
-  });
+const Link = ({ row, link }) => {
   return (
     <td>
       <a
         href={
           "https://xn--d1aqebdq.xn--p1ai" +
-          floorCategory +
+          link +
           "proekt-topdom-" +
           row.floor +
           "-" +
