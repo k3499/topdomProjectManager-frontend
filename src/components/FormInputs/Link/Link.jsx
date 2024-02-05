@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { ExportOutlined } from "@ant-design/icons";
 
-let floorCategory;
-
 const Link = ({ row, link }) => {
   return (
     <td>
