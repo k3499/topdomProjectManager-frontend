@@ -1,8 +1,7 @@
 .filters__wrapper {
   margin-bottom: 15px;
-  display: flex;
-  justify-content: space-between;
   max-width: 970px;
+  text-align: right;
 }
 .input__search {
   width: 300px;
@@ -22,4 +21,9 @@
 .block.visible {
   height: 250px;
   max-width: 970px;
+}
+.filters__top {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 15px;
 }

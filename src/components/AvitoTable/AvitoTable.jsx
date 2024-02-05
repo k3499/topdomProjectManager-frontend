@@ -56,6 +56,7 @@ const AvitoTable = ({
         handlefilteredRows={filteredRows}
         columns={columns}
         createProject={createProject}
+        xmlName={"avito"}
       />
       <Table striped bordered hover className="table">
         <thead className="table__head">

@@ -56,6 +56,7 @@ const DomclickTable = ({
         handlefilteredRows={filteredRows}
         columns={columns}
         createProject={createProject}
+        xmlName={"domclick"}
       />
       <Table striped bordered hover className="table">
         <thead className="table__head">

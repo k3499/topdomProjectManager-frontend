@@ -56,6 +56,7 @@ const FeedTable = ({
         handlefilteredRows={filteredRows}
         columns={columns}
         createProject={createProject}
+        xmlName={"cian"}
       />
       <Table striped bordered hover className="table">
         <thead className="table__head">

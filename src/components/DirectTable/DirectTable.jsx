@@ -55,6 +55,7 @@ const DirectTable = ({
         handlefilteredRows={filteredRows}
         columns={columns}
         createProject={createProject}
+        xmlName={"direct"}
       />
       <Table striped bordered hover className="table">
         <thead className="table__head">
