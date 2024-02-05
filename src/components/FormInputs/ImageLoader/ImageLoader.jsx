@@ -98,6 +98,7 @@ const ImageLoader = ({ id }) => {
                   BASE_URL + "index.php?method=addPhoto&type=cover&id=" + id
                 }
                 listType="picture-card"
+                data={{ method: "addPhoto", type: "cover", id: id }}
                 fileList={mainPhotoList}
                 onPreview={handlePreview}
                 beforeUpload={beforeUpload}
@@ -127,12 +128,10 @@ const ImageLoader = ({ id }) => {
           ) : (
             <>
               <Upload
-                action={
-                  BASE_URL + "index.php?method=addPhoto&type=main&id=" + id
-                }
+                action={BASE_URL + "index.php"}
                 listType="picture-card"
                 fileList={fileList}
-                //className="upload-list-inline"
+                data={{ method: "addPhoto", type: "main", id: id }}
                 onPreview={handlePreview}
                 beforeUpload={beforeUpload}
                 onChange={handleChangeAll}
@@ -165,7 +164,7 @@ const ImageLoader = ({ id }) => {
                 }
                 listType="picture-card"
                 fileList={planList}
-                //className="upload-list-inline"
+                data={{ method: "addPhoto", type: "plan", id: id }}
                 onPreview={handlePreview}
                 beforeUpload={beforeUpload}
                 onChange={handleChangePlan}
