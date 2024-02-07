@@ -79,10 +79,9 @@ const ImageLoader = ({ id }) => {
 
   const handleCancel = () => setPreviewOpen(false);
 
-  const handleRemove = (type) => {
+  const handleRemove = (file) => {
     // Отправка запроса на удаление файла с использованием функции deleteFile из api.js
-    console.log(id, type);
-    deleteImage(id, type);
+    deleteImage(file.uid);
   };
   return (
     <tr class="table__image-spoiler">
@@ -101,7 +100,7 @@ const ImageLoader = ({ id }) => {
                 onPreview={handlePreview}
                 beforeUpload={beforeUpload}
                 onChange={handleChangeMain}
-                onRemove={handleRemove("cover")}
+                onRemove={handleRemove}
               >
                 {mainPhotoList.length >= 1 ? null : uploadButton}
               </Upload>
@@ -133,6 +132,7 @@ const ImageLoader = ({ id }) => {
                 onPreview={handlePreview}
                 beforeUpload={beforeUpload}
                 onChange={handleChangeAll}
+                onRemove={handleRemove}
               >
                 {fileList.length >= 4 ? null : uploadButton}
               </Upload>
@@ -164,6 +164,7 @@ const ImageLoader = ({ id }) => {
                 onPreview={handlePreview}
                 beforeUpload={beforeUpload}
                 onChange={handleChangePlan}
+                onRemove={handleRemove}
               >
                 {planList.length >= 2 ? null : uploadButton}
               </Upload>

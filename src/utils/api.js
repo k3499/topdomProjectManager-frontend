@@ -131,16 +131,16 @@ export const getImage = async (id, type) => {
   }
 };
 
-export const deleteImage = async (id, type) => {
-  // try {
-  //   const response = await axios.delete(`${BASE_URL}index.php`, {
-  //     data: {
-  //       method: "deleteOnId",
-  //       data: { id: id },
-  //     },
-  //   });
-  // } catch (error) {
-  //   // Обработка ошибки
-  //   console.error(error);
-  // }
+export const deleteImage = async (uid) => {
+  try {
+    const response = await axios.delete(`${BASE_URL}index.php`, {
+      data: {
+        method: "deletePhoto",
+        data: { uid: uid },
+      },
+    });
+  } catch (error) {
+    // Обработка ошибки
+    console.error(error);
+  }
 };
