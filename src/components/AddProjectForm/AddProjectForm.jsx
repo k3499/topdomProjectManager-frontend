@@ -26,6 +26,7 @@ const AddProjectForm = ({
 
   const onFinish = async (values) => {
     setIsLoading(true); // Устанавливаем isLoading в true перед началом отправки формы
+    values.id = data.length + 1;
     values.is_cian = values.is_cian ? 1 : 0;
     values.is_direct = values.is_direct ? 1 : 0;
     values.is_avito = values.is_avito ? 1 : 0;
