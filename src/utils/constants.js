@@ -5,7 +5,7 @@ const Headers = {
 };
 
 const colDashboard = [
-  { field: "id", fieldName: "ID" },
+  { field: "id", fieldName: "№" },
   { field: "cian", fieldName: "Cian" },
   { field: "direct", fieldName: "Direct" },
   { field: "avito", fieldName: "Avito" },
@@ -20,7 +20,7 @@ const colDashboard = [
 ];
 
 const colCian = [
-  { field: "id", fieldName: "ID" },
+  { field: "id", fieldName: "№" },
   { field: "category_obj", fieldName: "Тип" },
   { field: "name", fieldName: "Название" },
   { field: "floor", fieldName: "Этажей" },
@@ -36,7 +36,7 @@ const colCian = [
 ];
 
 const colDirect = [
-  { field: "id", fieldName: "ID" },
+  { field: "id", fieldName: "№" },
   { field: "category_obj", fieldName: "Тип" },
   { field: "name", fieldName: "Название" },
   { field: "sq", fieldName: "Площадь м²" },
@@ -52,7 +52,7 @@ const colDirect = [
 ];
 
 const colAvito = [
-  { field: "id", fieldName: "ID" },
+  { field: "id", fieldName: "№" },
   { field: "category_obj", fieldName: "Тип" },
   { field: "name", fieldName: "Название" },
   { field: "floor", fieldName: "Этажей" },
@@ -71,7 +71,7 @@ const colAvito = [
 ];
 
 const colDomclick = [
-  { field: "id", fieldName: "ID" },
+  { field: "id", fieldName: "№" },
   { field: "category_obj", fieldName: "Тип" },
   { field: "name", fieldName: "Название" },
   { field: "floor", fieldName: "Этажей" },
