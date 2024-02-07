@@ -7,6 +7,7 @@ import Search from "../Search/Search";
 
 const Filters = ({
   data,
+  setData,
   handlefilteredRows,
   columns,
   createProject,
@@ -58,6 +59,8 @@ const Filters = ({
       </div>
 
       <AddProjectForm
+        data={data}
+        setData={setData}
         isBlockVisible={isBlockVisible}
         columns={columns}
         toggleAddBlockVisibility={toggleAddBlockVisibility}

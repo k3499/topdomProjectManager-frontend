@@ -136,7 +136,7 @@ export const deleteImage = async (uid) => {
     const response = await axios.delete(`${BASE_URL}index.php`, {
       data: {
         method: "deletePhoto",
-        data: { uid: uid },
+        data: { id: uid },
       },
     });
   } catch (error) {

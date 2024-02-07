@@ -14,11 +14,12 @@ import { colAdd } from "../../utils/constants";
 import { useState } from "react";
 
 const AddProjectForm = ({
+  data,
+  setData,
   isBlockVisible,
   toggleAddBlockVisibility,
   createProject,
 }) => {
-  const [projectToAdd, setProjectToAdd] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const [form] = Form.useForm();
   const [type, setType] = useState();
@@ -31,6 +32,7 @@ const AddProjectForm = ({
     try {
       // Вызываем асинхронный запрос createProject
       await createProject(values);
+      setData([...data, values]);
       console.log(values);
       message.success(`Проект добавлен`);
     } catch (error) {

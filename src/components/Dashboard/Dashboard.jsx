@@ -43,6 +43,7 @@ const Dashboard = ({ updateProject, deleteProjects, columns, actions }) => {
     <>
       <Filters
         data={rowsState}
+        setData={setRowsState}
         handlefilteredRows={filteredRows}
         columns={columns}
         createProject={createProject}
