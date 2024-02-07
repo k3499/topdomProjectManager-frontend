@@ -90,6 +90,7 @@ const colAdd = [
   { field: "cian", fieldName: "Cian" },
   { field: "direct", fieldName: "Direct" },
   { field: "avito", fieldName: "Avito" },
+  { field: "domclick", fieldName: "DomClick" },
   { field: "category_obj", fieldName: "Тип" },
   { field: "name", fieldName: "Название" },
   { field: "floors", fieldName: "Этажей" },
