@@ -91,7 +91,7 @@ const AvitoTableRow = React.memo(
     };
     return (
       <tr className="table__row">
-        <Id id={row.id} />
+        <Id id={rowsState.indexOf(row) + 1} />
         <Actions
           row={row}
           isEditMode={isEditMode}
