@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { updateFile, updateProject, deleteProjects } from "../../utils/api";
+import { Alert, Space, message } from "antd";
 import {
   colDashboard,
   colCian,
@@ -21,6 +22,7 @@ import LoginPage from "../LoginPage/LoginPage";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [password, setPassword] = useState(null);
 
   useEffect(() => {
     handleCheckAuth();
@@ -28,13 +30,26 @@ function App() {
   }, []);
 
   const handleUpdateProject = (project) => {
-    updateProject(project);
+    if (password === "1234") {
+      message.error("вы не можете изменять проект на тестовом аккаунте", 3);
+      return;
+    } else {
+      updateProject(project);
+    }
   };
   const handledeleteProjects = (project) => {
+    if (password === "1234") {
+      message.error("вы не можете удалять проект на тестовом аккаунте", 3);
+      return;
+    }
     deleteProjects(project);
   };
 
   const handleUpdateFile = (project) => {
+    if (password === "1234") {
+      message.error("вы не можете загружать фото на тестовом аккаунте", 3);
+      return;
+    }
     updateFile(project);
   };
 
@@ -42,9 +57,10 @@ function App() {
     localStorage.setItem("user", JSON.stringify(values));
   };
   const handleCheckAuth = () => {
-    const user = localStorage.getItem("user");
+    const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
       setUser(true);
+      setPassword(user.password);
     }
   };
 
@@ -54,6 +70,17 @@ function App() {
         <div className="wrapper">
           {user && <Header />}
           <main className={user ? "main" : "login__wrapper"}>
+            {password === "1234" && (
+              <Space direction="vertical" style={{ width: "100%" }}>
+                <Alert
+                  message="Вы вошли в тестовый аккаунт. Добавление, удаление или изменение проектов не доступно"
+                  banner
+                  closable
+                  className="alert"
+                />
+              </Space>
+            )}
+
             <Routes>
               <Route element={<ProtectedRoute isAlowed={!!user} />}>
                 <Route

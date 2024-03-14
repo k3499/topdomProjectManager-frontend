@@ -13,6 +13,16 @@ const ImageLoader = ({ id }) => {
   const [mainPhotoList, setMainPhotoList] = useState([]);
   const [fileList, setFileList] = useState([]);
   const [planList, setPlanList] = useState([]);
+  const [user, setUser] = useState(null);
+  const [password, setPassword] = useState(null);
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      setUser(true);
+      setPassword(user.password);
+    }
+    console.log(user);
+  }, []);
 
   useEffect(() => {
     setIsLoading(true); // Устанавливаем состояние загрузки в true при начале загрузки
@@ -54,15 +64,33 @@ const ImageLoader = ({ id }) => {
   };
 
   const handleChangeMain = ({ fileList: newFileList }) => {
-    console.log(newFileList);
-    setMainPhotoList(newFileList);
+    if (password === "1234") {
+      message.error("вы не можете менять изображения", 3);
+      return;
+    } else {
+      console.log(newFileList);
+      setMainPhotoList(newFileList);
+    }
   };
 
   const handleChangeAll = ({ fileList: newFileList }) => {
-    setFileList(newFileList);
+    if (password === "1234") {
+      console.log(password);
+      message.error("вы не можете менять изображения", 3);
+      return;
+    } else {
+      console.log(password);
+      console.log("выполнил");
+      setFileList(newFileList);
+    }
   };
   const handleChangePlan = ({ fileList: newFileList }) => {
-    setPlanList(newFileList);
+    if (password === "1234") {
+      message.error("вы не можете менять изображения", 3);
+      return;
+    } else {
+      setPlanList(newFileList);
+    }
   };
 
   const handlePreview = async (file) => {
@@ -80,8 +108,13 @@ const ImageLoader = ({ id }) => {
   const handleCancel = () => setPreviewOpen(false);
 
   const handleRemove = (file) => {
-    // Отправка запроса на удаление файла с использованием функции deleteFile из api.js
-    deleteImage(file.uid);
+    if (password === "1234") {
+      message.error("вы не можете удалять изображения", 3);
+      return;
+    } else {
+      // Отправка запроса на удаление файла с использованием функции deleteFile из api.js
+      deleteImage(file.uid);
+    }
   };
   return (
     <tr class="table__image-spoiler">

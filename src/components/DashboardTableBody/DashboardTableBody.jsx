@@ -2,10 +2,17 @@ import React from "react";
 import "./DashboardTableBody.css";
 import DashboardTableRow from "../DashboardTableRow/DashboardTableRow";
 
-import { updateProject, deleteProjects } from "../../utils/api";
+// import { updateProject, deleteProjects } from "../../utils/api";
 
 const DashboardTableBody = React.memo(
-  ({ columns, actions, rowsState, setRowsState }) => {
+  ({
+    columns,
+    actions,
+    updateProject,
+    deleteProjects,
+    rowsState,
+    setRowsState,
+  }) => {
     return (
       <>
         <tbody>

@@ -16,7 +16,12 @@ const LoginPage = ({ user, setUser, login }) => {
     //setIsLoading(true); // Устанавливаем isLoading в true перед началом отправки формы
     try {
       if (values.password === "1111") {
-        setUser(true);
+        setUser("admin");
+        login(values);
+        navigate("/");
+      }
+      if (values.password === "1234") {
+        setUser("job");
         login(values);
         navigate("/");
       }

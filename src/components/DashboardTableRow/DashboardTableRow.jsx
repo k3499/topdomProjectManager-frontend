@@ -74,7 +74,6 @@ const DashboardTableRow = React.memo(
         return row;
       });
       //updateProject(newData);
-      message.success("Изменения сохранены", 2.5);
       setRowsState(newData);
       setEditedRow(undefined);
     };
