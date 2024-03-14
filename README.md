@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# Менеджер проектов с генерацией XML фидов для агрегаторов
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Описание
 
-## Available Scripts
+В приложении можно выбирать, какие проекты домов будут использоваться в генерации определенных фидов для агрегаторов (cian, avito, domclick direct) с последующим довнесением недостающих данных, включая фото проектов.
 
-In the project directory, you can run:
+![Alt text](https://github.com/k3499/topdomProjectManager-frontend/blob/main/1.png)
+![Alt text](https://github.com/k3499/topdomProjectManager-frontend/blob/main/2.png)
 
-### `npm start`
+## Инструкции по установке и запуску проекта
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Для запуска проекта используйте команду `npm start`. Приложение запустится и будет доступно по ссылке [http://localhost:3000/](http://localhost:3000/).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Примеры использования проекта
 
-### `npm test`
+(Здесь можно добавить примеры использования проекта, если есть)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Список зависимостей и необходимого ПО
 
-### `npm run build`
+- Реакт библиотека "React-Bootstrap"
+- Библиотека компонентов "Ant Design"
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Контактная информация
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+(Здесь можно добавить вашу контактную информацию)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Ссылки на документацию или демо
 
-### `npm run eject`
+Проект работает по адресу [https://topdom-erp.ru/](https://topdom-erp.ru/). Для просмотра можно использовать тестовый аккаунт с ограниченными возможностями:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Логин: admin
+- Пароль: 1234
